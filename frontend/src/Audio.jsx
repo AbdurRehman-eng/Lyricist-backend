@@ -132,7 +132,7 @@ function AudioSearch() {
 
       <Navbar />
       
-      <div className="w-full max-w-4xl flex flex-col items-center z-10">
+      <div className="w-full max-w-6xl flex flex-col items-center z-10">
         <h1 
           className="text-4xl md:text-5xl font-semibold mb-6 text-white text-center" 
           style={{ fontFamily: 'Zen Antique Soft, serif' }}
@@ -234,7 +234,7 @@ function AudioSearch() {
 
         {/* Results grid */}
         {results && !isLoading && (
-          <div className="w-full max-w-4xl mt-6 animate-fadeIn">
+          <div className="w-full max-w-6xl mt-6 animate-fadeIn">
             <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-6 pb-2 border-b border-white/5">
               <h2 className="text-xl font-semibold text-blue-500">
                 Matched Songs:

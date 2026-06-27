@@ -70,7 +70,7 @@ function App() {
 
       <Navbar />
       
-      <div className="flex flex-col items-center justify-center flex-grow w-full max-w-4xl z-10">
+      <div className="flex flex-col items-center justify-center flex-grow w-full max-w-6xl z-10">
         <h1 
           className="text-5xl md:text-6xl font-bold mb-8 text-white select-none text-center tracking-wide" 
           style={{ fontFamily: 'Zen Antique Soft, serif' }}
@@ -150,7 +150,7 @@ function App() {
 
         {/* Search Results */}
         {results && !isLoading && (
-          <div className="w-full max-w-4xl mt-6 animate-fadeIn">
+          <div className="w-full max-w-6xl mt-6 animate-fadeIn">
             <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-6 pb-2 border-b border-white/5">
               <h2 className="text-xl font-semibold text-blue-500">
                 Results for <span className="text-white">"{results.query}"</span>:
