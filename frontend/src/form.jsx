@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Music, Link as LinkIcon, Users, Disc, FileText, CheckCircle } from 'lucide-react';
 import Navbar from './components/navbar';
 
 export default function AddSongForm() {
@@ -91,10 +92,16 @@ export default function AddSongForm() {
   }, [success]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-black p-6 pb-24 md:pb-6 md:pl-24 text-gray-100 relative transition-all duration-300">
+    <div className="min-h-screen flex flex-col items-center bg-black p-6 pb-28 md:pb-6 md:pl-28 text-gray-100 relative overflow-hidden transition-all duration-300">
+      {/* Ambient background glows */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[-10%] left-[-10%] w-[50vw] aspect-square rounded-full bg-blue-950/15 blur-[120px]"></div>
+        <div className="absolute bottom-[10%] right-[-10%] w-[50vw] aspect-square rounded-full bg-indigo-950/15 blur-[120px]"></div>
+      </div>
+
       <Navbar />
       
-      <div className="w-full max-w-2xl flex flex-col justify-center flex-grow">
+      <div className="w-full max-w-2xl flex flex-col justify-center flex-grow z-10">
         <h1 
           className="text-4xl font-semibold mb-6 text-white text-center mt-4" 
           style={{ fontFamily: 'Zen Antique Soft, serif' }}
@@ -104,10 +111,13 @@ export default function AddSongForm() {
 
         <form 
           onSubmit={handleSubmit} 
-          className="w-full bg-gray-900/40 border border-gray-800/80 p-6 sm:p-8 rounded-2xl shadow-xl transition-all"
+          className="w-full bg-gray-905/40 backdrop-blur-md border border-white/5 p-6 sm:p-8 rounded-2xl shadow-2xl transition-all"
         >
           <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Song Title</label>
+            <label htmlFor="name" className="text-sm font-medium text-gray-300 mb-2 flex items-center">
+              <Music className="w-4 h-4 mr-2 text-blue-400" />
+              Song Title
+            </label>
             <input
               type="text"
               id="name"
@@ -117,12 +127,15 @@ export default function AddSongForm() {
               required
               disabled={isLoading}
               placeholder="e.g. Bohemian Rhapsody"
-              className="w-full p-3 bg-gray-800/60 border border-gray-700/50 text-white rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 placeholder-gray-500 transition-all disabled:opacity-50"
+              className="w-full p-3 bg-gray-900/40 border border-white/10 text-white rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 placeholder-gray-600 transition-all disabled:opacity-50"
             />
           </div>
 
           <div className="mb-4">
-            <label htmlFor="spotifyLink" className="block text-sm font-medium text-gray-300 mb-2">Spotify Link</label>
+            <label htmlFor="spotifyLink" className="text-sm font-medium text-gray-300 mb-2 flex items-center">
+              <LinkIcon className="w-4 h-4 mr-2 text-blue-400" />
+              Spotify Link
+            </label>
             <input
               type="url"
               id="spotifyLink"
@@ -132,12 +145,15 @@ export default function AddSongForm() {
               required
               disabled={isLoading}
               placeholder="e.g. https://open.spotify.com/track/..."
-              className="w-full p-3 bg-gray-800/60 border border-gray-700/50 text-white rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 placeholder-gray-500 transition-all disabled:opacity-50"
+              className="w-full p-3 bg-gray-900/40 border border-white/10 text-white rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 placeholder-gray-600 transition-all disabled:opacity-50"
             />
           </div>
 
           <div className="mb-4">
-            <label htmlFor="artists" className="block text-sm font-medium text-gray-300 mb-2">Artists (separated by commas)</label>
+            <label htmlFor="artists" className="text-sm font-medium text-gray-300 mb-2 flex items-center">
+              <Users className="w-4 h-4 mr-2 text-blue-400" />
+              Artists (separated by commas)
+            </label>
             <input
               type="text"
               id="artists"
@@ -147,12 +163,15 @@ export default function AddSongForm() {
               required
               disabled={isLoading}
               placeholder="e.g. Queen"
-              className="w-full p-3 bg-gray-800/60 border border-gray-700/50 text-white rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 placeholder-gray-500 transition-all disabled:opacity-50"
+              className="w-full p-3 bg-gray-900/40 border border-white/10 text-white rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 placeholder-gray-600 transition-all disabled:opacity-50"
             />
           </div>
 
           <div className="mb-4">
-            <label htmlFor="album" className="block text-sm font-medium text-gray-300 mb-2">Album Name</label>
+            <label htmlFor="album" className="text-sm font-medium text-gray-300 mb-2 flex items-center">
+              <Disc className="w-4 h-4 mr-2 text-blue-400" />
+              Album Name
+            </label>
             <input
               type="text"
               id="album"
@@ -162,12 +181,15 @@ export default function AddSongForm() {
               required
               disabled={isLoading}
               placeholder="e.g. A Night at the Opera"
-              className="w-full p-3 bg-gray-800/60 border border-gray-700/50 text-white rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 placeholder-gray-500 transition-all disabled:opacity-50"
+              className="w-full p-3 bg-gray-900/40 border border-white/10 text-white rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 placeholder-gray-600 transition-all disabled:opacity-50"
             />
           </div>
 
           <div className="mb-6">
-            <label htmlFor="lyrics" className="block text-sm font-medium text-gray-300 mb-2">Lyrics</label>
+            <label htmlFor="lyrics" className="text-sm font-medium text-gray-300 mb-2 flex items-center">
+              <FileText className="w-4 h-4 mr-2 text-blue-400" />
+              Lyrics
+            </label>
             <textarea
               id="lyrics"
               name="lyrics"
@@ -176,14 +198,14 @@ export default function AddSongForm() {
               required
               disabled={isLoading}
               placeholder="Paste song lyrics here..."
-              className="w-full p-3 bg-gray-800/60 border border-gray-700/50 text-white rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 placeholder-gray-500 transition-all disabled:opacity-50"
-              rows="5"
+              className="w-full p-3 bg-gray-900/40 border border-white/10 text-white rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 placeholder-gray-600 transition-all disabled:opacity-50"
+              rows="4"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full p-3.5 bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white rounded-xl font-semibold transition-all shadow-lg shadow-blue-600/20 disabled:opacity-50 disabled:pointer-events-none flex items-center justify-center space-x-2"
+            className="w-full p-3.5 bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white rounded-xl font-semibold transition-all shadow-lg shadow-blue-650/20 disabled:opacity-50 disabled:pointer-events-none flex items-center justify-center space-x-2"
             disabled={isLoading}
           >
             {isLoading ? (
@@ -207,7 +229,8 @@ export default function AddSongForm() {
       {/* Floating Modern Toast Notification */}
       {success && (
         <div className="fixed top-6 left-1/2 transform -translate-x-1/2 px-6 py-4 bg-green-600 border border-green-500/30 text-white rounded-xl shadow-2xl z-50 flex items-center space-x-2 animate-bounce">
-          <span className="font-semibold text-base">✓ Song successfully added and indexed!</span>
+          <CheckCircle className="w-5 h-5 text-white" />
+          <span className="font-semibold text-base">Song successfully added and indexed!</span>
         </div>
       )}
       
