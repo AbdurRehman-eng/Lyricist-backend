@@ -3,7 +3,7 @@ import Navbar from './components/navbar'; // Import the Navbar component
 
 function AboutPage() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-black p-4 text-gray-100 relative">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-black p-6 pb-24 md:pb-6 md:pl-24 text-gray-100 relative">
       <Navbar /> {/* Include the Navbar component */}
       <div className="flex flex-col items-center justify-center flex-grow w-full">
         <h1 className="text-4xl font-semibold mb-6 text-white mt-4" style={{ fontFamily: 'Zen Antique Soft, serif' }}>About Lyrica</h1>

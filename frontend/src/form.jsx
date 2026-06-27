@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { useState, useEffect } from 'react';
 import Navbar from './components/navbar';
 
 export default function AddSongForm() {
@@ -36,7 +35,7 @@ export default function AddSongForm() {
     const spotifyID = extractSpotifyID(formData.spotifyLink);
 
     if (!spotifyID) {
-      setError('Invalid Spotify link. Please provide a valid link.');
+      setError('Invalid Spotify link. Please provide a valid track link (e.g., https://open.spotify.com/track/...).');
       setIsLoading(false);
       return;
     }
@@ -69,10 +68,9 @@ export default function AddSongForm() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to add song. Please try again.');
+        throw new Error('Failed to add song. Please check the backend connection and try again.');
       }
 
-      console.log('Submitted data:', payload);
       setSuccess(true);
       setFormData({ name: '', spotifyLink: '', artists: '', album: '', lyrics: '' });
     } catch (err) {
@@ -82,112 +80,140 @@ export default function AddSongForm() {
     }
   };
 
+  // Automatically dismiss the success toast after 4 seconds
+  useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => {
+        setSuccess(false);
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [success]);
+
   return (
-    <div className="min-h-screen flex flex-col items-center bg-black p-4 relative">
+    <div className="min-h-screen flex flex-col items-center bg-black p-6 pb-24 md:pb-6 md:pl-24 text-gray-100 relative transition-all duration-300">
       <Navbar />
-      <h1 className="text-4xl font-semibold mb-6 text-white mt-4" style={{ fontFamily: 'Zen Antique Soft, serif' }}>
-        Add New Song
-      </h1>
-
-      <form onSubmit={handleSubmit} className="w-full max-w-2xl bg-gray-800 p-6 rounded-lg shadow-lg">
-        <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Song Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="w-full p-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="spotifyLink" className="block text-sm font-medium text-gray-300 mb-1">Spotify Link</label>
-          <input
-            type="url"
-            id="spotifyLink"
-            name="spotifyLink"
-            value={formData.spotifyLink}
-            onChange={handleChange}
-            required
-            className="w-full p-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="artists" className="block text-sm font-medium text-gray-300 mb-1">Artists (separated by commas)</label>
-          <input
-            type="text"
-            id="artists"
-            name="artists"
-            value={formData.artists}
-            onChange={handleChange}
-            required
-            className="w-full p-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="album" className="block text-sm font-medium text-gray-300 mb-1">Album</label>
-          <input
-            type="text"
-            id="album"
-            name="album"
-            value={formData.album}
-            onChange={handleChange}
-            required
-            className="w-full p-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
-        <div className="mb-6">
-          <label htmlFor="lyrics" className="block text-sm font-medium text-gray-300 mb-1">Lyrics</label>
-          <textarea
-            id="lyrics"
-            name="lyrics"
-            value={formData.lyrics}
-            onChange={handleChange}
-            required
-            className="w-full p-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            rows="4"
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="w-full p-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
-          disabled={isLoading}
+      
+      <div className="w-full max-w-2xl flex flex-col justify-center flex-grow">
+        <h1 
+          className="text-4xl font-semibold mb-6 text-white text-center mt-4" 
+          style={{ fontFamily: 'Zen Antique Soft, serif' }}
         >
-          {isLoading ? 'Adding Song...' : 'Add Song'}
-        </button>
-      </form>
+          Add New Song
+        </h1>
 
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-75">
-          <DotLottieReact
-            src="/assets/load.lottie"
-            loop
-            autoplay
-            className="w-24 h-24"
-          />
-          <p className="ml-4 text-lg text-gray-300">Processing...</p>
+        <form 
+          onSubmit={handleSubmit} 
+          className="w-full bg-gray-900/40 border border-gray-800/80 p-6 sm:p-8 rounded-2xl shadow-xl transition-all"
+        >
+          <div className="mb-4">
+            <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Song Title</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              disabled={isLoading}
+              placeholder="e.g. Bohemian Rhapsody"
+              className="w-full p-3 bg-gray-800/60 border border-gray-700/50 text-white rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 placeholder-gray-500 transition-all disabled:opacity-50"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="spotifyLink" className="block text-sm font-medium text-gray-300 mb-2">Spotify Link</label>
+            <input
+              type="url"
+              id="spotifyLink"
+              name="spotifyLink"
+              value={formData.spotifyLink}
+              onChange={handleChange}
+              required
+              disabled={isLoading}
+              placeholder="e.g. https://open.spotify.com/track/..."
+              className="w-full p-3 bg-gray-800/60 border border-gray-700/50 text-white rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 placeholder-gray-500 transition-all disabled:opacity-50"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="artists" className="block text-sm font-medium text-gray-300 mb-2">Artists (separated by commas)</label>
+            <input
+              type="text"
+              id="artists"
+              name="artists"
+              value={formData.artists}
+              onChange={handleChange}
+              required
+              disabled={isLoading}
+              placeholder="e.g. Queen"
+              className="w-full p-3 bg-gray-800/60 border border-gray-700/50 text-white rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 placeholder-gray-500 transition-all disabled:opacity-50"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="album" className="block text-sm font-medium text-gray-300 mb-2">Album Name</label>
+            <input
+              type="text"
+              id="album"
+              name="album"
+              value={formData.album}
+              onChange={handleChange}
+              required
+              disabled={isLoading}
+              placeholder="e.g. A Night at the Opera"
+              className="w-full p-3 bg-gray-800/60 border border-gray-700/50 text-white rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 placeholder-gray-500 transition-all disabled:opacity-50"
+            />
+          </div>
+
+          <div className="mb-6">
+            <label htmlFor="lyrics" className="block text-sm font-medium text-gray-300 mb-2">Lyrics</label>
+            <textarea
+              id="lyrics"
+              name="lyrics"
+              value={formData.lyrics}
+              onChange={handleChange}
+              required
+              disabled={isLoading}
+              placeholder="Paste song lyrics here..."
+              className="w-full p-3 bg-gray-800/60 border border-gray-700/50 text-white rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 placeholder-gray-500 transition-all disabled:opacity-50"
+              rows="5"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full p-3.5 bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white rounded-xl font-semibold transition-all shadow-lg shadow-blue-600/20 disabled:opacity-50 disabled:pointer-events-none flex items-center justify-center space-x-2"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                <span>Indexing song...</span>
+              </>
+            ) : (
+              <span>Add Song to Index</span>
+            )}
+          </button>
+        </form>
+
+        {error && (
+          <div className="mt-6 p-4 bg-red-950/40 border border-red-800/50 text-red-300 rounded-xl text-center shadow-lg">
+            {error}
+          </div>
+        )}
+      </div>
+
+      {/* Floating Modern Toast Notification */}
+      {success && (
+        <div className="fixed top-6 left-1/2 transform -translate-x-1/2 px-6 py-4 bg-green-600 border border-green-500/30 text-white rounded-xl shadow-2xl z-50 flex items-center space-x-2 animate-bounce">
+          <span className="font-semibold text-base">✓ Song successfully added and indexed!</span>
         </div>
       )}
-
-      {error && (
-        <div className="mt-4 p-3 bg-red-500 text-white rounded-lg">
-          {error}
-        </div>
-      )}
-
-{success && (
-  <div className="fixed top-0 left-1/2 transform -translate-x-1/2 p-3 bg-green-500 text-white rounded-lg shadow-lg z-50">
-    Song added successfully!
-  </div>
-)}
-  
+      
+      <footer className="mt-16 text-center text-gray-600 text-sm">
+        <p>&copy; 2024 Lyrica. All rights reserved.</p>
+      </footer>
     </div>
   );
 }
