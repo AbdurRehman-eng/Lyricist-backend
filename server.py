@@ -99,25 +99,41 @@ def add_document():
         forward_index_df = pd.concat([forward_index_df, new_row], ignore_index=True)
         forward_index_df.to_csv(forward_index_file, index=False)
 
-        # Step 5: Update Inverted Index
-        inverted_index_dict = {}
-
+        # Step 5: Update Inverted Index Barrels
         for term in unique_terms:
             word_id = lexicon.get(term)
             if word_id is not None:
                 inverted_index.barrels.add_to_barrel(term, word_id, {new_doc_id})
-                if term not in inverted_index_dict:
-                    inverted_index_dict[term] = set()
-                inverted_index_dict[term].add(new_doc_id)
 
         inverted_index.save_to_barrels("barrels")
 
-        # Step 6: Save the inverted index to CSV
+        # Step 6: Update Inverted Index CSV
         inverted_index_csv_file = "inverted_index.csv"
-        inverted_index_rows = [{"Term": term, "Document IDs": ",".join(map(str, sorted(doc_ids)))} for term, doc_ids in inverted_index_dict.items()]
-        inverted_index_df = pd.DataFrame(inverted_index_rows)
-        inverted_index_df["Document IDs"] = inverted_index_df["Document IDs"].apply(lambda x: '"' + x + '"')
-        inverted_index_df.to_csv(inverted_index_csv_file, index=False)
+        existing_inverted_index = {}
+        try:
+            with open(inverted_index_csv_file, mode='r', newline='', encoding='utf-8') as file:
+                reader = csv.reader(file)
+                header = next(reader)
+                for row in reader:
+                    if len(row) == 2:
+                        term, doc_ids_str = row
+                        doc_ids = set(map(int, doc_ids_str.split(","))) if doc_ids_str else set()
+                        existing_inverted_index[term] = doc_ids
+        except Exception as e:
+            print(f"Error reading existing inverted index: {e}")
+
+        # Update with new terms and new doc id
+        for term in unique_terms:
+            if term not in existing_inverted_index:
+                existing_inverted_index[term] = set()
+            existing_inverted_index[term].add(new_doc_id)
+
+        # Save back to inverted_index.csv
+        with open(inverted_index_csv_file, mode='w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerow(["Term", "Document IDs"])
+            for term, doc_ids in existing_inverted_index.items():
+                writer.writerow([term, ",".join(map(str, sorted(doc_ids)))])
 
         # Step 7: Update details.json
         details_file = "details.json"
