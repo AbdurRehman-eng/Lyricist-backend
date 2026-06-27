@@ -1,28 +1,57 @@
+"""
+Lyrica Search Engine Server
+
+Flask API providing endpoints for searching songs, adding new song documents,
+and transcribing voice queries.
+"""
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
-from search import HybridSearchEngine, lexicon,doc_id_to_details
-from inverted_index import InvertedIndex
-from speech import speech_to_text
 import json
 import csv
-from lexicon import preprocess_text
 import pandas as pd
 import numpy as np
 
+from search_engine import (
+    HybridSearchEngine,
+    InvertedIndex,
+    preprocess_text,
+    load_lexicon,
+    save_lexicon
+)
+from speech import speech_to_text
+
 app = Flask(__name__)
-CORS(app)  # Enable CORS
+CORS(app)  # Enable Cross-Origin Resource Sharing
 
-# Initialize inverted index and load barrels from CSV files
+# 1. Load Lexicon
+lexicon = load_lexicon("lexicon.csv")
+
+# 2. Load Details mapping
+try:
+    with open("details.json", "r", encoding="utf-8") as f:
+        details = json.load(f)
+except (FileNotFoundError, json.JSONDecodeError):
+    details = []
+doc_id_to_details = {item["doc_id"]: item for item in details}
+
+# 3. Load Inverted Index and Barrels
 inverted_index = InvertedIndex()
-inverted_index.load_from_barrels(r".\barrels")  # Load barrels from folder
+try:
+    inverted_index.load_from_barrels(r".\barrels")
+except Exception as e:
+    print(f"Warning: Could not load index barrels: {e}")
 
-# Initialize hybrid search engine
-hybrid_engine = HybridSearchEngine(inverted_index, lexicon)
+# 4. Initialize Global Hybrid Search Engine
+hybrid_engine = HybridSearchEngine(inverted_index, lexicon, doc_id_to_details)
+
 
 @app.route('/search')
 def search():
-    hybrid_engine = HybridSearchEngine(inverted_index, lexicon)
+    """
+    Perform a hybrid search query.
+    """
     query = request.args.get('query', '')
     if not query:
         return jsonify({"error": "No query provided"}), 400
@@ -30,33 +59,35 @@ def search():
     # Perform hybrid search
     final_results, ranked_results = hybrid_engine.search(query.lower())
 
-    # Map document IDs to details
+    # Map document IDs to metadata details
     final_results_details = hybrid_engine.map_doc_ids_to_details(final_results)
     ranked_results_details = hybrid_engine.map_ranked_results_to_details(ranked_results)
 
-    # Return results as JSON
     return jsonify({
         "query": query,
         "final_results": final_results_details,
         "ranked_results": ranked_results_details
     })
+
+
 @app.route('/add_document', methods=['POST'])
 def add_document():
+    """
+    Index and add a new song document to the system dynamically.
+    """
     try:
-        # Step 1: Parse request data
         data = request.json
         required_fields = ["id", "name", "album_name", "artists", "lyrics"]
         if not all(field in data for field in required_fields):
             return jsonify({"error": f"Missing required fields. Required: {required_fields}"}), 400
 
-        # Step 2: Append to songs.csv
+        # Step 1: Append to songs.csv
         csv_file = "songs.csv"
         new_song_data = {
             "id": data["id"],
             "name": data["name"],
             "album_name": data["album_name"],
             "artists": data["artists"],
-            # Optional fields with default values
             "danceability": float(data.get("danceability", 0.0)),
             "energy": float(data.get("energy", 0.0)),
             "key": int(data.get("key", 0)),
@@ -76,30 +107,33 @@ def add_document():
             writer = csv.DictWriter(file, fieldnames=new_song_data.keys())
             writer.writerow(new_song_data)
 
-        # Step 3: Update the Lexicon
-        tokens = preprocess_text(data["lyrics"] + " " + data["name"] + " " + data["album_name"] + " " + data["artists"])
+        # Step 2: Update lexicon in-memory and save to disk
+        combined_text = f"{data['lyrics']} {data['name']} {data['album_name']} {data['artists']}"
+        tokens = preprocess_text(combined_text)
         new_tokens = [token for token in tokens if token not in lexicon]
 
         for token in new_tokens:
             lexicon[token] = len(lexicon) + 1
+            # Real-time update to the in-memory spell checker
+            hybrid_engine.spelling_matcher.add_word(token)
 
-        # Save updated lexicon to CSV
-        pd.DataFrame(list(lexicon.items()), columns=["Term", "Word IDs"]).to_csv("lexicon.csv", index=False)
+        save_lexicon(lexicon, "lexicon.csv")
 
-        # Step 4: Update Forward Index
+        # Step 3: Update Forward Index
         forward_index_file = "forward_index.csv"
-        forward_index_df = pd.read_csv(forward_index_file)
-        new_doc_id = int(forward_index_df["Document ID"].max() + 1)
+        try:
+            forward_index_df = pd.read_csv(forward_index_file)
+            new_doc_id = int(forward_index_df["Document ID"].max() + 1)
+        except Exception:
+            new_doc_id = 1
+            forward_index_df = pd.DataFrame(columns=["Document ID", "Terms"])
 
-        # Create a set of unique terms from the tokens
         unique_terms = set(tokens)
-
-        # Add the new row with terms as a string and document ID
         new_row = pd.DataFrame([{"Document ID": new_doc_id, "Terms": str(list(unique_terms))}])
         forward_index_df = pd.concat([forward_index_df, new_row], ignore_index=True)
         forward_index_df.to_csv(forward_index_file, index=False)
 
-        # Step 5: Update Inverted Index Barrels
+        # Step 4: Update Inverted Index Barrels
         for term in unique_terms:
             word_id = lexicon.get(term)
             if word_id is not None:
@@ -107,35 +141,33 @@ def add_document():
 
         inverted_index.save_to_barrels("barrels")
 
-        # Step 6: Update Inverted Index CSV
+        # Step 5: Update Inverted Index CSV
         inverted_index_csv_file = "inverted_index.csv"
         existing_inverted_index = {}
         try:
             with open(inverted_index_csv_file, mode='r', newline='', encoding='utf-8') as file:
                 reader = csv.reader(file)
-                header = next(reader)
+                next(reader, None)  # Skip header
                 for row in reader:
                     if len(row) == 2:
                         term, doc_ids_str = row
                         doc_ids = set(map(int, doc_ids_str.split(","))) if doc_ids_str else set()
                         existing_inverted_index[term] = doc_ids
-        except Exception as e:
-            print(f"Error reading existing inverted index: {e}")
+        except Exception:
+            pass
 
-        # Update with new terms and new doc id
         for term in unique_terms:
             if term not in existing_inverted_index:
                 existing_inverted_index[term] = set()
             existing_inverted_index[term].add(new_doc_id)
 
-        # Save back to inverted_index.csv
         with open(inverted_index_csv_file, mode='w', newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
             writer.writerow(["Term", "Document IDs"])
-            for term, doc_ids in existing_inverted_index.items():
+            for term, doc_ids in sorted(existing_inverted_index.items()):
                 writer.writerow([term, ",".join(map(str, sorted(doc_ids)))])
 
-        # Step 7: Update details.json
+        # Step 6: Update details.json and in-memory mappings
         details_file = "details.json"
         new_details = {
             "spotify_id": data["id"],
@@ -148,12 +180,12 @@ def add_document():
         try:
             with open(details_file, "r", encoding="utf-8") as file:
                 details_data = json.load(file)
-        except FileNotFoundError:
+        except Exception:
             details_data = []
 
         details_data.append(new_details)
 
-        # Ensure JSON serializability
+        # Ensure types are standard JSON serializable
         for item in details_data:
             for key, value in item.items():
                 if isinstance(value, (np.int64, np.float64)):
@@ -162,18 +194,21 @@ def add_document():
         with open(details_file, "w", encoding="utf-8") as file:
             json.dump(details_data, file, ensure_ascii=False, indent=4)
 
-        # Update the in-memory mapping of document IDs to details
-        # Directly update doc_id_to_details in memory
+        # Update in-memory mappings
         doc_id_to_details[new_doc_id] = new_details
+        hybrid_engine.update_doc_details(new_doc_id, new_details)
 
-        # Return success message with the new document ID
         return jsonify({"message": "Document added successfully", "doc_id": new_doc_id}), 200
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
 @app.route('/transcribe', methods=['POST'])
 def transcribe():
+    """
+    Transcribe audio request and search the results.
+    """
     if 'audio' not in request.files:
         return jsonify({"error": "No audio file provided"}), 400
 
@@ -183,9 +218,10 @@ def transcribe():
 
     try:
         transcript = speech_to_text(file_path)
-        os.remove(file_path)  # Delete the file after transcription
+        if os.path.exists(file_path):
+            os.remove(file_path)
 
-        # Perform hybrid search using the transcription as the query
+        # Perform hybrid search using transcription
         final_results, ranked_results = hybrid_engine.search(transcript.lower())
 
         # Map document IDs to details
@@ -200,8 +236,9 @@ def transcribe():
         })
     except Exception as e:
         if os.path.exists(file_path):
-            os.remove(file_path)  # Ensure the file is deleted in case of an error
+            os.remove(file_path)
         return jsonify({"error": str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)

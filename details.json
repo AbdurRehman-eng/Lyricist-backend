@@ -1,212 +1,30 @@
 [
     {
-        "spotify_id": "0Prct5TDjAnEgIqbxcldY9",
-        "name": "!",
+        "spotify_id": null,
+        "name": "Unknown",
         "doc_id": 1,
-        "artists": "['HELLYEAH']",
-        "album_name": "UNDEN!ABLE"
+        "artists": "Unknown",
+        "album_name": "Unknown"
     },
     {
-        "spotify_id": "2ASl4wirkeYm3OWZxXKYuq",
-        "name": "!!",
+        "spotify_id": null,
+        "name": "Unknown",
         "doc_id": 2,
-        "artists": "Yxngxr1",
+        "artists": "Unknown",
         "album_name": "Unknown"
     },
     {
-        "spotify_id": "69lcggVPmOr9cvPx9kLiiN",
-        "name": "!!! - Interlude",
+        "spotify_id": null,
+        "name": "Unknown",
         "doc_id": 3,
-        "artists": "['Glowie']",
-        "album_name": "Where I Belong EP"
+        "artists": "Unknown",
+        "album_name": "Unknown"
     },
     {
-        "spotify_id": "4U7dlZjg1s9pjdppqZy0fm",
-        "name": "!!De Repente!!",
+        "spotify_id": null,
+        "name": "Unknown",
         "doc_id": 4,
-        "artists": "['Rosendo']",
-        "album_name": "Un Palo Al Agua (20 Grandes Canciones)"
-    },
-    {
-        "spotify_id": "4v1IBp3Y3rpkWmWzIlkYju",
-        "name": "!!De Repente!!",
-        "doc_id": 5,
-        "artists": "['Rosendo']",
-        "album_name": "Fuera De Lugar"
-    },
-    {
-        "spotify_id": "5tA3ImW310llKo8EMBj2Ga",
-        "name": "!!Noble Stabbings!!",
-        "doc_id": 6,
-        "artists": "Dillinger Four",
+        "artists": "Unknown",
         "album_name": "Unknown"
-    },
-    {
-        "spotify_id": "0fROT4kK5oTm8xO8PX6EJF",
-        "name": "!I'll Be Back!",
-        "doc_id": 7,
-        "artists": "Rilès",
-        "album_name": "!I'll Be Back!"
-    },
-    {
-        "spotify_id": "1xBFhv5faebv3mmwxx7DnS",
-        "name": "Aqdas",
-        "doc_id": 8,
-        "artists": "Rilès",
-        "album_name": "Unknown"
-    },
-    {
-        "spotify_id": "0gNNToCW3qjabgTyBSjt3H",
-        "name": "!Que Vida! - Mono Version",
-        "doc_id": 9,
-        "artists": "['Love']",
-        "album_name": "Unknown"
-    },
-    {
-        "spotify_id": " \"5O2P9iiztwhomNh8xkR9lJ\"",
-        "name": "Night Changes",
-        "doc_id": 10,
-        "artists": "['One Direction']",
-        "album_name": "Unknown"
-    },
-    {
-        "spotify_id": "123415",
-        "name": "Disney Bhai",
-        "doc_id": 11,
-        "artists": "Test Artist",
-        "album_name": "Test Album"
-    },
-    {
-        "spotify_id": "123415",
-        "name": "Disney Bhai",
-        "doc_id": 12,
-        "artists": "Test Artist",
-        "album_name": "Test Album"
-    },
-    {
-        "spotify_id": "123415",
-        "name": "Disney Bhai",
-        "doc_id": 13,
-        "artists": "Test Artist",
-        "album_name": "Test Album"
-    },
-    {
-        "spotify_id": "123415",
-        "name": "Ali Bhai",
-        "doc_id": 14,
-        "artists": "Test Artist",
-        "album_name": "Test Album"
-    },
-    {
-        "spotify_id": "123415",
-        "name": "Azoo Bhai",
-        "doc_id": 15,
-        "artists": "Test Artist",
-        "album_name": "Test Album"
-    },
-    {
-        "spotify_id": "123415",
-        "name": "Azoolasa Bhai",
-        "doc_id": 17,
-        "artists": "Test Artist",
-        "album_name": "Test Album"
-    },
-    {
-        "spotify_id": "123415",
-        "name": "msa Bhai",
-        "doc_id": 18,
-        "artists": "Test Artist",
-        "album_name": "Test Album"
-    },
-    {
-        "spotify_id": "123415",
-        "name": "kuta Bhai",
-        "doc_id": 19,
-        "artists": "Test Artist",
-        "album_name": "Test Album"
-    },
-    {
-        "spotify_id": "123415",
-        "name": "bila Bhai",
-        "doc_id": 20,
-        "artists": "Test Artist",
-        "album_name": "Test Album"
-    },
-    {
-        "spotify_id": "123415",
-        "name": "bila",
-        "doc_id": 21,
-        "artists": "Test Artist",
-        "album_name": "Test Album"
-    },
-    {
-        "spotify_id": "123415",
-        "name": "chua",
-        "doc_id": 22,
-        "artists": "Test Artist",
-        "album_name": "Test Album"
-    },
-    {
-        "spotify_id": "123415",
-        "name": "grape!",
-        "doc_id": 23,
-        "artists": "Test Artist",
-        "album_name": "Test Album"
-    },
-    {
-        "spotify_id": "4VQH4VluDUOsOuDxccTeyN",
-        "name": "Sanctuary",
-        "doc_id": 24,
-        "artists": "Joji",
-        "album_name": "Sanctuary - Single"
-    },
-    {
-        "spotify_id": "2plbrEY59IikOBgBGLjaoe",
-        "name": "Die With a Smile",
-        "doc_id": 25,
-        "artists": "Bruno Mars",
-        "album_name": "Single"
-    },
-    {
-        "spotify_id": "5vNRhkKd0yEAg8suGBpjeY",
-        "name": "APT",
-        "doc_id": 26,
-        "artists": "Bruno Mars, Rose",
-        "album_name": "Single"
-    },
-    {
-        "spotify_id": "5G2f63n7IPVPPjfNIGih7Q",
-        "name": "Taste",
-        "doc_id": 27,
-        "artists": "Bruno Mars",
-        "album_name": "Single"
-    },
-    {
-        "spotify_id": "1R0a2iXumgCiFb7HEZ7gUE",
-        "name": "Don't Blame Me",
-        "doc_id": 28,
-        "artists": "Taylor Swift",
-        "album_name": "reputation"
-    },
-    {
-        "spotify_id": "4PTG3Z6ehGkBF3eaFCgUVY",
-        "name": "Antigravity Theme Song",
-        "doc_id": 326,
-        "artists": "Deepmind Team",
-        "album_name": "Agentic Sounds"
-    },
-    {
-        "spotify_id": "7abcD123xyz89012345678",
-        "name": "Antigravity Test Song",
-        "doc_id": 327,
-        "artists": "Antigravity Agent, Deepmind",
-        "album_name": "Floating Coding Sessions"
-    },
-    {
-        "spotify_id": "5jkFvD4UJrmdoezzT1FRoP",
-        "name": "Rasputin",
-        "doc_id": 328,
-        "artists": "Boney M.",
-        "album_name": "Nightflight to Venus"
     }
 ]
