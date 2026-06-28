@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Mic, ArrowLeft, Headphones, Sparkles, AlertCircle, CheckCircle } from 'lucide-react';
+import { Application } from '@splinetool/runtime';
 import Navbar from './components/navbar';
 import { GlassButton } from './components/GlassButton';
 
@@ -29,36 +30,31 @@ function AudioSearch() {
   const [currentPage, setCurrentPage] = useState(1);
   const resultsPerPage = 6;
 
-  // Append Spline Viewer Script dynamically
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://unpkg.com/@splinetool/viewer@1.9.54/build/spline-viewer.js';
-    script.type = 'module';
-    document.body.appendChild(script);
-  }, []);
+  const canvasRef = useRef(null);
+  const [splineLoaded, setSplineLoaded] = useState(false);
 
-  // Hides the "Built with Spline" watermark logo from shadow DOM
+  // Load Spline Scene Programmatically using @splinetool/runtime
   useEffect(() => {
-    const injectStyle = setInterval(() => {
-      const viewer = document.querySelector('spline-viewer');
-      if (viewer && viewer.shadowRoot) {
-        // Appends a custom style tag inside the shadow root if not already present
-        if (!viewer.shadowRoot.querySelector('#hide-watermark-style')) {
-          const style = document.createElement('style');
-          style.id = 'hide-watermark-style';
-          style.textContent = `
-            #logo, .logo, a[href*="spline.design"], #logo-container, [class*="watermark"] { 
-              display: none !important; 
-              opacity: 0 !important; 
-              visibility: hidden !important; 
-              pointer-events: none !important; 
-            }
-          `;
-          viewer.shadowRoot.appendChild(style);
-        }
+    let splineApp = null;
+    
+    if (canvasRef.current) {
+      splineApp = new Application(canvasRef.current);
+      splineApp.load('https://prod.spline.design/ZVPXbznt8G-AWbk9/scene.splinecode')
+        .then(() => {
+          // Force the background of the loaded scene to be transparent
+          splineApp.setBackgroundColor('transparent');
+          setSplineLoaded(true);
+        })
+        .catch((err) => {
+          console.error('Error loading Spline scene:', err);
+        });
+    }
+
+    return () => {
+      if (splineApp) {
+        splineApp.dispose();
       }
-    }, 100);
-    return () => clearInterval(injectStyle);
+    };
   }, []);
 
   const startRecording = async () => {
@@ -145,14 +141,18 @@ function AudioSearch() {
         {!results && !isLoading && (
           <div className="flex flex-col items-center justify-center w-full max-w-md bg-white/70 dark:bg-gray-900/20 backdrop-blur-md border border-slate-200 dark:border-white/5 p-8 rounded-2xl shadow-md dark:shadow-2xl mt-4">
             
-            {/* 3D Spline Canvas Container (Watermark hidden, border removed) */}
-            <div className="w-full aspect-square max-w-[280px] md:max-w-[340px] relative overflow-hidden rounded-full">
-              <spline-viewer 
-                loading-anim-type="spinner-small-light" 
-                interaction-prompt="none" 
-                url="https://prod.spline.design/ZVPXbznt8G-AWbk9/scene.splinecode" 
+            {/* 3D Spline Canvas Container */}
+            <div className="w-full aspect-square max-w-[280px] md:max-w-[340px] relative overflow-hidden rounded-full flex items-center justify-center bg-transparent">
+              {!splineLoaded && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              )}
+              <canvas 
+                ref={canvasRef} 
                 className="absolute inset-0 w-full h-full object-cover scale-110"
-              ></spline-viewer>
+                style={{ background: 'transparent' }}
+              />
             </div>
 
             {/* Status indicators */}
