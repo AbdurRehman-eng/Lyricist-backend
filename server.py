@@ -121,10 +121,13 @@ def add_document():
 
         # Step 3: Update Forward Index
         forward_index_file = "forward_index.csv"
-        try:
-            forward_index_df = pd.read_csv(forward_index_file)
-            new_doc_id = int(forward_index_df["Document ID"].max() + 1)
-        except Exception:
+        if os.path.exists(forward_index_file) and os.path.getsize(forward_index_file) > 0:
+            try:
+                forward_index_df = pd.read_csv(forward_index_file)
+                new_doc_id = int(forward_index_df["Document ID"].max() + 1)
+            except Exception as e:
+                return jsonify({"error": f"Failed to read existing forward index: {str(e)}"}), 500
+        else:
             new_doc_id = 1
             forward_index_df = pd.DataFrame(columns=["Document ID", "Terms"])
 
@@ -144,17 +147,18 @@ def add_document():
         # Step 5: Update Inverted Index CSV
         inverted_index_csv_file = "inverted_index.csv"
         existing_inverted_index = {}
-        try:
-            with open(inverted_index_csv_file, mode='r', newline='', encoding='utf-8') as file:
-                reader = csv.reader(file)
-                next(reader, None)  # Skip header
-                for row in reader:
-                    if len(row) == 2:
-                        term, doc_ids_str = row
-                        doc_ids = set(map(int, doc_ids_str.split(","))) if doc_ids_str else set()
-                        existing_inverted_index[term] = doc_ids
-        except Exception:
-            pass
+        if os.path.exists(inverted_index_csv_file) and os.path.getsize(inverted_index_csv_file) > 0:
+            try:
+                with open(inverted_index_csv_file, mode='r', newline='', encoding='utf-8') as file:
+                    reader = csv.reader(file)
+                    next(reader, None)  # Skip header
+                    for row in reader:
+                        if len(row) == 2:
+                            term, doc_ids_str = row
+                            doc_ids = set(map(int, doc_ids_str.split(","))) if doc_ids_str else set()
+                            existing_inverted_index[term] = doc_ids
+            except Exception as e:
+                return jsonify({"error": f"Failed to read existing inverted index: {str(e)}"}), 500
 
         for term in unique_terms:
             if term not in existing_inverted_index:
@@ -177,10 +181,13 @@ def add_document():
             "album_name": data["album_name"],
         }
 
-        try:
-            with open(details_file, "r", encoding="utf-8") as file:
-                details_data = json.load(file)
-        except Exception:
+        if os.path.exists(details_file) and os.path.getsize(details_file) > 0:
+            try:
+                with open(details_file, "r", encoding="utf-8") as file:
+                    details_data = json.load(file)
+            except Exception as e:
+                return jsonify({"error": f"Failed to parse details.json: {str(e)}"}), 500
+        else:
             details_data = []
 
         details_data.append(new_details)
