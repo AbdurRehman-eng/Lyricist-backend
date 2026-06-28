@@ -1,37 +1,2277 @@
 [
     {
-        "spotify_id": null,
-        "name": "Unknown",
+        "name": "!",
         "doc_id": 1,
-        "artists": "Unknown",
-        "album_name": "Unknown"
+        "artists": "['HELLYEAH']",
+        "album_name": "UNDEN!ABLE",
+        "spotify_id": "0Prct5TDjAnEgIqbxcldY9"
     },
     {
-        "spotify_id": null,
-        "name": "Unknown",
+        "name": "!!",
         "doc_id": 2,
-        "artists": "Unknown",
-        "album_name": "Unknown"
+        "artists": "Yxngxr1",
+        "album_name": "Unknown",
+        "spotify_id": "2ASl4wirkeYm3OWZxXKYuq"
     },
     {
-        "spotify_id": null,
-        "name": "Unknown",
+        "name": "!!! - Interlude",
         "doc_id": 3,
-        "artists": "Unknown",
-        "album_name": "Unknown"
+        "artists": "['Glowie']",
+        "album_name": "Where I Belong EP",
+        "spotify_id": "69lcggVPmOr9cvPx9kLiiN"
     },
     {
-        "spotify_id": null,
-        "name": "Unknown",
+        "name": "!!De Repente!!",
         "doc_id": 4,
-        "artists": "Unknown",
-        "album_name": "Unknown"
+        "artists": "['Rosendo']",
+        "album_name": "Un Palo Al Agua (20 Grandes Canciones)",
+        "spotify_id": "4v1IBp3Y3rpkWmWzIlkYju"
     },
     {
-        "spotify_id": "123",
-        "name": "Test Song",
+        "name": "!!De Repente!!",
         "doc_id": 5,
-        "artists": "Tester",
-        "album_name": "Test Album"
+        "artists": "['Rosendo']",
+        "album_name": "Fuera De Lugar",
+        "spotify_id": "4v1IBp3Y3rpkWmWzIlkYju"
+    },
+    {
+        "name": "!!Noble Stabbings!!",
+        "doc_id": 6,
+        "artists": "Dillinger Four",
+        "album_name": "Unknown",
+        "spotify_id": "5tA3ImW310llKo8EMBj2Ga"
+    },
+    {
+        "name": "!I'll Be Back!",
+        "doc_id": 7,
+        "artists": "Rilès",
+        "album_name": "!I'll Be Back!",
+        "spotify_id": "0fROT4kK5oTm8xO8PX6EJF"
+    },
+    {
+        "name": "!Lost!",
+        "doc_id": 8,
+        "artists": "Rilès",
+        "album_name": "Unknown",
+        "spotify_id": "1xBFhv5faebv3mmwxx7DnS"
+    },
+    {
+        "name": "!Que Vida! - Mono Version",
+        "doc_id": 9,
+        "artists": "['Love']",
+        "album_name": "Unknown",
+        "spotify_id": "0gNNToCW3qjabgTyBSjt3H"
+    },
+    {
+        "name": "!Viva el Mal Viva el Capital!",
+        "doc_id": 10,
+        "artists": "Elektroduendes",
+        "album_name": "Unknown",
+        "spotify_id": "6LrefSCg9Vnn1ckCeJkmbA"
+    },
+    {
+        "name": "!liaF cipE",
+        "doc_id": 11,
+        "artists": "One Morning Left",
+        "album_name": "Unknown",
+        "spotify_id": "1SCFa6gt3r6juLsIqpdwY3"
+    },
+    {
+        "name": "\" \"",
+        "doc_id": 12,
+        "artists": "['Breadwinner']",
+        "album_name": "Burner",
+        "spotify_id": "1JrpMwlzPuWgfmGiIBi9QI"
+    },
+    {
+        "name": "\" La Traviata \" : Amami Alfredo (Act II) - Digitally Remastered",
+        "doc_id": 13,
+        "artists": "Maria Callas",
+        "album_name": "Unknown",
+        "spotify_id": "0wtpkz93wATDkUExJVuXEl"
+    },
+    {
+        "name": "\" R.I.P \"",
+        "doc_id": 14,
+        "artists": "Ram-Zet",
+        "album_name": "Unknown",
+        "spotify_id": "5PIf0fmKJzgK8jgyqXaHGZ"
+    },
+    {
+        "name": "\"...Because All Suffering Is Sweet to Me...\"",
+        "doc_id": 15,
+        "artists": "['Envy On The Coast']",
+        "album_name": "Lucy Gray",
+        "spotify_id": "0sZb4GBh64F0FOZzQy6QqV"
+    },
+    {
+        "name": "\"40\"",
+        "doc_id": 16,
+        "artists": "['U2']",
+        "album_name": "Unknown",
+        "spotify_id": "0tMgFpOrXZR6irEOLNWwJL"
+    },
+    {
+        "name": "\"40\" - Live",
+        "doc_id": 17,
+        "artists": "['U2']",
+        "album_name": "Unknown",
+        "spotify_id": "2ZywW3VyVx6rrlrX75n3JB"
+    },
+    {
+        "name": "\"40\" - Remastered 2008",
+        "doc_id": 18,
+        "artists": "['U2']",
+        "album_name": "Unknown",
+        "spotify_id": "6DdWA7D1o5TU2kXWyCLcch"
+    },
+    {
+        "name": "\"40\" - Remastered 2008",
+        "doc_id": 19,
+        "artists": "['U2']",
+        "album_name": "Unknown",
+        "spotify_id": "6DdWA7D1o5TU2kXWyCLcch"
+    },
+    {
+        "name": "\"40\" - Songs Of Surrender",
+        "doc_id": 20,
+        "artists": "['U2']",
+        "album_name": "Unknown",
+        "spotify_id": "394ilPgtnqDuNmwwmLIvEb"
+    },
+    {
+        "name": "\"42\" - From SR3MM",
+        "doc_id": 21,
+        "artists": "Rae Sremmurd",
+        "album_name": "Unknown",
+        "spotify_id": "5lf91lPnGKtIqsgmG1z8Ip"
+    },
+    {
+        "name": "\"45\"",
+        "doc_id": 22,
+        "artists": "['The Gaslight Anthem']",
+        "album_name": "Unknown",
+        "spotify_id": "25Sd73fleKUVPNqITPZkn1"
+    },
+    {
+        "name": "\"99\"",
+        "doc_id": 23,
+        "artists": "['Barns Courtney']",
+        "album_name": "Unknown",
+        "spotify_id": "6YQUuoMnRIMaOmouYoMfQr"
+    },
+    {
+        "name": "\"A Flair for the Dramatic...\"",
+        "doc_id": 24,
+        "artists": "['Beth Malone', 'Roberta Colindrez', 'Emily Skeggs', 'Michael Cerveris', 'Sydney Lucas']",
+        "album_name": "Fun Home (A New Broadway Musical)",
+        "spotify_id": "03trJkVU3YFRWlr4cHmX0D"
+    },
+    {
+        "name": "\"A Lovely Night\"",
+        "doc_id": 25,
+        "artists": "Laura Osnes",
+        "album_name": "Unknown",
+        "spotify_id": "7ygnMprPnDekUSeduRDhDt"
+    },
+    {
+        "name": "\"A Viradouro Vira O Jogo\"",
+        "doc_id": 26,
+        "artists": "Dominguinhos Do Estacio",
+        "album_name": "Unknown",
+        "spotify_id": "3pdml4Jx4fW2CcwLWO2Uw5"
+    },
+    {
+        "name": "\"A virgin\" - Act One",
+        "doc_id": 27,
+        "artists": "Catherine Zeta-Jones",
+        "album_name": "Unknown",
+        "spotify_id": "7kR10Pc3mtaXRFGEeCXLzm"
+    },
+    {
+        "name": "\"A\" You're Adorable",
+        "doc_id": 28,
+        "artists": "Brian Hyland",
+        "album_name": "The Bashful Blond",
+        "spotify_id": "6CvreUbryAmXAUo35wuCQJ"
+    },
+    {
+        "name": "\"A\" You're Adorable",
+        "doc_id": 29,
+        "artists": "['Brian Hyland']",
+        "album_name": "Unknown",
+        "spotify_id": "6CvreUbryAmXAUo35wuCQJ"
+    },
+    {
+        "name": "\"A\" Your Adorable",
+        "doc_id": 30,
+        "artists": "Diana Panton",
+        "album_name": "Unknown",
+        "spotify_id": "6gni5sa8KVMkT87ikCguqc"
+    },
+    {
+        "name": "\"A\"\"I\" Wo Atsumete",
+        "doc_id": 31,
+        "artists": "WEAVER",
+        "album_name": "Unknown",
+        "spotify_id": "2gZqdVp7Im9EZmvBcR6bCu"
+    },
+    {
+        "name": "\"Aiight\"",
+        "doc_id": 32,
+        "artists": "BJ The Chicago Kid",
+        "album_name": "Unknown",
+        "spotify_id": "6jZEkGymBpDfZNNB7vgduK"
+    },
+    {
+        "name": "\"Amapola\"",
+        "doc_id": 33,
+        "artists": "Plácido Domingo",
+        "album_name": "Unknown",
+        "spotify_id": "4a5FBowqksD8z8JzUd5eLX"
+    },
+    {
+        "name": "\"Amor ti vieta\"",
+        "doc_id": 34,
+        "artists": "Umberto Giordano",
+        "album_name": "Unknown",
+        "spotify_id": "2AVAOQ0erm4edi9OTMgjsj"
+    },
+    {
+        "name": "\"Are We Taping Now?\"",
+        "doc_id": 35,
+        "artists": "Janis Joplin",
+        "album_name": "Unknown",
+        "spotify_id": "1ldDlELX4ZMOZL24BmUtPU"
+    },
+    {
+        "name": "\"Are You Running Away from Me?\"",
+        "doc_id": 36,
+        "artists": "['Judy Kuhn', 'Ryan Silverman']",
+        "album_name": "Passion (2013 New York Cast Recording)",
+        "spotify_id": "7AylLhx7Yquy8hX4FHuULb"
+    },
+    {
+        "name": "\"B\" Movie Box Car Blues - Live",
+        "doc_id": 37,
+        "artists": "['The Blues Brothers', 'Joe Gastwirt']",
+        "album_name": "Briefcase Full of Blues",
+        "spotify_id": "4jX5YH4N3E32pmLz1AlAuT"
+    },
+    {
+        "name": "\"BOP\"",
+        "doc_id": 38,
+        "artists": "['CJ']",
+        "album_name": "Unknown",
+        "spotify_id": "07VOlyshShGMYBPgjTIZoz"
+    },
+    {
+        "name": "\"BabyRock\" Rock",
+        "doc_id": 39,
+        "artists": "['Clorofila']",
+        "album_name": "Corridos Urbanos",
+        "spotify_id": "7DKfDaIyCibn2DJwk1dlbP"
+    },
+    {
+        "name": "\"Beer Beer, Truck Truck\"",
+        "doc_id": 40,
+        "artists": "George Birge",
+        "album_name": "Unknown",
+        "spotify_id": "5Vgfh5XyxNqcUG1sw9bj7k"
+    },
+    {
+        "name": "\"Blind\"",
+        "doc_id": 41,
+        "artists": "['SOAK']",
+        "album_name": "Before We Forgot How To Dream",
+        "spotify_id": "7AoDOSPdQmcy7mZ5MTOqh7"
+    },
+    {
+        "name": "\"Blue Flame\" (Interlude)",
+        "doc_id": 42,
+        "artists": "Big K.R.I.T.",
+        "album_name": "Unknown",
+        "spotify_id": "3VgD1eKn9ZJRiP8mGnsGXu"
+    },
+    {
+        "name": "\"Bluejays and Cardinals\"",
+        "doc_id": 43,
+        "artists": "The Mountain Goats",
+        "album_name": "Unknown",
+        "spotify_id": "5TixH5XHukP3prTGDUqnaQ"
+    },
+    {
+        "name": "\"Boom\"",
+        "doc_id": 44,
+        "artists": "MY FIRST STORY",
+        "album_name": "Unknown",
+        "spotify_id": "0CkARTGv97YSA0TuWRpHGd"
+    },
+    {
+        "name": "\"Btw, That Untitled Song On Your Mixtape Was For You. I Wrote It When I Missed You.\"",
+        "doc_id": 45,
+        "artists": "Suis La Lune",
+        "album_name": "Unknown",
+        "spotify_id": "3ijF7SbOWHpJigS0gmKbsM"
+    },
+    {
+        "name": "\"Btw, That Untitled Song on Your Mixtape Was for You. I Wrote It When I Missed You.\"",
+        "doc_id": 46,
+        "artists": "Suis La Lune",
+        "album_name": "Unknown",
+        "spotify_id": "1DVAHSICuADTfazMoakYBZ"
+    },
+    {
+        "name": "\"C\" IS FOR COOKIE",
+        "doc_id": 47,
+        "artists": "Little Apple Band",
+        "album_name": "The Favorite Songs Of Sesame Street",
+        "spotify_id": "1B45DvGMoFWdbAEUH2qliG"
+    },
+    {
+        "name": "\"C\" Is For Cookie",
+        "doc_id": 48,
+        "artists": "['Little Apple Band']",
+        "album_name": "Muppet Street (Favorite Songs from The Muppets and Sesame Street)",
+        "spotify_id": "7q5gE2AWhTySih1DUivVqy"
+    },
+    {
+        "name": "\"C\" Is for Cookie",
+        "doc_id": 49,
+        "artists": "Little Apple Band",
+        "album_name": "Unknown",
+        "spotify_id": "0ZEgWDVmwVBb3LTzkbq4WT"
+    },
+    {
+        "name": "\"C\" is for Cookie",
+        "doc_id": 50,
+        "artists": "['Sesame Street']",
+        "album_name": "Unknown",
+        "spotify_id": "73lXf5if6MWVWnsgXhK8bd"
+    },
+    {
+        "name": "\"C\" is for Cookie",
+        "doc_id": 51,
+        "artists": "Little Apple Band",
+        "album_name": "Sesame Street and Friends",
+        "spotify_id": "73lXf5if6MWVWnsgXhK8bd"
+    },
+    {
+        "name": "\"Candances\"",
+        "doc_id": 52,
+        "artists": "Quinho",
+        "album_name": "Unknown",
+        "spotify_id": "4Dsk2XsSy8FYanrRSyzdoj"
+    },
+    {
+        "name": "\"Cassius\" Love Vs. \"Sonny\" Wilson (Mono)",
+        "doc_id": 53,
+        "artists": "['The Beach Boys']",
+        "album_name": "Unknown",
+        "spotify_id": "2lKBg3U2gaawCQZEie5lxp"
+    },
+    {
+        "name": "\"Cassius\" Love Vs. \"Sonny\" Wilson - Remastered 2001",
+        "doc_id": 54,
+        "artists": "['The Beach Boys']",
+        "album_name": "Unknown",
+        "spotify_id": "6L1PUtG3JcH80oWSD9H8DO"
+    },
+    {
+        "name": "\"Champagner\"-Medley - Live",
+        "doc_id": 55,
+        "artists": "['Udo Jürgens']",
+        "album_name": "Es lebe das Laster - UDO Live",
+        "spotify_id": "61BK65EZKdkeJKaraXh81E"
+    },
+    {
+        "name": "\"Christ unser Herr zum Jordan kam\" BWV 7: Recitative (Tenor): \"Dies hat Gott klar\"",
+        "doc_id": 56,
+        "artists": "['Johann Sebastian Bach', 'Amsterdam Baroque Orchestra', 'Amsterdam Baroque Choir', 'Ton Koopman']",
+        "album_name": "J.S. Bach: Cantatas Vol. 11",
+        "spotify_id": "7diUSd7SoX9GFlQKotyuTV"
+    },
+    {
+        "name": "\"Clueless in New York...\"",
+        "doc_id": 57,
+        "artists": "['Beth Malone', 'Sydney Lucas', 'Michael Cerveris']",
+        "album_name": "Fun Home (A New Broadway Musical)",
+        "spotify_id": "56sNEPn4IBaxYvLmsYmus3"
+    },
+    {
+        "name": "\"Contemplate This on the Tree of Woe.\"",
+        "doc_id": 58,
+        "artists": "Dillinger Four",
+        "album_name": "C I V I L W A R",
+        "spotify_id": "5Zx0Rrkn5RFBMD2PRxX3mI"
+    },
+    {
+        "name": "\"DEVILS NEVER CRY\"(スタッフロール)",
+        "doc_id": 59,
+        "artists": "['Capcom Sound Team']",
+        "album_name": "Unknown",
+        "spotify_id": "3ozivYJGJGq6TSzdy8m64X"
+    },
+    {
+        "name": "\"De Lambida Em Lambida, A Tijuca Dá Um Click Na Avenida\"",
+        "doc_id": 60,
+        "artists": "Wantuir Cardeal",
+        "album_name": "Unknown",
+        "spotify_id": "3QpJ8mcGvEmQoncX7B3YBY"
+    },
+    {
+        "name": "\"Dearly Departed\" - Live from Spotify Sxsw 2014 (feat. Esme Patterson)",
+        "doc_id": 61,
+        "artists": "['Shakey Graves']",
+        "album_name": "Unknown",
+        "spotify_id": "6lilJagMSnCKnOsOdNw1mv"
+    },
+    {
+        "name": "\"Depuis le jour\"",
+        "doc_id": 62,
+        "artists": "Gustave Charpentier",
+        "album_name": "Unknown",
+        "spotify_id": "1hQy1OVdyAyDLTiGVCgHm5"
+    },
+    {
+        "name": "\"Der Hölle Rache kocht in meinem Herzen\"",
+        "doc_id": 63,
+        "artists": "Wolfgang Amadeus Mozart",
+        "album_name": "Unknown",
+        "spotify_id": "4bkdxDtqsuSHOTHos4hxCv"
+    },
+    {
+        "name": "\"E lucevan le stelle\"",
+        "doc_id": 64,
+        "artists": "['Luciano Pavarotti']",
+        "album_name": "Unknown",
+        "spotify_id": "1vquQvjELxZdRvFrUHIIdA"
+    },
+    {
+        "name": "\"E\" Train",
+        "doc_id": 65,
+        "artists": "['Jonny Lang']",
+        "album_name": "Smokin",
+        "spotify_id": "4lDjIcMk4PmEkKRHERf7fq"
+    },
+    {
+        "name": "\"Either He's Dead or My Watch Has Stopped\"",
+        "doc_id": 66,
+        "artists": "Onsind",
+        "album_name": "Unknown",
+        "spotify_id": "7CxWnKEQR0mBmMNTq43ET8"
+    },
+    {
+        "name": "\"El Kofeyye Arabeyye\" (feat. M-1 of Dead Prez)",
+        "doc_id": 67,
+        "artists": "Shadia Mansour",
+        "album_name": "El Kofeyye Arabeyye",
+        "spotify_id": "0TfjXzkXhqob8UB5aJhZ7j"
+    },
+    {
+        "name": "\"Eternal\"",
+        "doc_id": 68,
+        "artists": "['Bone Thugs-N-Harmony']",
+        "album_name": "E. 1999 Eternal",
+        "spotify_id": "69mgGJKQwcebp7V0BAFGqy"
+    },
+    {
+        "name": "\"Eternal\"",
+        "doc_id": 69,
+        "artists": "['Bone Thugs-N-Harmony']",
+        "album_name": "E. 1999 Eternal",
+        "spotify_id": "69mgGJKQwcebp7V0BAFGqy"
+    },
+    {
+        "name": "\"Eungenio\" Salvador Dali",
+        "doc_id": 70,
+        "artists": "['Mecano']",
+        "album_name": "Unknown",
+        "spotify_id": "3oMP0zLl27pIFUb1335D7u"
+    },
+    {
+        "name": "\"F\"",
+        "doc_id": 71,
+        "artists": "['MAXIMUM THE HORMONE']",
+        "album_name": "Unknown",
+        "spotify_id": "5Yrc9vwPGwz3kNx4n121QM"
+    },
+    {
+        "name": "\"Farewell\" Symphony",
+        "doc_id": 72,
+        "artists": "['Deerhoof']",
+        "album_name": "Future Teenage Cave Artists",
+        "spotify_id": "6pZJjbL6q3cdlp5dHDlLLM"
+    },
+    {
+        "name": "\"Farewell\" Symphony",
+        "doc_id": 73,
+        "artists": "Deerhoof",
+        "album_name": "Unknown",
+        "spotify_id": "6pZJjbL6q3cdlp5dHDlLLM"
+    },
+    {
+        "name": "\"Filthy\"",
+        "doc_id": 74,
+        "artists": "Ayron Jones",
+        "album_name": "Unknown",
+        "spotify_id": "2KkglYERoV6dGi9ME4iYsw"
+    },
+    {
+        "name": "\"For Frodo\" - feat. Ben del Maestro",
+        "doc_id": 75,
+        "artists": "Howard Shore",
+        "album_name": "Unknown",
+        "spotify_id": "4g7Ithd2Fpoupsjs5sJxeR"
+    },
+    {
+        "name": "\"Forbidden\"",
+        "doc_id": 76,
+        "artists": "D'espairsRay",
+        "album_name": "Unknown",
+        "spotify_id": "6E1PD5YAT9X859muuvK17q"
+    },
+    {
+        "name": "\"From My Cold Dead Hands\"",
+        "doc_id": 77,
+        "artists": "Remembering Never",
+        "album_name": "Unknown",
+        "spotify_id": "54KZ1bRFMgie9pHO8l74Sa"
+    },
+    {
+        "name": "\"Fuck Me\" Eyes",
+        "doc_id": 78,
+        "artists": "['Millionaires']",
+        "album_name": "Unknown",
+        "spotify_id": "7yvpixqPCitWSteNYkGZGZ"
+    },
+    {
+        "name": "\"Get a Shot of the Refrigerator\"",
+        "doc_id": 79,
+        "artists": "Stereolab",
+        "album_name": "Unknown",
+        "spotify_id": "6ruPZctwa27aroYtYnngSN"
+    },
+    {
+        "name": "\"Gustave! Gustave!...\"",
+        "doc_id": 80,
+        "artists": "Andrew Lloyd Webber",
+        "album_name": "Unknown",
+        "spotify_id": "2IuAqs7AlUNT6zS7lnrR1j"
+    },
+    {
+        "name": "\"H\" Friend",
+        "doc_id": 81,
+        "artists": "['Black Devil Disco Club']",
+        "album_name": "Unknown",
+        "spotify_id": "6Dy4F2BcVwKLz0tvJ4d9YN"
+    },
+    {
+        "name": "\"Have It Your Way.\"",
+        "doc_id": 82,
+        "artists": "['Mario Cantone']",
+        "album_name": "Assassins (The Broadway Cast Recording)",
+        "spotify_id": "6eIeuYknh6n0wl2L77hmBe"
+    },
+    {
+        "name": "\"He Was Tall\"",
+        "doc_id": 83,
+        "artists": "Laura Osnes",
+        "album_name": "Rodgers + Hammerstein's Cinderella (Original Broadway Cast Recording)",
+        "spotify_id": "5ezuHIXXlsPQY4rbsSKT1W"
+    },
+    {
+        "name": "\"Here I am\"",
+        "doc_id": 84,
+        "artists": "HIGH and MIGHTY COLOR",
+        "album_name": "Unknown",
+        "spotify_id": "0tbW31fQy3PdDrnIYtho5M"
+    },
+    {
+        "name": "\"Heroes\" - 2017 Remastered Version",
+        "doc_id": 85,
+        "artists": "David Bowie",
+        "album_name": "Unknown",
+        "spotify_id": "7Jh1bpe76CNTCgdgAdBw4Z"
+    },
+    {
+        "name": "\"Heroes\" - Klax Mix Radio Edit",
+        "doc_id": 86,
+        "artists": "['David Bowie', 'Klax']",
+        "album_name": "\"Heroes\" (Klax Remix)",
+        "spotify_id": "6nQE7LNAIXyQVmZohAogHE"
+    },
+    {
+        "name": "\"Heroes\" - Live, Glastonbury, 2000",
+        "doc_id": 87,
+        "artists": "['David Bowie']",
+        "album_name": "Glastonbury 2000 (Live)",
+        "spotify_id": "5cJ5IUt0ZQiiYxU3Nb54pJ"
+    },
+    {
+        "name": "\"Heroes\" / \"Helden\" - 2001 Remaster",
+        "doc_id": 88,
+        "artists": "['David Bowie']",
+        "album_name": "Unknown",
+        "spotify_id": "4KshJfh2M1sS6Js5wSupwU"
+    },
+    {
+        "name": "\"I Ain't Got No\"",
+        "doc_id": 89,
+        "artists": "Wolfmother",
+        "album_name": "Unknown",
+        "spotify_id": "1iPR77kOxTPED2YRXUzFkU"
+    },
+    {
+        "name": "\"I Am a Terrifying and Imposing Figure...!\"",
+        "doc_id": 90,
+        "artists": "['Becky Ann Baker', \"Denis O'Hare\", 'James Clow', 'Merwin Foard']",
+        "album_name": "Assassins (The Broadway Cast Recording)",
+        "spotify_id": "5yAzJseoW207yC0CJaqJaT"
+    },
+    {
+        "name": "\"I Could Carve a Better Man Out of a Banana\"",
+        "doc_id": 91,
+        "artists": "Onsind",
+        "album_name": "Unknown",
+        "spotify_id": "33i3gvGj8zuhEqE95BkAgY"
+    },
+    {
+        "name": "\"I Decided Not To Do Them\"",
+        "doc_id": 92,
+        "artists": "['Latterman']",
+        "album_name": "We Are Still Alive",
+        "spotify_id": "5kqvce34sgtEptKM5wj5Wk"
+    },
+    {
+        "name": "\"I Leapt out of the Closet...\"",
+        "doc_id": 93,
+        "artists": "['Beth Malone', 'Sydney Lucas', 'Michael Cerveris', 'Judy Kuhn']",
+        "album_name": "Fun Home (A New Broadway Musical)",
+        "spotify_id": "29QDbARBiKPIe8dtPcYwCs"
+    },
+    {
+        "name": "\"I Was Born on a Pirate Ship! \" (Holdyourtongue)",
+        "doc_id": 94,
+        "artists": "Dillinger Four",
+        "album_name": "Unknown",
+        "spotify_id": "3C9LnxV3FMrL6bUmC1ym7E"
+    },
+    {
+        "name": "\"I'll Take What's in the Box Monty\"",
+        "doc_id": 95,
+        "artists": "The Lawrence Arms",
+        "album_name": "Unknown",
+        "spotify_id": "2HVSkW1wTZ0Og0z2spSFzg"
+    },
+    {
+        "name": "\"Impossible\"",
+        "doc_id": 96,
+        "artists": "Victoria Clark",
+        "album_name": "Unknown",
+        "spotify_id": "1S6e1Mkcx0KkCmXmxdDG1J"
+    },
+    {
+        "name": "\"In Loving Memory\"",
+        "doc_id": 97,
+        "artists": "Secrets",
+        "album_name": "Unknown",
+        "spotify_id": "5tNDWgu8arqe5aWIAaEJIL"
+    },
+    {
+        "name": "\"In My Own Little Corner\"",
+        "doc_id": 98,
+        "artists": "Laura Osnes",
+        "album_name": "Unknown",
+        "spotify_id": "1XpAUgrfJpM3qSLaiaYUxj"
+    },
+    {
+        "name": "\"Is This My Fate?\" He Asked Them",
+        "doc_id": 99,
+        "artists": "Story Of The Year",
+        "album_name": "Unknown",
+        "spotify_id": "12j0llNgqzDutJoT4sdVds"
+    },
+    {
+        "name": "\"It Was Great to Have You Home...\"",
+        "doc_id": 100,
+        "artists": "['Michael Cerveris', 'Beth Malone']",
+        "album_name": "Fun Home (A New Broadway Musical)",
+        "spotify_id": "5Nvjrz2qYEvOg7U189N89W"
+    },
+    {
+        "name": "\"It's Not Easy Being Skinny\" - Live at The Electric Factory, Philadelphia, PA - May 2006",
+        "doc_id": 101,
+        "artists": "The Fray",
+        "album_name": "Unknown",
+        "spotify_id": "29ELk8z57M5QApXDlY1seD"
+    },
+    {
+        "name": "\"It's Possible\"",
+        "doc_id": 102,
+        "artists": "Victoria Clark",
+        "album_name": "Unknown",
+        "spotify_id": "3a2GUzPj5DXaSv0mifDj19"
+    },
+    {
+        "name": "\"It's Possible\"",
+        "doc_id": 103,
+        "artists": "[\"Rodgers + Hammerstein's Cinderella (Original Broadway Cast)\"]",
+        "album_name": "Unknown",
+        "spotify_id": "3a2GUzPj5DXaSv0mifDj19"
+    },
+    {
+        "name": "\"It’s A Good Day\"",
+        "doc_id": 104,
+        "artists": "['Kay Starr']",
+        "album_name": "Unknown",
+        "spotify_id": "0zIqs8nFS5eHLgL0ZprFuP"
+    },
+    {
+        "name": "\"Just Had a Good Talk with Dad...\"",
+        "doc_id": 105,
+        "artists": "['Beth Malone', 'Emily Skeggs', 'Michael Cerveris', 'Joel Perez', 'Sydney Lucas', 'Griffin Birney', 'Noah Hinsdale']",
+        "album_name": "Fun Home (A New Broadway Musical)",
+        "spotify_id": "7D5JUD8ZKlIV8fhXbDEeUB"
+    },
+    {
+        "name": "\"Knock The Cover Off The Ball\"",
+        "doc_id": 106,
+        "artists": "Randy Newman",
+        "album_name": "Unknown",
+        "spotify_id": "5MlPFlwzOsJRkCtULJmfeJ"
+    },
+    {
+        "name": "\"Ladies and Gentlemen, a Toast!\"",
+        "doc_id": 107,
+        "artists": "[\"Denis O'Hare\", 'Jeffrey Kuhn', 'Michael Cerveris']",
+        "album_name": "Assassins (The Broadway Cast Recording)",
+        "spotify_id": "63h3j2J3abVMynnhWy564m"
+    },
+    {
+        "name": "\"Lamba Do Ska\" (Llorando Se Fue)",
+        "doc_id": 108,
+        "artists": "Inspector",
+        "album_name": "Ska a La Carta",
+        "spotify_id": "6KNGqIRhE44Cf56dvcgi1l"
+    },
+    {
+        "name": "\"Let Me Introduce You to My Gay Dad...\"",
+        "doc_id": 109,
+        "artists": "['Roberta Colindrez', 'Emily Skeggs', 'Beth Malone', 'Michael Cerveris', 'Judy Kuhn']",
+        "album_name": "Fun Home (A New Broadway Musical)",
+        "spotify_id": "49ygMZIfJQExSkJ3w5gqOM"
+    },
+    {
+        "name": "\"Libiamo ne'lieti calici\"",
+        "doc_id": 110,
+        "artists": "Giuseppe Verdi",
+        "album_name": "Unknown",
+        "spotify_id": "2zGVfygrdGVKCZ54sxCaQH"
+    },
+    {
+        "name": "\"Life Is a Gift\"",
+        "doc_id": 111,
+        "artists": "['Michael Glencer']",
+        "album_name": "It's Like Magic",
+        "spotify_id": "7A6DMFepXG4AOrvqjEfhgG"
+    },
+    {
+        "name": "\"Life\"",
+        "doc_id": 112,
+        "artists": "['$NOT']",
+        "album_name": "Beautiful Havoc",
+        "spotify_id": "389jJeNsu2sZ9vBwbwZiMH"
+    },
+    {
+        "name": "\"Loneliness Of Evening\"",
+        "doc_id": 113,
+        "artists": "Santino Fontana;Laura Osnes",
+        "album_name": "Rodgers + Hammerstein's Cinderella (Original Broadway Cast Recording)",
+        "spotify_id": "280zqg7gblMTRU1Hc5VxpY"
+    },
+    {
+        "name": "\"Là ci darem la mano\"",
+        "doc_id": 114,
+        "artists": "Wolfgang Amadeus Mozart",
+        "album_name": "Unknown",
+        "spotify_id": "2DATcVxBdGcIIGd0sb1s4X"
+    },
+    {
+        "name": "\"M\"",
+        "doc_id": 115,
+        "artists": "Los Piratas",
+        "album_name": "Unknown",
+        "spotify_id": "4TkqHbiRvzgM5lj0NvZ1GR"
+    },
+    {
+        "name": "\"M\" Is For Morphine",
+        "doc_id": 116,
+        "artists": "World / Inferno Friendship Society",
+        "album_name": "Unknown",
+        "spotify_id": "5jsoxI7x4HqeQI2UPtcRrl"
+    },
+    {
+        "name": "\"Ma\" Rainey's Black Bottom",
+        "doc_id": 117,
+        "artists": "['Ma Rainey']",
+        "album_name": "Ma Rainey's Black Bottom",
+        "spotify_id": "3ftGs8ddu8Y6OiN9ooAPCF"
+    },
+    {
+        "name": "\"Madamina, il catalogo è questo\"",
+        "doc_id": 118,
+        "artists": "Wolfgang Amadeus Mozart",
+        "album_name": "Unknown",
+        "spotify_id": "0xoB34ej0o2BQU95XVxElu"
+    },
+    {
+        "name": "\"Mattinata\"",
+        "doc_id": 119,
+        "artists": "Ruggero Leoncavallo",
+        "album_name": "Unknown",
+        "spotify_id": "6hYYWsNGxrMLrBKw1aQ7v9"
+    },
+    {
+        "name": "\"Mattinata\"",
+        "doc_id": 120,
+        "artists": "Ruggero Leoncavallo",
+        "album_name": "Unknown",
+        "spotify_id": "6hYYWsNGxrMLrBKw1aQ7v9"
+    },
+    {
+        "name": "\"Maybe\"",
+        "doc_id": 121,
+        "artists": "['Zachary Westbrook']",
+        "album_name": "Unknown",
+        "spotify_id": "1sNdf98BZgDgBBw6kRNcGR"
+    },
+    {
+        "name": "\"Me, Who Am I?\"",
+        "doc_id": 122,
+        "artists": "Santino Fontana",
+        "album_name": "Unknown",
+        "spotify_id": "2Nk1ZdbSAgzaPzfUN5IuPQ"
+    },
+    {
+        "name": "\"Mi batte il cor...O Paradiso!\"",
+        "doc_id": 123,
+        "artists": "Giacomo Meyerbeer",
+        "album_name": "Unknown",
+        "spotify_id": "1vVu1EmfjLVCZT6oYBkoHs"
+    },
+    {
+        "name": "\"Mike, Aaron And Eddie\"",
+        "doc_id": 124,
+        "artists": "Haiku D'Etat",
+        "album_name": "Unknown",
+        "spotify_id": "1uzVflP0lQf3NFCh51bSvr"
+    },
+    {
+        "name": "\"Mother, Did You Watch?\"",
+        "doc_id": 125,
+        "artists": "Andrew Lloyd Webber",
+        "album_name": "Unknown",
+        "spotify_id": "7vrW8ceGRLuaQYHeRluuUM"
+    },
+    {
+        "name": "\"Murder\" He Says",
+        "doc_id": 126,
+        "artists": "['Tori Amos']",
+        "album_name": "Music from the Motion Picture Mona Lisa Smile",
+        "spotify_id": "0B2E5hTvHL5odx0tqyhwro"
+    },
+    {
+        "name": "\"Murder\", He Says",
+        "doc_id": 127,
+        "artists": "Dinah Shore",
+        "album_name": "Unknown",
+        "spotify_id": "5eLMeTVY9Ji33xvq8yxsEc"
+    },
+    {
+        "name": "\"Murder\", He Says",
+        "doc_id": 128,
+        "artists": "['Dinah Shore']",
+        "album_name": "The Very Best Of Dinah Shore",
+        "spotify_id": "5eLMeTVY9Ji33xvq8yxsEc"
+    },
+    {
+        "name": "\"Nathni \"",
+        "doc_id": 129,
+        "artists": "Aishwarya Majmudar",
+        "album_name": "Unknown",
+        "spotify_id": "6RFYQFhCOshaq4BvGmL2vg"
+    },
+    {
+        "name": "\"Nessun dorma!\"",
+        "doc_id": 130,
+        "artists": "['Luciano Pavarotti']",
+        "album_name": "Unknown",
+        "spotify_id": "74WjYdm3Lvbwnds4thYPUU"
+    },
+    {
+        "name": "\"Nessun dorma!\"",
+        "doc_id": 131,
+        "artists": "Giacomo Puccini",
+        "album_name": "Unknown",
+        "spotify_id": "74WjYdm3Lvbwnds4thYPUU"
+    },
+    {
+        "name": "\"Nessun dorma\" - Live",
+        "doc_id": 132,
+        "artists": "José Carreras",
+        "album_name": "Unknown",
+        "spotify_id": "375vJOYx5CuSBDXLnT9r1v"
+    },
+    {
+        "name": "\"No puede ser\" - Live",
+        "doc_id": 133,
+        "artists": "Plácido Domingo",
+        "album_name": "Unknown",
+        "spotify_id": "6h9gzcRIDBTIDc8AQeUxnY"
+    },
+    {
+        "name": "\"Non più mesta\"",
+        "doc_id": 134,
+        "artists": "Gioachino Rossini",
+        "album_name": "Unknown",
+        "spotify_id": "5BALnJGgdgeRY6hQPUDcyL"
+    },
+    {
+        "name": "\"Now, seeing as Henry was running out of women to marry in England...\"",
+        "doc_id": 135,
+        "artists": "SIX",
+        "album_name": "Unknown",
+        "spotify_id": "0hTHSqS3m1p7AHm9aCOwoR"
+    },
+    {
+        "name": "\"O Futuro No Pretérito\", Uma Festa Feita À Mão",
+        "doc_id": 136,
+        "artists": "Bruno Ribas",
+        "album_name": "Unknown",
+        "spotify_id": "2wpsHEV9HIizG2easP3HNc"
+    },
+    {
+        "name": "\"O Mio Babbino Caro\" (From Gianni Schicchi)",
+        "doc_id": 137,
+        "artists": "Giacomo Puccini",
+        "album_name": "Unknown",
+        "spotify_id": "7lhIe587kvqP9ose9hAH3t"
+    },
+    {
+        "name": "\"O Mio Babbino Caro\" (From Gianni Schicchi)",
+        "doc_id": 138,
+        "artists": "Giacomo Puccini",
+        "album_name": "Unknown",
+        "spotify_id": "7lhIe587kvqP9ose9hAH3t"
+    },
+    {
+        "name": "\"O\"",
+        "doc_id": 139,
+        "artists": "Libertad Lamarque",
+        "album_name": "Unknown",
+        "spotify_id": "3z98oKzpDySCqT0IASQebg"
+    },
+    {
+        "name": "\"O, We're Going Home\"",
+        "doc_id": 140,
+        "artists": "Thomas Newman",
+        "album_name": "Unknown",
+        "spotify_id": "0REuTBKVOxzyEw0zNDN754"
+    },
+    {
+        "name": "\"Ole\" Baugh Road",
+        "doc_id": 141,
+        "artists": "['Alabama']",
+        "album_name": "Unknown",
+        "spotify_id": "1ScOKADKsoLy6RXGvDl18S"
+    },
+    {
+        "name": "\"Ole\" Baugh Road",
+        "doc_id": 142,
+        "artists": "['Alabama']",
+        "album_name": "Southern Star",
+        "spotify_id": "1ScOKADKsoLy6RXGvDl18S"
+    },
+    {
+        "name": "\"P\" Is Still Free",
+        "doc_id": 143,
+        "artists": "['KRS-One']",
+        "album_name": "Return of the Boom Bap",
+        "spotify_id": "48L3vBFHcylQf2nZ8SQ2rz"
+    },
+    {
+        "name": "\"P\" da Paixão",
+        "doc_id": 144,
+        "artists": "['Alceu Valença']",
+        "album_name": "Leque Moleque",
+        "spotify_id": "1299LQenz0oO0QfzDxuF8S"
+    },
+    {
+        "name": "\"Panis Angelicus\", IAC 25",
+        "doc_id": 145,
+        "artists": "Plácido Domingo",
+        "album_name": "Unknown",
+        "spotify_id": "10lNLjUExk8lUin4pYkQKQ"
+    },
+    {
+        "name": "\"Please Miss Giry, I Want To Go Back...\"",
+        "doc_id": 146,
+        "artists": "Andrew Lloyd Webber",
+        "album_name": "Unknown",
+        "spotify_id": "3xMuMLXbvbv6LSQaJlkyOh"
+    },
+    {
+        "name": "\"Pourquoi me réveiller, ô souffle du printemps?\"",
+        "doc_id": 147,
+        "artists": "Jules Massenet",
+        "album_name": "Unknown",
+        "spotify_id": "47KC5PP73D2eqdmnaLPAOy"
+    },
+    {
+        "name": "\"President Dead\"",
+        "doc_id": 148,
+        "artists": "Marilyn Manson",
+        "album_name": "Unknown",
+        "spotify_id": "4wOdBrX82HqN6lxc50BD9r"
+    },
+    {
+        "name": "\"Preto E Branco A Cores\"",
+        "doc_id": 149,
+        "artists": "Luizinho Andanças",
+        "album_name": "Unknown",
+        "spotify_id": "4zfEbesLZlvQOINAnJYsSG"
+    },
+    {
+        "name": "\"Principessa, sei tu...Amor...Possente nome!\"",
+        "doc_id": 150,
+        "artists": "Gioachino Rossini",
+        "album_name": "Unknown",
+        "spotify_id": "3r9SxLHPTfVuqHW5QIagXb"
+    },
+    {
+        "name": "\"Psycho\"",
+        "doc_id": 151,
+        "artists": "['Silly']",
+        "album_name": "Liebeswalzer",
+        "spotify_id": "347fOoMREVw5GCWbNhvc7Z"
+    },
+    {
+        "name": "\"Push It To The Limit\" from the Motion Picture \"Scarface\"",
+        "doc_id": 152,
+        "artists": "['Brian \"Hacksaw\" Williams']",
+        "album_name": "Unknown",
+        "spotify_id": "5R8AxQGJ5oAsaJMRJzhtVg"
+    },
+    {
+        "name": "\"Push It to the Limit\" from the Motion Picture \"Scarface\" Composed by Giorgio Moroder (feat. Dominik Hauser)",
+        "doc_id": 153,
+        "artists": "['Brian \"Hacksaw\" Williams']",
+        "album_name": "Unknown",
+        "spotify_id": "0bWVG3SHpVPzNDwNeMasTV"
+    },
+    {
+        "name": "\"Read a Book...\"",
+        "doc_id": 154,
+        "artists": "['Michael Cerveris', 'Sydney Lucas', 'Beth Malone', 'Judy Kuhn']",
+        "album_name": "Fun Home (A New Broadway Musical)",
+        "spotify_id": "7lrpT3dtXvYhTkLceXlDUx"
+    },
+    {
+        "name": "\"Say I'm the One\"",
+        "doc_id": 155,
+        "artists": "Griffin House",
+        "album_name": "Unknown",
+        "spotify_id": "1IjCzOwbXHoO3ZYqi5Hsuh"
+    },
+    {
+        "name": "\"Se quel guerrier io fossi!..Celeste Aida\"",
+        "doc_id": 156,
+        "artists": "Giuseppe Verdi",
+        "album_name": "Unknown",
+        "spotify_id": "7rLFi55HFEwO72Mg0SYXZz"
+    },
+    {
+        "name": "\"Ser Diferente É Normal, O Império Serrano Faz A Diferença No Carnaval\"",
+        "doc_id": 157,
+        "artists": "Nego",
+        "album_name": "Unknown",
+        "spotify_id": "25P7fkje5oFl0ht5I2mgkL"
+    },
+    {
+        "name": "\"Shortly After We Were Married...\"",
+        "doc_id": 158,
+        "artists": "['Judy Kuhn', 'Emily Skeggs']",
+        "album_name": "Fun Home (A New Broadway Musical)",
+        "spotify_id": "4axI8DNcmVLjbvEW1yMd2t"
+    },
+    {
+        "name": "\"Siboney\"",
+        "doc_id": 159,
+        "artists": "Plácido Domingo",
+        "album_name": "Unknown",
+        "spotify_id": "4VdXUYKqXmkDoamGFmFEGj"
+    },
+    {
+        "name": "\"Smile\" (Final Theme from the Motion Picture \"Modern Times\") - Arranged by Nan Schwartz",
+        "doc_id": 160,
+        "artists": "Thomas Quasthoff",
+        "album_name": "Unknown",
+        "spotify_id": "4oT5ZntOVaqovmepn35ObL"
+    },
+    {
+        "name": "\"So I guess you already know what happened next...\"",
+        "doc_id": 161,
+        "artists": "SIX",
+        "album_name": "Unknown",
+        "spotify_id": "1RMvEQj6e1BpiMo9PCaZqO"
+    },
+    {
+        "name": "\"Something In the Rain\" (Something In the Rain, Pt. 1) [Music from the Original TV Series]",
+        "doc_id": 162,
+        "artists": "Rachael Yamagata",
+        "album_name": "Something In the Rain (Music from the Original TV Series)",
+        "spotify_id": "6XrNrp7UtGgyZcHJ0ckL0w"
+    },
+    {
+        "name": "\"Sometimes My Father Appeared to Enjoy Having Children...\"",
+        "doc_id": 163,
+        "artists": "['Beth Malone', 'Michael Cerveris', 'Judy Kuhn']",
+        "album_name": "Fun Home (A New Broadway Musical)",
+        "spotify_id": "0Akuz3BHn3w1ixYL79QxLj"
+    },
+    {
+        "name": "\"Sometimes a Song Changes Its Shape...\"",
+        "doc_id": 164,
+        "artists": "['Stephen Sondheim']",
+        "album_name": "Sondheim on Sondheim (Original Broadway Cast Recording)",
+        "spotify_id": "3X6bsigfBJ9gcVOg27l8bg"
+    },
+    {
+        "name": "\"Sprung On A Thug\"",
+        "doc_id": 165,
+        "artists": "['La La']",
+        "album_name": "Unknown",
+        "spotify_id": "6GFnfBZhNrcCMnMjfZ3X6f"
+    },
+    {
+        "name": "\"Stockades\"",
+        "doc_id": 166,
+        "artists": "['Frog Eyes']",
+        "album_name": "Tears Of The Valedictorian",
+        "spotify_id": "0jmv1vRuKP0ZiCBooN6jn6"
+    },
+    {
+        "name": "\"Sure, Baby...Hold Back.\"",
+        "doc_id": 167,
+        "artists": "Say Anything",
+        "album_name": "Unknown",
+        "spotify_id": "6yez3R93w5xk7qwUiJ3eIX"
+    },
+    {
+        "name": "\"Sì, ritrovarla io giuro\"",
+        "doc_id": 168,
+        "artists": "Gioachino Rossini",
+        "album_name": "Unknown",
+        "spotify_id": "5aZYhtQLBQEDcOnisO3Uwg"
+    },
+    {
+        "name": "\"T\" For Texas",
+        "doc_id": 169,
+        "artists": "Johnny Cash",
+        "album_name": "Unknown",
+        "spotify_id": "7ndKS4xhy2v78R44LCy8v6"
+    },
+    {
+        "name": "\"T\" Stands For Time",
+        "doc_id": 170,
+        "artists": "['Marvin Gaye']",
+        "album_name": "Unknown",
+        "spotify_id": "7hjyCUvCJ9nzlhYemwcB1y"
+    },
+    {
+        "name": "\"Ten Minutes Ago\"",
+        "doc_id": 171,
+        "artists": "Santino Fontana",
+        "album_name": "Unknown",
+        "spotify_id": "0Xdmtw3GC8pMk06N63yVDj"
+    },
+    {
+        "name": "\"Teresinha, Uhuhuuu!!! Vocês Querem Bacalhau?\"",
+        "doc_id": 172,
+        "artists": "Preto Joia",
+        "album_name": "Unknown",
+        "spotify_id": "4at2Be9Msr8hTYO4FKiQ16"
+    },
+    {
+        "name": "\"Thanks for the Care Package...\"",
+        "doc_id": 173,
+        "artists": "['Emily Skeggs', 'Roberta Colindrez', 'Sydney Lucas', 'Michael Cerveris']",
+        "album_name": "Fun Home (A New Broadway Musical)",
+        "spotify_id": "4o5XMU0A3Wetr3kZDafuTM"
+    },
+    {
+        "name": "\"That Spells Reno\"",
+        "doc_id": 174,
+        "artists": "Amy Adams",
+        "album_name": "Unknown",
+        "spotify_id": "4uiXYP0nEkZhJnldot488W"
+    },
+    {
+        "name": "\"The Barber Of Sevile\" Cavatina Of Figaro",
+        "doc_id": 175,
+        "artists": "Nikolay Kopylov",
+        "album_name": "Unknown",
+        "spotify_id": "1y9vWh1gTgL0AnST10kfX5"
+    },
+    {
+        "name": "\"The Potter Has No Hands\"",
+        "doc_id": 176,
+        "artists": "Norma Jean",
+        "album_name": "Unknown",
+        "spotify_id": "3iUAzj7t8h18KP4LCCBumS"
+    },
+    {
+        "name": "\"The State I'm In\" Aka \"Goode Buy From Cobbs Creek Park\"",
+        "doc_id": 177,
+        "artists": "Karate",
+        "album_name": "Unknown",
+        "spotify_id": "50SJSry8CmsRk87GKPQH61"
+    },
+    {
+        "name": "\"The Take Over, The Breaks Over\"",
+        "doc_id": 178,
+        "artists": "['Fall Out Boy']",
+        "album_name": "Unknown",
+        "spotify_id": "4zCfMDdf5QXPKEqxdinXvB"
+    },
+    {
+        "name": "\"The Take Over, The Breaks Over\"",
+        "doc_id": 179,
+        "artists": "['Fall Out Boy']",
+        "album_name": "Unknown",
+        "spotify_id": "4zCfMDdf5QXPKEqxdinXvB"
+    },
+    {
+        "name": "\"There's Music in You\"",
+        "doc_id": 180,
+        "artists": "Victoria Clark",
+        "album_name": "Unknown",
+        "spotify_id": "5xvOfzSJxa8O8Vq6M0VqHO"
+    },
+    {
+        "name": "\"This Is What I Have of You...\"",
+        "doc_id": 181,
+        "artists": "['Beth Malone']",
+        "album_name": "Fun Home (A New Broadway Musical)",
+        "spotify_id": "5XYPd0G7Fmh7eOe1sOXG9S"
+    },
+    {
+        "name": "\"Tough Guy\"",
+        "doc_id": 182,
+        "artists": "Madball",
+        "album_name": "Unknown",
+        "spotify_id": "5tbSHPQf7n9pku8xknRN3E"
+    },
+    {
+        "name": "\"Un dì all'azzuro spazio\" - Live",
+        "doc_id": 183,
+        "artists": "José Carreras",
+        "album_name": "Unknown",
+        "spotify_id": "7eqgLwZ2Ub9GyOIiMuctTy"
+    },
+    {
+        "name": "\"Un dì all'azzuro spazio\" - Live",
+        "doc_id": 184,
+        "artists": "Umberto Giordano",
+        "album_name": "Unknown",
+        "spotify_id": "7eqgLwZ2Ub9GyOIiMuctTy"
+    },
+    {
+        "name": "\"Una furtiva lagrima\"",
+        "doc_id": 185,
+        "artists": "Gaetano Donizetti",
+        "album_name": "Unknown",
+        "spotify_id": "7idRPUw8IWVEcOu6qiaYmM"
+    },
+    {
+        "name": "\"Unlucky Skin\" - Live from Spotify Nyc",
+        "doc_id": 186,
+        "artists": "Shakey Graves",
+        "album_name": "Unknown",
+        "spotify_id": "4X7FaTervP5JZIVttwal6U"
+    },
+    {
+        "name": "\"V\"",
+        "doc_id": 187,
+        "artists": "['Ted Winn']",
+        "album_name": "Unknown",
+        "spotify_id": "0LKs7ieG5Oxy6tjgd8hnG5"
+    },
+    {
+        "name": "\"Va, pensiero\" (Chorus of the Hebrew Slaves)",
+        "doc_id": 188,
+        "artists": "Giuseppe Verdi",
+        "album_name": "Unknown",
+        "spotify_id": "79mpDtLRized9qnbkS55fF"
+    },
+    {
+        "name": "\"Volver\" - Arr. Roberto Pansera",
+        "doc_id": 189,
+        "artists": "Carlos Gardel",
+        "album_name": "Unknown",
+        "spotify_id": "6xPxUQdDBKj96YHkMPEhqP"
+    },
+    {
+        "name": "\"Was He Slow?\" - Music From The Motion Picture Baby Driver",
+        "doc_id": 190,
+        "artists": "Kid Koala",
+        "album_name": "Baby Driver (Music from the Motion Picture)",
+        "spotify_id": "283fC78iSwdjeo5OM5nlQp"
+    },
+    {
+        "name": "\"Was He Slow?\" - Music From The Motion Picture Baby Driver",
+        "doc_id": 191,
+        "artists": "Kid Koala",
+        "album_name": "\"Was He Slow?\" (Music From The Motion Picture Baby Driver)",
+        "spotify_id": "283fC78iSwdjeo5OM5nlQp"
+    },
+    {
+        "name": "\"Was He Slow?\" - Music From The Motion Picture Baby Driver",
+        "doc_id": 192,
+        "artists": "['Kid Koala']",
+        "album_name": "Baby Driver (Music from the Motion Picture)",
+        "spotify_id": "283fC78iSwdjeo5OM5nlQp"
+    },
+    {
+        "name": "\"Wished I Was A Giant\"",
+        "doc_id": 193,
+        "artists": "['Guided By Voices']",
+        "album_name": "Vampire On Titus",
+        "spotify_id": "2JMFwEonVnpMVgvSlhJhRI"
+    },
+    {
+        "name": "\"X\" Marks The Spot",
+        "doc_id": 194,
+        "artists": "['Swashbuckle']",
+        "album_name": "Crewed By The Damned",
+        "spotify_id": "3yzA1P0NyDFcQdCRqYyScs"
+    },
+    {
+        "name": "\"You Get so Alone at Times That It Just Makes Sense\"",
+        "doc_id": 195,
+        "artists": "['Senses Fail']",
+        "album_name": "If There Is Light, It Will Find You",
+        "spotify_id": "0a3OwGxH1N4MBDxUg1KTZo"
+    },
+    {
+        "name": "\"You Got A Death Wish, Johnny Truant?\"",
+        "doc_id": 196,
+        "artists": "The Fall of Troy",
+        "album_name": "Unknown",
+        "spotify_id": "1EDmeEmVbRc0IcpqH2F5uC"
+    },
+    {
+        "name": "\"You Got A Killer Scene There, Man...\"",
+        "doc_id": 197,
+        "artists": "Queens of the Stone Age",
+        "album_name": "Unknown",
+        "spotify_id": "6ZZiYOTFuZC1XLJjMiEnvS"
+    },
+    {
+        "name": "\"You Ready to Go for That Drive?...\"",
+        "doc_id": 198,
+        "artists": "['Michael Cerveris', 'Beth Malone']",
+        "album_name": "Fun Home (A New Broadway Musical)",
+        "spotify_id": "2kheoIfi3ADG1YH1jJsugL"
+    },
+    {
+        "name": "\"You're back!\"",
+        "doc_id": 199,
+        "artists": "['Lily James', 'Ansel Elgort']",
+        "album_name": "Baby Driver Volume 2: The Score for A Score",
+        "spotify_id": "4PogZxNTwHLJ3JZy9I3oHB"
+    },
+    {
+        "name": "\"Z\" no Chikai - Movie Version",
+        "doc_id": 200,
+        "artists": "Various Artists",
+        "album_name": "Dragon Ball Z: Fukkatsu No 'F‘ (Dragon Ball Z: Resurrection 'F‘ - Original Motion Picture Soundtrack)",
+        "spotify_id": "64tvaRJLI86Kbu91jNOi15"
+    },
+    {
+        "name": "\"all aboard\"",
+        "doc_id": 201,
+        "artists": "['SOAK']",
+        "album_name": "Grim Town",
+        "spotify_id": "4xn5MDPDfowkY21F3XGTuz"
+    },
+    {
+        "name": "\"like seeing spiders running riot on your lover's grave\" (feat. Happyalone.)",
+        "doc_id": 202,
+        "artists": "['Bring Me The Horizon', 'Happyalone.']",
+        "album_name": "Music to listen to~dance to~blaze to~pray to~feed to~sleep to~talk to~grind to~trip to~breathe to~help to~hurt to~scroll to~roll to~love to~hate to~learn Too~plot to~play to~be to~feel to~breed to~sweat to~dream to~hide to~live to~die to~GO TO",
+        "spotify_id": "6rJw7n8v5pFiJ8qFac06dP"
+    },
+    {
+        "name": "\"si\" n'existe pas",
+        "doc_id": 203,
+        "artists": "AqME",
+        "album_name": "Unknown",
+        "spotify_id": "3ojFvzaV3j6bxd1WYjHUtp"
+    },
+    {
+        "name": "\"sometimes you meet the right people at the wrong times\"",
+        "doc_id": 204,
+        "artists": "Can't Swim",
+        "album_name": "Unknown",
+        "spotify_id": "1J5WWo4zSTWIKD7VFr6wn4"
+    },
+    {
+        "name": "\"Áfricas: Do Berço Real À Corte Brasileira\"",
+        "doc_id": 205,
+        "artists": "Neguinho Da Beija Flor",
+        "album_name": "Unknown",
+        "spotify_id": "4JerQiuywl4KBeoUXD359K"
+    },
+    {
+        "name": "#",
+        "doc_id": 206,
+        "artists": "['Phazer']",
+        "album_name": "Kismet",
+        "spotify_id": "6ksxtIYQI923bNHHnr5e1X"
+    },
+    {
+        "name": "# 1",
+        "doc_id": 207,
+        "artists": "Slank",
+        "album_name": "Virus",
+        "spotify_id": "7KJQr1jn8YO2zXMejSSwxS"
+    },
+    {
+        "name": "# FABFAB",
+        "doc_id": 208,
+        "artists": "['Daniel Perry']",
+        "album_name": "Vacation Simulator (Original Game Soundtrack)",
+        "spotify_id": "1pBb3Q2XcBtPb4PLhlrwma"
+    },
+    {
+        "name": "# Numeral - En Vivo en Monterrey",
+        "doc_id": 209,
+        "artists": "['Gustavo Cerati']",
+        "album_name": "Fuerza Natural Tour, en vivo en Monterrey, MX, 2009",
+        "spotify_id": "5yC9WNof9LBBjY2TJgVKba"
+    },
+    {
+        "name": "#!*@ You Tonight (feat. R. Kelly)",
+        "doc_id": 210,
+        "artists": "['The Notorious B.I.G.', 'R. Kelly']",
+        "album_name": "The Essential R. Kelly",
+        "spotify_id": "77D42KDLXe7Y1lKy6Zm26V"
+    },
+    {
+        "name": "#!*@ You Tonight (feat. R. Kelly) - 2014 Remastered Version",
+        "doc_id": 211,
+        "artists": "The Notorious B.I.G.",
+        "album_name": "Unknown",
+        "spotify_id": "1ry9AyQVzzK2iDt6vMY2ku"
+    },
+    {
+        "name": "##4MyDad",
+        "doc_id": 212,
+        "artists": "['Lightz']",
+        "album_name": "Unknown",
+        "spotify_id": "2hevzFXTfSaK7Tuzar1Dhq"
+    },
+    {
+        "name": "##RR##EFG",
+        "doc_id": 213,
+        "artists": "['KANKAN']",
+        "album_name": "Unknown",
+        "spotify_id": "2ExQHyULPXMFyfwLadlmCg"
+    },
+    {
+        "name": "#0000FF",
+        "doc_id": 214,
+        "artists": "Jasmine Sokko",
+        "album_name": "Unknown",
+        "spotify_id": "6dAROoyDvypjygWUx54zCr"
+    },
+    {
+        "name": "#1",
+        "doc_id": 215,
+        "artists": "Imagine Dragons",
+        "album_name": "Unknown",
+        "spotify_id": "7t7jCjGe0m4jWboKcVULQw"
+    },
+    {
+        "name": "#1",
+        "doc_id": 216,
+        "artists": "Kelly Rowland",
+        "album_name": "Unknown",
+        "spotify_id": "7t7jCjGe0m4jWboKcVULQw"
+    },
+    {
+        "name": "#1",
+        "doc_id": 217,
+        "artists": "Gerald Levert",
+        "album_name": "Unknown",
+        "spotify_id": "7t7jCjGe0m4jWboKcVULQw"
+    },
+    {
+        "name": "#1",
+        "doc_id": 218,
+        "artists": "Animal Collective",
+        "album_name": "Unknown",
+        "spotify_id": "7t7jCjGe0m4jWboKcVULQw"
+    },
+    {
+        "name": "#1",
+        "doc_id": 219,
+        "artists": "['Nelly']",
+        "album_name": "Unknown",
+        "spotify_id": "7t7jCjGe0m4jWboKcVULQw"
+    },
+    {
+        "name": "#1",
+        "doc_id": 220,
+        "artists": "['Nelly']",
+        "album_name": "Unknown",
+        "spotify_id": "7t7jCjGe0m4jWboKcVULQw"
+    },
+    {
+        "name": "#1 Bad Boy - 2005 Remastered",
+        "doc_id": 221,
+        "artists": "['Poison']",
+        "album_name": "Unknown",
+        "spotify_id": "09uOAYRPChIi9c7cRKNBO8"
+    },
+    {
+        "name": "#1 Cat in America (Titus Jones Remix) [Remastered]",
+        "doc_id": 222,
+        "artists": "Leslie Hall",
+        "album_name": "Unknown",
+        "spotify_id": "1VW6J2gADNzoC7qmT6GhYP"
+    },
+    {
+        "name": "#1 Chance Pirate TV",
+        "doc_id": 223,
+        "artists": "['Team Dresch']",
+        "album_name": "Personal Best",
+        "spotify_id": "0EKS3ocG46cGZa4giqvhey"
+    },
+    {
+        "name": "#1 Country Song",
+        "doc_id": 224,
+        "artists": "['The Handsome Family']",
+        "album_name": "Milk & Scissors",
+        "spotify_id": "7vA65gGzMwxPqIQERrPftD"
+    },
+    {
+        "name": "#1 Crush",
+        "doc_id": 225,
+        "artists": "['Garbage']",
+        "album_name": "Unknown",
+        "spotify_id": "6bLabbkRIUDJ6822foLE1Y"
+    },
+    {
+        "name": "#1 Crush",
+        "doc_id": 226,
+        "artists": "['Various Artists']",
+        "album_name": "Unknown",
+        "spotify_id": "6bLabbkRIUDJ6822foLE1Y"
+    },
+    {
+        "name": "#1 Crush - Nellee Hooper Mix",
+        "doc_id": 227,
+        "artists": "['Garbage', 'Nellee Hooper']",
+        "album_name": "Unknown",
+        "spotify_id": "08L1WAtYQnsFBoZ3MEBkYV"
+    },
+    {
+        "name": "#1 Da Woman",
+        "doc_id": 228,
+        "artists": "Tricky",
+        "album_name": "Unknown",
+        "spotify_id": "2X7TJSSVK21Va3HRLxcD9X"
+    },
+    {
+        "name": "#1 Fan",
+        "doc_id": 229,
+        "artists": "THE DRIVER ERA",
+        "album_name": "Unknown",
+        "spotify_id": "59w92PVZzDQmZkEAnYxfCI"
+    },
+    {
+        "name": "#1 Fan (feat. Keyshia Cole & J. Holiday)",
+        "doc_id": 230,
+        "artists": "['Plies']",
+        "album_name": "Unknown",
+        "spotify_id": "2L9FQLoRs0Fz0Ih2j4qkJb"
+    },
+    {
+        "name": "#1 Hit Jam",
+        "doc_id": 231,
+        "artists": "The Brian Jonestown Massacre",
+        "album_name": "Unknown",
+        "spotify_id": "5MSRCOHPlhE53Y6dcuks5L"
+    },
+    {
+        "name": "#1 Hit Record",
+        "doc_id": 232,
+        "artists": "['Edan']",
+        "album_name": "Primitive Plus",
+        "spotify_id": "0qI178VSRU2fx1jIbDLaPP"
+    },
+    {
+        "name": "#1 Is Number Two",
+        "doc_id": 233,
+        "artists": "The Soviettes",
+        "album_name": "Unknown",
+        "spotify_id": "5dbr2EAlARS5NzYpqSng6o"
+    },
+    {
+        "name": "#1 LUCKY KITTY",
+        "doc_id": 234,
+        "artists": "The Brian Jonestown Massacre",
+        "album_name": "Unknown",
+        "spotify_id": "774H7JezDKBOABQ6WWt8RE"
+    },
+    {
+        "name": "#1 Radio $Ingle",
+        "doc_id": 235,
+        "artists": "Psychostick",
+        "album_name": "Unknown",
+        "spotify_id": "11JkHfdT3XSrZsXhXKQCua"
+    },
+    {
+        "name": "#1 Stunna",
+        "doc_id": 236,
+        "artists": "['$uicideboy$']",
+        "album_name": "Unknown",
+        "spotify_id": "7kBdenpTmgWfAz9clmBcok"
+    },
+    {
+        "name": "#1 Stunna",
+        "doc_id": 237,
+        "artists": "Big Tymers",
+        "album_name": "I Got That Work (Explicit Version)",
+        "spotify_id": "7kBdenpTmgWfAz9clmBcok"
+    },
+    {
+        "name": "#1 Stunna",
+        "doc_id": 238,
+        "artists": "Big Tymers",
+        "album_name": "I Got That Work",
+        "spotify_id": "7kBdenpTmgWfAz9clmBcok"
+    },
+    {
+        "name": "#10",
+        "doc_id": 239,
+        "artists": "['Velvet Crush']",
+        "album_name": "Teenage Symphonies To God",
+        "spotify_id": "6jfEb8XnVcBqI5ZfeLtOLY"
+    },
+    {
+        "name": "#10 Dream",
+        "doc_id": 240,
+        "artists": "['Håkan Hellström']",
+        "album_name": "Du gamla du fria",
+        "spotify_id": "27YdfyvGiP3X7QLJWBhNnG"
+    },
+    {
+        "name": "#104",
+        "doc_id": 241,
+        "artists": "Alpha Wolf",
+        "album_name": "Unknown",
+        "spotify_id": "2SddL9APDLmnMTAqwfadsX"
+    },
+    {
+        "name": "#13",
+        "doc_id": 242,
+        "artists": "['AroarA']",
+        "album_name": "In the Pines",
+        "spotify_id": "1seK9fxYGBMOvTbNuPLJIL"
+    },
+    {
+        "name": "#1Fan",
+        "doc_id": 243,
+        "artists": "Trey Songz",
+        "album_name": "Unknown",
+        "spotify_id": "5u6uBulKYQ9EfTJP3lKhoq"
+    },
+    {
+        "name": "#1HappyHoliday",
+        "doc_id": 244,
+        "artists": "['DRAM']",
+        "album_name": "Unknown",
+        "spotify_id": "5pUHIx5GuvTyM5u9dmZ4DZ"
+    },
+    {
+        "name": "#1Nite (One Night)",
+        "doc_id": 245,
+        "artists": "Cobra Starship",
+        "album_name": "Unknown",
+        "spotify_id": "2iObDtZHIKtZ15kLfhK2yw"
+    },
+    {
+        "name": "#1f1e33",
+        "doc_id": 246,
+        "artists": "['Camellia']",
+        "album_name": "#1f1e33",
+        "spotify_id": "6KjMvgPBb5r6yJWcMCpuoe"
+    },
+    {
+        "name": "#2",
+        "doc_id": 247,
+        "artists": "['Pat Green']",
+        "album_name": "Live at Billy Bob's Texas",
+        "spotify_id": "4jSvM5C0pIoQps9RafnQRY"
+    },
+    {
+        "name": "#2 In The Model Home Series",
+        "doc_id": 248,
+        "artists": "['Guided By Voices']",
+        "album_name": "Vampire On Titus",
+        "spotify_id": "4hwNmFw6m12FbrmOdZkED3"
+    },
+    {
+        "name": "#2 Kraft Paperbag",
+        "doc_id": 249,
+        "artists": "['Sugarplum Fairies']",
+        "album_name": "Introspective Raincoat Student Music",
+        "spotify_id": "4ssR3cqaB4WVnLp18rzTKg"
+    },
+    {
+        "name": "#3",
+        "doc_id": 250,
+        "artists": "黃小楨",
+        "album_name": "Unknown",
+        "spotify_id": "4dKeEJ7IkOkmj9psV1Iwxs"
+    },
+    {
+        "name": "#34",
+        "doc_id": 251,
+        "artists": "['Teodasia']",
+        "album_name": "Metamorphosis",
+        "spotify_id": "7AZLKVXNGkhp3RPPLxjoO7"
+    },
+    {
+        "name": "#36 - Live at Continental Airlines Arena, East Rutherford, NJ - September 1999",
+        "doc_id": 252,
+        "artists": "['Dave Matthews Band']",
+        "album_name": "Listener Supported (Live)",
+        "spotify_id": "3FWsXLVIjxYbaDvx3pQjwd"
+    },
+    {
+        "name": "#36 - Live at Red Rocks Amphitheatre, Morrison, CO - August 1995",
+        "doc_id": 253,
+        "artists": "['Dave Matthews Band']",
+        "album_name": "Live At Red Rocks 8.15.95",
+        "spotify_id": "5XbXAvoDbsiGmYYBu5pDAe"
+    },
+    {
+        "name": "#36ghost",
+        "doc_id": 254,
+        "artists": "['DR!FTWOOD']",
+        "album_name": "#36ghost",
+        "spotify_id": "4rPpg7nEqpN74w3tqy0SHK"
+    },
+    {
+        "name": "#4",
+        "doc_id": 255,
+        "artists": "['Aphex Twin']",
+        "album_name": "Unknown",
+        "spotify_id": "0FxUnU4EjDoDGRiFuVjyBH"
+    },
+    {
+        "name": "#41",
+        "doc_id": 256,
+        "artists": "['Dave Matthews Band']",
+        "album_name": "Unknown",
+        "spotify_id": "2nklcPJ3YhYJfC2ibStXz9"
+    },
+    {
+        "name": "#41 * - Live at the United Center, Chicago, IL - December 1998",
+        "doc_id": 257,
+        "artists": "['Dave Matthews Band']",
+        "album_name": "Live In Chicago 12.19.98 at The United Center",
+        "spotify_id": "2h3mSbMJ2gvD6i5AdBMjcp"
+    },
+    {
+        "name": "#41 - Live at Continental Airlines Arena, East Rutherford, NJ - September 1999",
+        "doc_id": 258,
+        "artists": "['Dave Matthews Band']",
+        "album_name": "Listener Supported (Live)",
+        "spotify_id": "60WBxvZ1Waq7hznrLs4zRz"
+    },
+    {
+        "name": "#41 - Live at Luther College, Decorah, IA - February 1996",
+        "doc_id": 259,
+        "artists": "['Dave Matthews', 'Tim Reynolds']",
+        "album_name": "Live At Luther College",
+        "spotify_id": "2FDRIrru1m3KhHxnxaaCIk"
+    },
+    {
+        "name": "#41 - Live at Piazza Napoleone, Lucca, Italy - July 2009",
+        "doc_id": 260,
+        "artists": "['Dave Matthews Band']",
+        "album_name": "Unknown",
+        "spotify_id": "0NJbrq0BQFuDOlZ4CtZkex"
+    },
+    {
+        "name": "#41 - Live at Radio City Music Hall, New York, NY - April 2007",
+        "doc_id": 261,
+        "artists": "['Dave Matthews', 'Tim Reynolds']",
+        "album_name": "Live At Radio City",
+        "spotify_id": "0oUzMf8vvmoBbJGIXgeAoR"
+    },
+    {
+        "name": "#5",
+        "doc_id": 262,
+        "artists": "['Hank Williams III']",
+        "album_name": "Rebel Within",
+        "spotify_id": "719Dpc55KTV6Ev3hRg2Ofd"
+    },
+    {
+        "name": "#5",
+        "doc_id": 263,
+        "artists": "Ling tosite sigure",
+        "album_name": "Unknown",
+        "spotify_id": "719Dpc55KTV6Ev3hRg2Ofd"
+    },
+    {
+        "name": "#513",
+        "doc_id": 264,
+        "artists": "['Sudan Archives']",
+        "album_name": "Unknown",
+        "spotify_id": "2MCVlv2iFMoUm8F81qbfNe"
+    },
+    {
+        "name": "#9 Dream",
+        "doc_id": 265,
+        "artists": "José González",
+        "album_name": "Unknown",
+        "spotify_id": "7uQRllk8e2PEauDUdRTDjb"
+    },
+    {
+        "name": "#9 Dream",
+        "doc_id": 266,
+        "artists": "['R.E.M.']",
+        "album_name": "#9 Dream",
+        "spotify_id": "7uQRllk8e2PEauDUdRTDjb"
+    },
+    {
+        "name": "#9 Dream - Remastered 2010",
+        "doc_id": 267,
+        "artists": "['John Lennon']",
+        "album_name": "Unknown",
+        "spotify_id": "4ZVWvCUwsOnIGmJMj71RkG"
+    },
+    {
+        "name": "#Addicted",
+        "doc_id": 268,
+        "artists": "['Riverside']",
+        "album_name": "Unknown",
+        "spotify_id": "1PvvGV08vgTQIW8qhiHAtN"
+    },
+    {
+        "name": "#Armageddon - Live",
+        "doc_id": 269,
+        "artists": "['AJJ']",
+        "album_name": "Live at the Crescent Ballroom",
+        "spotify_id": "0ucrULHU1Q0qsTHjEU9J0x"
+    },
+    {
+        "name": "#Askip",
+        "doc_id": 270,
+        "artists": "['Black M']",
+        "album_name": "Éternel insatisfait",
+        "spotify_id": "4T7fVWFjYNwkuCKRpKXVeB"
+    },
+    {
+        "name": "#BAD",
+        "doc_id": 271,
+        "artists": "Skinny Fabulous",
+        "album_name": "Unknown",
+        "spotify_id": "33JeEoN08AksO4mzGIXIEH"
+    },
+    {
+        "name": "#BDAY (feat. Chris Brown, Siya and Sage The Gemini)",
+        "doc_id": 272,
+        "artists": "Tank",
+        "album_name": "Unknown",
+        "spotify_id": "1lp1YyncJKAabaSuP3vvuf"
+    },
+    {
+        "name": "#Bad4Me",
+        "doc_id": 273,
+        "artists": "Etta Bond",
+        "album_name": "Unknown",
+        "spotify_id": "5pfPTVBzkVzAtFSoxbznMU"
+    },
+    {
+        "name": "#Baladeira (feat. Maiara & Maraisa) - Ao Vivo",
+        "doc_id": 274,
+        "artists": "Diego & Victor Hugo",
+        "album_name": "Unknown",
+        "spotify_id": "1bxBKzYXU3QUeq6yn2aEPi"
+    },
+    {
+        "name": "#Beautiful",
+        "doc_id": 275,
+        "artists": "Mariah Carey",
+        "album_name": "Unknown",
+        "spotify_id": "617KSbx52ACbnQBxSsG26X"
+    },
+    {
+        "name": "#Beautiful",
+        "doc_id": 276,
+        "artists": "['Mariah Carey', 'Miguel']",
+        "album_name": "Unknown",
+        "spotify_id": "617KSbx52ACbnQBxSsG26X"
+    },
+    {
+        "name": "#Blessed",
+        "doc_id": 277,
+        "artists": "['Miss Cherry Delight']",
+        "album_name": "Eat the Evidence",
+        "spotify_id": "33TYMg6F3BKyceiytShheA"
+    },
+    {
+        "name": "#BrooklynBloodPop!",
+        "doc_id": 278,
+        "artists": "['SyKo']",
+        "album_name": "Unknown",
+        "spotify_id": "7K9Z3yFNNLv5kwTjQYGjnu"
+    },
+    {
+        "name": "#Cash",
+        "doc_id": 279,
+        "artists": "['TAL']",
+        "album_name": "A l'infini (Summer Edition)",
+        "spotify_id": "3MSsRaRFiY6C3h7NINytKR"
+    },
+    {
+        "name": "#Cash",
+        "doc_id": 280,
+        "artists": "TAL",
+        "album_name": "Unknown",
+        "spotify_id": "3MSsRaRFiY6C3h7NINytKR"
+    },
+    {
+        "name": "#ColdBlooded",
+        "doc_id": 281,
+        "artists": "Imperial;JOVANA K",
+        "album_name": "Harder Stylez: We Love The Bass",
+        "spotify_id": "5oIxZbtO8ctpXy8MTflBIf"
+    },
+    {
+        "name": "#Connected",
+        "doc_id": 282,
+        "artists": "He3b",
+        "album_name": "Unknown",
+        "spotify_id": "35uIIxN8pO52rh7UoZodZf"
+    },
+    {
+        "name": "#Cookie Jar",
+        "doc_id": 283,
+        "artists": "Red Velvet",
+        "album_name": "Unknown",
+        "spotify_id": "3UgPJrKvOaTFgZ185X80Dx"
+    },
+    {
+        "name": "#Deputamadre",
+        "doc_id": 284,
+        "artists": "['Elilluminari', 'El Super Nuevo']",
+        "album_name": "Unknown",
+        "spotify_id": "21Oqz4JSUmZleiW0l4Mo8d"
+    },
+    {
+        "name": "#DeusVult",
+        "doc_id": 285,
+        "artists": "Sefa",
+        "album_name": "Unknown",
+        "spotify_id": "55rlqYnGQaS7LPzTNufVtB"
+    },
+    {
+        "name": "#Dubigal",
+        "doc_id": 286,
+        "artists": "Ron Sky Nesher",
+        "album_name": "#Dubigal",
+        "spotify_id": "3bQIeVgvC783Sgg0Bdjh5p"
+    },
+    {
+        "name": "#ElMundoFuera (Improvisación)",
+        "doc_id": 287,
+        "artists": "['Alejandro Sanz']",
+        "album_name": "Unknown",
+        "spotify_id": "2O9RO8AxGmTywfJv3s454y"
+    },
+    {
+        "name": "#FF0000 (untitled_0034)",
+        "doc_id": 288,
+        "artists": "JOHNNASCUS",
+        "album_name": "Unknown",
+        "spotify_id": "4RlVm4OvH1RkKk2fJgs97b"
+    },
+    {
+        "name": "#FWYB",
+        "doc_id": 289,
+        "artists": "['Trey Songz']",
+        "album_name": "Intermission I & II",
+        "spotify_id": "1xSOLZNLJqsu9xQ7itjyxK"
+    },
+    {
+        "name": "#First Love",
+        "doc_id": 290,
+        "artists": "BOL4",
+        "album_name": "Unknown",
+        "spotify_id": "75FNxI7FQWjLHNuVTuLIoq"
+    },
+    {
+        "name": "#Flashdrive",
+        "doc_id": 291,
+        "artists": "['BXTH', 'Scky Rei', 'Infntlp']",
+        "album_name": "Sorta Kinda",
+        "spotify_id": "335n9Hjc3UWznz6KgfiThl"
+    },
+    {
+        "name": "#Freemolly (Intro)",
+        "doc_id": 292,
+        "artists": "Yung Beef",
+        "album_name": "Unknown",
+        "spotify_id": "750wjOrJwSgnHsbSMX8HyP"
+    },
+    {
+        "name": "#Freetag",
+        "doc_id": 293,
+        "artists": "['Kidd Keo']",
+        "album_name": "Keoland",
+        "spotify_id": "0vlkSgAXNO2sG2iY0SaFPF"
+    },
+    {
+        "name": "#FriendZoneLive",
+        "doc_id": 294,
+        "artists": "['The Friendzone']",
+        "album_name": "The FriendZone Soundtrack",
+        "spotify_id": "3oKh8UW4WL0nqrRj9KI84b"
+    },
+    {
+        "name": "#Fulldemango",
+        "doc_id": 295,
+        "artists": "L'Omy",
+        "album_name": "Unknown",
+        "spotify_id": "6C6OOoI5vjejjyXOtLP8AV"
+    },
+    {
+        "name": "#Fuzzylittlecat",
+        "doc_id": 296,
+        "artists": "['Imagination Movers']",
+        "album_name": "4-Oct",
+        "spotify_id": "7q9Pxwyb76nUjkEklcPXIM"
+    },
+    {
+        "name": "#Fuzzylittlecat",
+        "doc_id": 297,
+        "artists": "Imagination Movers",
+        "album_name": "Unknown",
+        "spotify_id": "7q9Pxwyb76nUjkEklcPXIM"
+    },
+    {
+        "name": "#GETITRIGHT",
+        "doc_id": 298,
+        "artists": "['Miley Cyrus']",
+        "album_name": "Unknown",
+        "spotify_id": "1u6GCyU5atrzrAqwC55og1"
+    },
+    {
+        "name": "#GRABMEABEER - Extended Mix",
+        "doc_id": 299,
+        "artists": "Wasted Penguinz",
+        "album_name": "Unknown",
+        "spotify_id": "1Z2sKHqlQWEFL8lmfuIXYk"
+    },
+    {
+        "name": "#Ghosts",
+        "doc_id": 300,
+        "artists": "The Machine",
+        "album_name": "Unknown",
+        "spotify_id": "2lKkSm4Gk97IZGA0lGOj1o"
+    },
+    {
+        "name": "#Ghosts - Original Mix",
+        "doc_id": 301,
+        "artists": "The Machine",
+        "album_name": "Unknown",
+        "spotify_id": "2Oic1IKezbfT7fmBMg8idq"
+    },
+    {
+        "name": "#GirlsSpkOut",
+        "doc_id": 302,
+        "artists": "['TAEYEON', 'CHANMINA']",
+        "album_name": "#GirlsSpkOut",
+        "spotify_id": "1CNhg5ujtKPPEbpHtN5LVf"
+    },
+    {
+        "name": "#HABIBATI",
+        "doc_id": 303,
+        "artists": "Poshlaya Molly;HOFMANNITA",
+        "album_name": "#HABIBATI",
+        "spotify_id": "6HMk2bFT4VkIWwIAmDCqHj"
+    },
+    {
+        "name": "#HASHTAG",
+        "doc_id": 304,
+        "artists": "['Siggno']",
+        "album_name": "Unknown",
+        "spotify_id": "7ycUmXwmkIb595etgJ7HvU"
+    },
+    {
+        "name": "#HoodLove",
+        "doc_id": 305,
+        "artists": "Jazmine Sullivan",
+        "album_name": "Unknown",
+        "spotify_id": "5kPZcF1w6y5ofwPRINdwn0"
+    },
+    {
+        "name": "#Hulahoop",
+        "doc_id": 306,
+        "artists": "Gros Mo",
+        "album_name": "Unknown",
+        "spotify_id": "4dRnPHC569pXdeeV9sQPZL"
+    },
+    {
+        "name": "#ImSippinTeaInYoHood",
+        "doc_id": 307,
+        "artists": "XXXTENTACION",
+        "album_name": "LOOK AT ME: THE ALBUM",
+        "spotify_id": "2z6W6oeZvBaO56Mg587v0w"
+    },
+    {
+        "name": "#Imape",
+        "doc_id": 308,
+        "artists": "Chingadazo de Kung Fu",
+        "album_name": "Unknown",
+        "spotify_id": "2aRpoTm2f3CcauCGJDXoON"
+    },
+    {
+        "name": "#Jetsgo",
+        "doc_id": 309,
+        "artists": "Curren$y",
+        "album_name": "New Rap Icons",
+        "spotify_id": "7iyR2H3GRhBUrAxLJOhN0B"
+    },
+    {
+        "name": "#LETSGO - Live",
+        "doc_id": 310,
+        "artists": "['Planetshakers']",
+        "album_name": "Unknown",
+        "spotify_id": "59W4dqPgMFoO2CRxgsWhyQ"
+    },
+    {
+        "name": "#LHOMMEAUBOB",
+        "doc_id": 311,
+        "artists": "['Gradur']",
+        "album_name": "Unknown",
+        "spotify_id": "7bBNp4zBLJcar6GqSQkuwj"
+    },
+    {
+        "name": "#LITO",
+        "doc_id": 312,
+        "artists": "['Press Play']",
+        "album_name": "Unknown",
+        "spotify_id": "3g5U52DMPm8jOW1OQmVLq4"
+    },
+    {
+        "name": "#LittleMissPerfect",
+        "doc_id": 313,
+        "artists": "['Alex G']",
+        "album_name": "Alex G",
+        "spotify_id": "0MuHrbsryB7OcppH0CpshC"
+    },
+    {
+        "name": "#MESUISTROMPÉE",
+        "doc_id": 314,
+        "artists": "['Julia']",
+        "album_name": "Passe... comme tu sais",
+        "spotify_id": "1F3fG24hhTVMZNzSUX2diU"
+    },
+    {
+        "name": "#MOOD",
+        "doc_id": 315,
+        "artists": "Daddex",
+        "album_name": "Unknown",
+        "spotify_id": "3cE9ioUQKRyYhsfGrBHkYc"
+    },
+    {
+        "name": "#Mine (feat. Kevin Gates)",
+        "doc_id": 316,
+        "artists": "Lil' Kim",
+        "album_name": "Unknown",
+        "spotify_id": "5j58cEDugUG4eXncGfPO87"
+    },
+    {
+        "name": "#Monkeybars",
+        "doc_id": 317,
+        "artists": "Eazy Mac",
+        "album_name": "Unknown",
+        "spotify_id": "6iu0Ucjgf6GjMraB0ZdWki"
+    },
+    {
+        "name": "#MyWay - Radio Edit",
+        "doc_id": 318,
+        "artists": "Ran-D",
+        "album_name": "Unknown",
+        "spotify_id": "0noWjwelIwJPGaYvCgB8NM"
+    },
+    {
+        "name": "#NEWGOREORDER (feat. Malcolm McDowell)",
+        "doc_id": 319,
+        "artists": "Borgore",
+        "album_name": "Unknown",
+        "spotify_id": "4o7Vnjrs7WRXND7ChddcgM"
+    },
+    {
+        "name": "#Natural",
+        "doc_id": 320,
+        "artists": "Paty Cantú;Juhn",
+        "album_name": "Del gusto de hermanos",
+        "spotify_id": "3cRJo0hXMcrXa7oLfAUU4d"
+    },
+    {
+        "name": "#Natural",
+        "doc_id": 321,
+        "artists": "Paty Cantú",
+        "album_name": "#Natural",
+        "spotify_id": "3cRJo0hXMcrXa7oLfAUU4d"
+    },
+    {
+        "name": "#NeverUseTheInternetAgain",
+        "doc_id": 322,
+        "artists": "['Homeboy Sandman', 'Edan']",
+        "album_name": "Humble Pi",
+        "spotify_id": "5JiyC6SHNEJFzBonp363Ef"
+    },
+    {
+        "name": "#NotRealLife",
+        "doc_id": 323,
+        "artists": "H2O",
+        "album_name": "Unknown",
+        "spotify_id": "3hbLKq4JSbJbDOHz2NEhP4"
+    },
+    {
+        "name": "#OIMATEWTF",
+        "doc_id": 324,
+        "artists": "Capture",
+        "album_name": "Unknown",
+        "spotify_id": "1n5Ou30QHqbQu3j7n2cqYy"
+    },
+    {
+        "name": "#One",
+        "doc_id": 325,
+        "artists": "['SADBOYMUSIC']",
+        "album_name": "gouttée",
+        "spotify_id": "3aNZhXGjTg17LRS7u9z85e"
     }
 ]
