@@ -4,15 +4,15 @@ import Navbar from './components/navbar';
 
 // Skeleton Loader Component for Song Cards
 const SongCardSkeleton = () => (
-  <div className="bg-gray-900/40 backdrop-blur-md border border-white/5 p-4 rounded-2xl shadow-lg animate-pulse flex flex-col justify-between h-[510px] min-w-0 overflow-hidden">
+  <div className="bg-white/70 dark:bg-gray-900/40 backdrop-blur-md border border-slate-200 dark:border-white/5 p-4 rounded-2xl shadow-md dark:shadow-lg animate-pulse flex flex-col justify-between h-[510px] min-w-0 overflow-hidden">
     <div>
-      <div className="h-6 bg-gray-800/60 rounded-md w-3/4 mb-3"></div>
-      <div className="h-4 bg-gray-800/40 rounded-md w-1/2 mb-2"></div>
-      <div className="h-4 bg-gray-800/40 rounded-md w-2/3 mb-4"></div>
+      <div className="h-6 bg-slate-200 dark:bg-gray-800/60 rounded-md w-3/4 mb-3"></div>
+      <div className="h-4 bg-slate-200/80 dark:bg-gray-800/40 rounded-md w-1/2 mb-2"></div>
+      <div className="h-4 bg-slate-200/80 dark:bg-gray-800/40 rounded-md w-2/3 mb-4"></div>
     </div>
-    <div className="h-[380px] bg-gray-800/20 rounded-xl w-full flex items-center justify-center border border-white/5">
-      <div className="w-10 h-10 rounded-full bg-gray-800/30 flex items-center justify-center">
-        <div className="w-4 h-4 bg-gray-800/50 rounded-sm"></div>
+    <div className="h-[380px] bg-slate-100/50 dark:bg-gray-800/20 rounded-xl w-full flex items-center justify-center border border-slate-200 dark:border-white/5">
+      <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-gray-800/30 flex items-center justify-center">
+        <div className="w-4 h-4 bg-slate-300 dark:bg-gray-800/50 rounded-sm"></div>
       </div>
     </div>
   </div>
@@ -123,18 +123,18 @@ function AudioSearch() {
     : [];
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-black p-6 pb-28 md:pb-6 md:pl-28 text-gray-100 relative overflow-hidden transition-all duration-300">
+    <div className="min-h-screen flex flex-col items-center bg-slate-50 dark:bg-black p-6 pb-28 md:pb-6 md:pl-28 text-slate-800 dark:text-gray-100 relative overflow-hidden transition-all duration-300">
       {/* Ambient background glows */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[50vw] aspect-square rounded-full bg-blue-950/15 blur-[120px]"></div>
-        <div className="absolute bottom-[10%] right-[-10%] w-[50vw] aspect-square rounded-full bg-indigo-950/15 blur-[120px]"></div>
+        <div className="absolute top-[-10%] left-[-10%] w-[50vw] aspect-square rounded-full bg-blue-200/40 dark:bg-blue-950/15 blur-[120px]"></div>
+        <div className="absolute bottom-[10%] right-[-10%] w-[50vw] aspect-square rounded-full bg-indigo-200/40 dark:bg-indigo-950/15 blur-[120px]"></div>
       </div>
 
       <Navbar />
       
       <div className="w-full max-w-6xl flex flex-col items-center z-10">
         <h1 
-          className="text-4xl md:text-5xl font-semibold mb-6 text-white text-center" 
+          className="text-4xl md:text-5xl font-semibold mb-6 text-slate-900 dark:text-white text-center" 
           style={{ fontFamily: 'Zen Antique Soft, serif' }}
         >
           Audio Search
@@ -142,7 +142,7 @@ function AudioSearch() {
         
         {/* Main Recording Panel */}
         {!results && !isLoading && (
-          <div className="flex flex-col items-center justify-center w-full max-w-md bg-gray-905/20 backdrop-blur-md border border-white/5 p-8 rounded-2xl shadow-2xl mt-4">
+          <div className="flex flex-col items-center justify-center w-full max-w-md bg-white/70 dark:bg-gray-900/20 backdrop-blur-md border border-slate-200 dark:border-white/5 p-8 rounded-2xl shadow-md dark:shadow-2xl mt-4">
             
             {/* 3D Spline Canvas Container (Watermark hidden, border removed) */}
             <div className="w-full aspect-square max-w-[280px] md:max-w-[340px] relative overflow-hidden rounded-full">
@@ -162,7 +162,7 @@ function AudioSearch() {
                   <span className="font-semibold text-lg">Recording... Speak lyrics</span>
                 </div>
               ) : (
-                <p className="text-gray-400 text-sm">
+                <p className="text-slate-500 dark:text-gray-400 text-sm">
                   Click below and speak or sing lyrics to search
                 </p>
               )}
@@ -173,15 +173,15 @@ function AudioSearch() {
                 onClick={isRecording ? stopRecording : startRecording}
                 className={`flex-1 py-3.5 px-6 rounded-xl text-lg font-semibold transition-all duration-250 active:scale-[0.98] ${
                   isRecording 
-                    ? 'bg-red-650 hover:bg-red-750 text-white shadow-lg shadow-red-650/30 animate-pulse ring-4 ring-red-500/20' 
-                    : 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-650/20'
+                    ? 'bg-red-600 hover:bg-red-700 text-white shadow-lg shadow-red-600/30 animate-pulse ring-4 ring-red-500/20' 
+                    : 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/20'
                 }`}
               >
                 {isRecording ? 'Stop & Search' : 'Start Recording'}
               </button>
               <button
                 onClick={() => window.history.back()}
-                className="px-6 py-3.5 bg-gray-900/40 border border-white/10 hover:bg-gray-800 text-white rounded-xl font-medium transition-all active:scale-[0.98] flex items-center"
+                className="px-6 py-3.5 bg-white/70 dark:bg-gray-900/40 border border-slate-200 dark:border-white/10 hover:bg-slate-50 dark:hover:bg-gray-800 text-slate-800 dark:text-white rounded-xl font-medium transition-all active:scale-[0.98] flex items-center"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Go Back
@@ -193,7 +193,7 @@ function AudioSearch() {
         {/* Loading Skeletons State */}
         {isLoading && (
           <div className="w-full max-w-4xl mt-6">
-            <div className="flex items-center space-x-3 mb-6 bg-gray-955/20 backdrop-blur-sm border border-white/5 p-4 rounded-xl max-w-sm mx-auto shadow-lg">
+            <div className="flex items-center space-x-3 mb-6 bg-slate-100/60 dark:bg-gray-950/20 backdrop-blur-sm border border-slate-200 dark:border-white/5 p-4 rounded-xl max-w-sm mx-auto shadow-md">
               <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
               <p className="font-semibold text-blue-500">Transcribing & searching audio...</p>
             </div>
@@ -207,14 +207,14 @@ function AudioSearch() {
 
         {/* Errors display */}
         {error && (
-          <div className="mt-6 p-4 bg-red-955/20 backdrop-blur-sm border border-red-900/30 text-red-300 rounded-xl w-full max-w-md text-center shadow-2xl flex flex-col items-center">
+          <div className="mt-6 p-4 bg-red-50 dark:bg-red-950/20 backdrop-blur-sm border border-red-200 dark:border-red-900/30 text-red-700 dark:text-red-300 rounded-xl w-full max-w-md text-center shadow-md dark:shadow-2xl flex flex-col items-center">
             <div className="flex items-center space-x-2">
               <AlertCircle className="w-5 h-5 text-red-400 shrink-0" />
               <span>{error}</span>
             </div>
             <button 
               onClick={() => { setError(null); setResults(null); }}
-              className="mt-3 text-sm text-blue-400 hover:underline"
+              className="mt-3 text-sm text-blue-600 dark:text-blue-400 hover:underline font-medium"
             >
               Try Again
             </button>
@@ -223,11 +223,11 @@ function AudioSearch() {
 
         {/* Display Transcription */}
         {transcription && !isLoading && (
-          <div className="mt-6 w-full max-w-2xl bg-gray-900/40 backdrop-blur-md border border-white/5 p-5 rounded-2xl shadow-xl flex items-center space-x-3">
-            <Headphones className="w-6 h-6 text-blue-400 shrink-0" />
+          <div className="mt-6 w-full max-w-2xl bg-white/70 dark:bg-gray-900/40 backdrop-blur-md border border-slate-200 dark:border-white/5 p-5 rounded-2xl shadow-md dark:shadow-xl flex items-center space-x-3">
+            <Headphones className="w-6 h-6 text-blue-500 dark:text-blue-400 shrink-0" />
             <div>
               <h2 className="text-xs font-semibold text-blue-500 uppercase tracking-wider">Voice Query:</h2>
-              <p className="text-xl font-medium text-white italic">"{transcription}"</p>
+              <p className="text-xl font-medium text-slate-900 dark:text-white italic">"{transcription}"</p>
             </div>
           </div>
         )}
@@ -235,15 +235,15 @@ function AudioSearch() {
         {/* Results grid */}
         {results && !isLoading && (
           <div className="w-full max-w-6xl mt-6 animate-fadeIn">
-            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-6 pb-2 border-b border-white/5">
+            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-6 pb-2 border-b border-slate-200 dark:border-white/5">
               <h2 className="text-xl font-semibold text-blue-500">
                 Matched Songs:
               </h2>
               <button 
                 onClick={() => { setResults(null); setTranscription(''); }}
-                className="text-sm text-blue-400 hover:underline mt-2 sm:mt-0 font-medium flex items-center"
+                className="text-sm text-blue-600 dark:text-blue-400 hover:underline mt-2 sm:mt-0 font-medium flex items-center"
               >
-                <Sparkles className="w-4 h-4 mr-1 text-blue-400" />
+                <Sparkles className="w-4 h-4 mr-1 text-blue-500 dark:text-blue-400" />
                 Perform another search
               </button>
             </div>
@@ -252,21 +252,21 @@ function AudioSearch() {
               {paginatedResults.map(([details], index) => (
                 <div 
                   key={index} 
-                  className="bg-gray-900/40 backdrop-blur-md border border-white/5 p-4 rounded-2xl shadow-xl text-gray-300 flex flex-col justify-between hover:border-blue-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/5 min-w-0 overflow-hidden"
+                  className="bg-white/70 dark:bg-gray-900/40 backdrop-blur-md border border-slate-200 dark:border-white/5 p-4 rounded-2xl shadow-md dark:shadow-xl text-slate-700 dark:text-gray-300 flex flex-col justify-between hover:border-blue-500/20 dark:hover:border-blue-500/30 transition-all duration-300 hover:shadow-lg dark:hover:shadow-blue-500/5 min-w-0 overflow-hidden"
                 >
                   <div className="mb-2">
-                    <h4 className="text-xl font-bold text-white mb-2 line-clamp-1" title={details.name}>
+                    <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-2 line-clamp-1" title={details.name}>
                       {details.name}
                     </h4>
-                    <p className="text-sm text-gray-400 line-clamp-1" title={details.artists}>
+                    <p className="text-sm text-slate-500 dark:text-gray-400 line-clamp-1" title={details.artists}>
                       Artists: {details.artists}
                     </p>
-                    <p className="text-sm text-gray-400 line-clamp-1 animate-fadeIn" title={details.album_name}>
+                    <p className="text-sm text-slate-500 dark:text-gray-400 line-clamp-1" title={details.album_name}>
                       Album: {details.album_name}
                     </p>
                   </div>
                   {details.spotify_id && (
-                    <div className="mt-2 rounded-xl overflow-hidden border border-white/5 bg-black/40 w-full min-w-0">
+                    <div className="mt-2 rounded-xl overflow-hidden border border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-black/40 w-full min-w-0">
                       <iframe
                         src={`https://open.spotify.com/embed/track/${details.spotify_id.replace(/['"]+/g, '').trim()}`}
                         width="100%"
@@ -288,11 +288,11 @@ function AudioSearch() {
                 <button
                   onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                   disabled={currentPage === 1}
-                  className="px-5 py-2.5 bg-gray-900/40 border border-white/10 text-white rounded-xl hover:bg-gray-800 disabled:opacity-30 disabled:pointer-events-none transition-all duration-200"
+                  className="px-5 py-2.5 bg-white/70 dark:bg-gray-900/40 border border-slate-200 dark:border-white/10 text-slate-800 dark:text-white rounded-xl hover:bg-slate-50 dark:hover:bg-gray-800 disabled:opacity-30 disabled:pointer-events-none transition-all duration-200"
                 >
                   Previous
                 </button>
-                <span className="text-gray-400 text-sm font-medium">
+                <span className="text-slate-500 dark:text-gray-400 text-sm font-medium">
                   Page {currentPage} of {Math.ceil(results.ranked_results.length / resultsPerPage)}
                 </span>
                 <button
@@ -302,7 +302,7 @@ function AudioSearch() {
                     )
                   }
                   disabled={currentPage === Math.ceil(results.ranked_results.length / resultsPerPage)}
-                  className="px-5 py-2.5 bg-gray-900/40 border border-white/10 text-white rounded-xl hover:bg-gray-800 disabled:opacity-30 disabled:pointer-events-none transition-all duration-200"
+                  className="px-5 py-2.5 bg-white/70 dark:bg-gray-900/40 border border-slate-200 dark:border-white/10 text-slate-800 dark:text-white rounded-xl hover:bg-slate-50 dark:hover:bg-gray-800 disabled:opacity-30 disabled:pointer-events-none transition-all duration-200"
                 >
                   Next
                 </button>
@@ -312,7 +312,7 @@ function AudioSearch() {
         )}
       </div>
       
-      <footer className="mt-16 text-center text-gray-600 text-sm z-10">
+      <footer className="mt-16 text-center text-slate-400 dark:text-gray-600 text-sm z-10">
         <p>&copy; 2024 Lyrica. All rights reserved.</p>
       </footer>
     </div>
