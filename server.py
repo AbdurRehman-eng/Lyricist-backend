@@ -46,23 +46,37 @@ def save_search_history(history):
     except Exception as e:
         print(f"Error saving search history: {e}")
 
-# 1. Load Lexicon
-lexicon = load_lexicon("lexicon.csv")
+# Initialize Index Manager
+DB_FILE = "details.db"
+if os.path.exists(DB_FILE):
+    print("Loading index using SQLite database manager...")
+    from search_engine.sqlite_index import SQLiteIndexManager
+    index_manager = SQLiteIndexManager(DB_FILE)
+    lexicon = index_manager.get_lexicon()
+    doc_id_to_details = index_manager.get_details()
+    inverted_index = index_manager.get_inverted_index()
+else:
+    print("SQLite database not found. Loading index from CSV/JSON (fallback)...")
+    # 1. Load Lexicon
+    try:
+        lexicon = load_lexicon("lexicon.csv")
+    except Exception:
+        lexicon = {}
 
-# 2. Load Details mapping
-try:
-    with open("details.json", "r", encoding="utf-8") as f:
-        details = json.load(f)
-except (FileNotFoundError, json.JSONDecodeError):
-    details = []
-doc_id_to_details = {item["doc_id"]: item for item in details}
+    # 2. Load Details mapping
+    try:
+        with open("details.json", "r", encoding="utf-8") as f:
+            details = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        details = []
+    doc_id_to_details = {item["doc_id"]: item for item in details}
 
-# 3. Load Inverted Index and Barrels
-inverted_index = InvertedIndex()
-try:
-    inverted_index.load_from_barrels("barrels")
-except Exception as e:
-    print(f"Warning: Could not load index barrels: {e}")
+    # 3. Load Inverted Index and Barrels
+    inverted_index = InvertedIndex()
+    try:
+        inverted_index.load_from_barrels("barrels")
+    except Exception as e:
+        print(f"Warning: Could not load index barrels: {e}")
 
 # 4. Initialize Global Hybrid Search Engine
 hybrid_engine = HybridSearchEngine(inverted_index, lexicon, doc_id_to_details)
@@ -122,8 +136,15 @@ def popular_searches():
 def get_songs():
     """
     Get all song metadata details available in the search engine.
+    Supports pagination and search queries if using SQLite to save RAM.
     """
-    return jsonify(list(doc_id_to_details.values()))
+    if os.path.exists(DB_FILE):
+        page = request.args.get('page', 1, type=int)
+        limit = request.args.get('limit', 15, type=int)
+        search = request.args.get('search', '').strip()
+        return jsonify(index_manager.get_paginated_songs(page, limit, search))
+    else:
+        return jsonify(list(doc_id_to_details.values()))
 
 
 @app.route('/add_document', methods=['POST'])
@@ -163,34 +184,53 @@ def add_document():
             writer = csv.DictWriter(file, fieldnames=new_song_data.keys())
             writer.writerow(new_song_data)
 
-        # Step 2: Update lexicon in-memory and save to disk
+        # Step 2: Update lexicon in-memory and save
         combined_text = f"{data['lyrics']} {data['name']} {data['album_name']} {data['artists']}"
         tokens = preprocess_text(combined_text)
         new_tokens = [token for token in tokens if token not in lexicon]
 
+        # Calculate new_doc_id
+        if os.path.exists(DB_FILE):
+            import sqlite3
+            conn = sqlite3.connect(DB_FILE)
+            cursor = conn.cursor()
+            cursor.execute("SELECT MAX(doc_id) FROM details")
+            max_val = cursor.fetchone()[0]
+            conn.close()
+            new_doc_id = int(max_val + 1) if max_val is not None else 1
+        else:
+            forward_index_file = "forward_index.csv"
+            if os.path.exists(forward_index_file) and os.path.getsize(forward_index_file) > 0:
+                try:
+                    forward_index_df = pd.read_csv(forward_index_file)
+                    new_doc_id = int(forward_index_df["Document ID"].max() + 1)
+                except Exception as e:
+                    return jsonify({"error": f"Failed to read existing forward index: {str(e)}"}), 500
+            else:
+                new_doc_id = 1
+
+        # Save new lexicon tokens
         for token in new_tokens:
-            lexicon[token] = len(lexicon) + 1
-            # Real-time update to the in-memory spell checker
+            if os.path.exists(DB_FILE):
+                lexicon[token] = len(lexicon) + 1
+            else:
+                lexicon[token] = len(lexicon) + 1
             hybrid_engine.spelling_matcher.add_word(token)
 
-        save_lexicon(lexicon, "lexicon.csv")
+        if not os.path.exists(DB_FILE):
+            save_lexicon(lexicon, "lexicon.csv")
 
-        # Step 3: Update Forward Index
-        forward_index_file = "forward_index.csv"
-        if os.path.exists(forward_index_file) and os.path.getsize(forward_index_file) > 0:
-            try:
-                forward_index_df = pd.read_csv(forward_index_file)
-                new_doc_id = int(forward_index_df["Document ID"].max() + 1)
-            except Exception as e:
-                return jsonify({"error": f"Failed to read existing forward index: {str(e)}"}), 500
-        else:
-            new_doc_id = 1
-            forward_index_df = pd.DataFrame(columns=["Document ID", "Terms"])
-
+        # Step 3: Update Forward Index (CSV mode only)
         unique_terms = set(tokens)
-        new_row = pd.DataFrame([{"Document ID": new_doc_id, "Terms": str(list(unique_terms))}])
-        forward_index_df = pd.concat([forward_index_df, new_row], ignore_index=True)
-        forward_index_df.to_csv(forward_index_file, index=False)
+        if not os.path.exists(DB_FILE):
+            forward_index_file = "forward_index.csv"
+            if os.path.exists(forward_index_file) and os.path.getsize(forward_index_file) > 0:
+                forward_index_df = pd.read_csv(forward_index_file)
+            else:
+                forward_index_df = pd.DataFrame(columns=["Document ID", "Terms"])
+            new_row = pd.DataFrame([{"Document ID": new_doc_id, "Terms": str(list(unique_terms))}])
+            forward_index_df = pd.concat([forward_index_df, new_row], ignore_index=True)
+            forward_index_df.to_csv(forward_index_file, index=False)
 
         # Step 4: Update Inverted Index Barrels
         for term in unique_terms:
@@ -198,37 +238,38 @@ def add_document():
             if word_id is not None:
                 inverted_index.barrels.add_to_barrel(term, word_id, {new_doc_id})
 
-        inverted_index.save_to_barrels("barrels")
+        if not os.path.exists(DB_FILE):
+            inverted_index.save_to_barrels("barrels")
 
-        # Step 5: Update Inverted Index CSV
-        inverted_index_csv_file = "inverted_index.csv"
-        existing_inverted_index = {}
-        if os.path.exists(inverted_index_csv_file) and os.path.getsize(inverted_index_csv_file) > 0:
-            try:
-                with open(inverted_index_csv_file, mode='r', newline='', encoding='utf-8') as file:
-                    reader = csv.reader(file)
-                    next(reader, None)  # Skip header
-                    for row in reader:
-                        if len(row) == 2:
-                            term, doc_ids_str = row
-                            doc_ids = set(map(int, doc_ids_str.split(","))) if doc_ids_str else set()
-                            existing_inverted_index[term] = doc_ids
-            except Exception as e:
-                return jsonify({"error": f"Failed to read existing inverted index: {str(e)}"}), 500
+        # Step 5: Update Inverted Index CSV (CSV mode only)
+        if not os.path.exists(DB_FILE):
+            inverted_index_csv_file = "inverted_index.csv"
+            existing_inverted_index = {}
+            if os.path.exists(inverted_index_csv_file) and os.path.getsize(inverted_index_csv_file) > 0:
+                try:
+                    with open(inverted_index_csv_file, mode='r', newline='', encoding='utf-8') as file:
+                        reader = csv.reader(file)
+                        next(reader, None)  # Skip header
+                        for row in reader:
+                            if len(row) == 2:
+                                term, doc_ids_str = row
+                                doc_ids = set(map(int, doc_ids_str.split(","))) if doc_ids_str else set()
+                                existing_inverted_index[term] = doc_ids
+                except Exception as e:
+                    return jsonify({"error": f"Failed to read existing inverted index: {str(e)}"}), 500
 
-        for term in unique_terms:
-            if term not in existing_inverted_index:
-                existing_inverted_index[term] = set()
-            existing_inverted_index[term].add(new_doc_id)
+            for term in unique_terms:
+                if term not in existing_inverted_index:
+                    existing_inverted_index[term] = set()
+                existing_inverted_index[term].add(new_doc_id)
 
-        with open(inverted_index_csv_file, mode='w', newline='', encoding='utf-8') as file:
-            writer = csv.writer(file)
-            writer.writerow(["Term", "Document IDs"])
-            for term, doc_ids in sorted(existing_inverted_index.items()):
-                writer.writerow([term, ",".join(map(str, sorted(doc_ids)))])
+            with open(inverted_index_csv_file, mode='w', newline='', encoding='utf-8') as file:
+                writer = csv.writer(file)
+                writer.writerow(["Term", "Document IDs"])
+                for term, doc_ids in sorted(existing_inverted_index.items()):
+                    writer.writerow([term, ",".join(map(str, sorted(doc_ids)))])
 
-        # Step 6: Update details.json and in-memory mappings
-        details_file = "details.json"
+        # Step 6: Update details
         new_details = {
             "spotify_id": data["id"],
             "name": data["name"],
@@ -237,28 +278,30 @@ def add_document():
             "album_name": data["album_name"],
         }
 
-        if os.path.exists(details_file) and os.path.getsize(details_file) > 0:
-            try:
-                with open(details_file, "r", encoding="utf-8") as file:
-                    details_data = json.load(file)
-            except Exception as e:
-                return jsonify({"error": f"Failed to parse details.json: {str(e)}"}), 500
+        if os.path.exists(DB_FILE):
+            # Save using SQLiteDetails __setitem__
+            doc_id_to_details[new_doc_id] = new_details
         else:
-            details_data = []
+            details_file = "details.json"
+            if os.path.exists(details_file) and os.path.getsize(details_file) > 0:
+                try:
+                    with open(details_file, "r", encoding="utf-8") as file:
+                        details_data = json.load(file)
+                except Exception as e:
+                    return jsonify({"error": f"Failed to parse details.json: {str(e)}"}), 500
+            else:
+                details_data = []
 
-        details_data.append(new_details)
+            details_data.append(new_details)
+            for item in details_data:
+                for key, value in item.items():
+                    if isinstance(value, (np.int64, np.float64)):
+                        item[key] = int(value) if isinstance(value, np.int64) else float(value)
 
-        # Ensure types are standard JSON serializable
-        for item in details_data:
-            for key, value in item.items():
-                if isinstance(value, (np.int64, np.float64)):
-                    item[key] = int(value) if isinstance(value, np.int64) else float(value)
+            with open(details_file, "w", encoding="utf-8") as file:
+                json.dump(details_data, file, ensure_ascii=False, indent=4)
+            doc_id_to_details[new_doc_id] = new_details
 
-        with open(details_file, "w", encoding="utf-8") as file:
-            json.dump(details_data, file, ensure_ascii=False, indent=4)
-
-        # Update in-memory mappings
-        doc_id_to_details[new_doc_id] = new_details
         hybrid_engine.update_doc_details(new_doc_id, new_details)
 
         return jsonify({"message": "Document added successfully", "doc_id": new_doc_id}), 200

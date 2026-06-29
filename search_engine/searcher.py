@@ -28,7 +28,11 @@ class HybridSearchEngine:
         
         # Import matcher here to avoid circular dependencies
         from .spelling import BigramFuzzyMatcher
-        self.spelling_matcher = BigramFuzzyMatcher(list(lexicon.keys()))
+        if hasattr(lexicon, "get_common_words"):
+            common_words = lexicon.get_common_words(30000)
+        else:
+            common_words = list(lexicon.keys())
+        self.spelling_matcher = BigramFuzzyMatcher(common_words)
 
     def update_doc_details(self, doc_id, details):
         """

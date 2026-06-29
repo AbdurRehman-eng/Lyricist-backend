@@ -3,17 +3,13 @@ import sys
 import shutil
 import zipfile
 import requests
+import subprocess
 
 def download_and_extract_index():
-    # Check if we already have the full production index locally
-    # The sample index details.json is < 1MB; the production details.json is ~190MB.
-    is_production_index_present = False
-    details_path = "details.json"
-    if os.path.exists(details_path) and os.path.getsize(details_path) > 10 * 1024 * 1024:
-        is_production_index_present = True
-
-    if is_production_index_present:
-        print("Production index is already present locally. Skipping download.")
+    # Check if we already have the full production database locally
+    db_path = "details.db"
+    if os.path.exists(db_path) and os.path.getsize(db_path) > 700 * 1024 * 1024:
+        print("Production details.db index is already present locally. Skipping download.")
         sys.exit(0)
 
     url = os.environ.get("INDEX_ZIP_URL")
@@ -59,7 +55,14 @@ def download_and_extract_index():
             os.remove(zip_filename)
             print("Cleaned up temporary zip file.")
             
-        print("Production index successfully deployed!")
+        # 5. Convert to SQLite
+        print("Converting extracted index to SQLite details.db...")
+        # Run conversion script
+        result = subprocess.run([sys.executable, "convert_to_sqlite.py"], capture_output=False)
+        if result.returncode != 0:
+            raise RuntimeError("Database conversion script failed.")
+            
+        print("Production index successfully deployed and converted to SQLite!")
         
     except Exception as e:
         print(f"Error during index download and deployment: {e}")

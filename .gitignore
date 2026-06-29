@@ -4,3 +4,7 @@
 frontend/
 .env.local
 .env
+details.db
+lyrica_index.zip
+sample_index_backup/
+songs.csv
