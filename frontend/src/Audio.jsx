@@ -80,12 +80,16 @@ const formatArtists = (artists) => {
   return String(artists);
 };
 
+const SpeechRecognition = typeof window !== 'undefined' ? (window.SpeechRecognition || window.webkitSpeechRecognition) : null;
+const isSpeechSupported = !!SpeechRecognition;
+
 export default function AudioSearch() {
   const [isRecording, setIsRecording] = useState(false);
   const [transcription, setTranscription] = useState('');
   const [results, setResults] = useState(null);
   const [error, setError] = useState(null);
   const [mediaRecorder, setMediaRecorder] = useState(null);
+  const [recognitionInstance, setRecognitionInstance] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const resultsPerPage = 6;
@@ -109,65 +113,139 @@ export default function AudioSearch() {
     return () => clearInterval(interval);
   }, [isRecording]);
 
+  useEffect(() => {
+    return () => {
+      if (recognitionInstance) {
+        recognitionInstance.abort();
+      }
+    };
+  }, [recognitionInstance]);
+
   const startRecording = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const recorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
-      setMediaRecorder(recorder);
+    setError(null);
+    setResults(null);
+    setTranscription('');
 
-      const audioChunks = [];
-      recorder.ondataavailable = (event) => {
-        audioChunks.push(event.data);
-      };
+    if (isSpeechSupported) {
+      try {
+        const rec = new SpeechRecognition();
+        rec.lang = 'en-US';
+        rec.interimResults = false;
+        rec.maxAlternatives = 1;
 
-      recorder.onstop = async () => {
-        const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
-        const formData = new FormData();
-        formData.append('audio', audioBlob, 'audio.webm');
+        rec.onstart = () => {
+          setIsRecording(true);
+        };
 
-        setIsLoading(true);
-        setError(null);
-        setResults(null);
-        setTranscription('');
-        
-        try {
-          const response = await fetch('http://localhost:5000/transcribe', {
-            method: 'POST',
-            body: formData,
-          });
-
-          const data = await response.json();
-          setIsLoading(false);
-          if (response.ok) {
-            setTranscription(data.transcription);
-            setResults(data);
-          } else {
-            console.error('Error transcribing audio:', data.error);
-            setError(data.error || 'Failed to index sound.');
+        rec.onresult = async (event) => {
+          const transcriptText = event.results[0][0].transcript;
+          setTranscription(transcriptText);
+          setIsLoading(true);
+          
+          try {
+            const response = await fetch(`http://localhost:5000/search?query=${encodeURIComponent(transcriptText)}`);
+            const data = await response.json();
+            setIsLoading(false);
+            if (response.ok) {
+              setResults(data);
+            } else {
+              setError(data.error || 'No results found.');
+            }
+          } catch (err) {
+            console.error('Error fetching search results for transcription:', err);
+            setIsLoading(false);
+            setError('An error occurred while fetching the search results.');
           }
-        } catch (err) {
-          console.error('Network error during transcription:', err);
-          setIsLoading(false);
-          setError('Could not connect to the transcription server.');
-        }
-      };
+        };
 
-      recorder.start();
-      setIsRecording(true);
-    } catch (err) {
-      console.error('Error accessing microphone:', err);
-      setError('Microphone access denied. Please enable permissions.');
+        rec.onerror = (event) => {
+          console.error('Speech recognition error:', event.error);
+          if (event.error !== 'no-speech') {
+            setError(`Speech recognition error: ${event.error}`);
+          }
+          setIsRecording(false);
+        };
+
+        rec.onend = () => {
+          setIsRecording(false);
+        };
+
+        rec.start();
+        setRecognitionInstance(rec);
+      } catch (err) {
+        console.error('Error starting speech recognition:', err);
+        setError('Failed to start speech recognition.');
+      }
+    } else {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const recorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+        setMediaRecorder(recorder);
+
+        const audioChunks = [];
+        recorder.ondataavailable = (event) => {
+          audioChunks.push(event.data);
+        };
+
+        recorder.onstop = async () => {
+          const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+          const formData = new FormData();
+          formData.append('audio', audioBlob, 'audio.webm');
+
+          setIsLoading(true);
+          setError(null);
+          setResults(null);
+          setTranscription('');
+          
+          try {
+            const response = await fetch('http://localhost:5000/transcribe', {
+              method: 'POST',
+              body: formData,
+            });
+
+            const data = await response.json();
+            setIsLoading(false);
+            if (response.ok) {
+              setTranscription(data.transcription);
+              setResults(data);
+            } else {
+              console.error('Error transcribing audio:', data.error);
+              setError(data.error || 'Failed to index sound.');
+            }
+          } catch (err) {
+            console.error('Network error during transcription:', err);
+            setIsLoading(false);
+            setError('Could not connect to the transcription server.');
+          }
+        };
+
+        recorder.start();
+        setIsRecording(true);
+      } catch (err) {
+        console.error('Error accessing microphone:', err);
+        setError('Microphone access denied. Please enable permissions.');
+      }
     }
   };
 
   const stopRecording = () => {
-    if (mediaRecorder) {
-      mediaRecorder.stop();
+    if (isSpeechSupported) {
+      if (recognitionInstance) {
+        recognitionInstance.stop();
+      }
       setIsRecording(false);
+    } else {
+      if (mediaRecorder) {
+        mediaRecorder.stop();
+        setIsRecording(false);
+      }
     }
   };
 
   const handleReset = () => {
+    if (recognitionInstance) {
+      recognitionInstance.abort();
+    }
     setIsRecording(false);
     setTranscription('');
     setResults(null);

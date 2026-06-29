@@ -48,7 +48,7 @@ def get_transcription(transcription_id):
             return result['text']
         elif result['status'] == 'failed':
             raise Exception("Transcription failed: " + result['error'])
-        time.sleep(5)  # Wait for 5 seconds before polling again
+        time.sleep(1)  # Wait for 1 second before polling again
 
 # Main Function
 def speech_to_text(file_path):
