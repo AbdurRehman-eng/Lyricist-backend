@@ -2,3 +2,6 @@
 .*/*  # Ignore all hidden folders
 .venv/
 *.mp3
+frontend/
+.env.local
+.env
