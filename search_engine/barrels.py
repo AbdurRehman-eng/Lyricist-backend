@@ -9,6 +9,9 @@ import os
 import csv
 from collections import defaultdict
 
+# Increase CSV field size limit to support huge postings lists in the 960k dataset
+csv.field_size_limit(100000000)
+
 class Barrels:
     """
     Partitions the inverted index posting lists into chunks (barrels)

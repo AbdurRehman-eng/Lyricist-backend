@@ -13,6 +13,9 @@ import csv
 import pandas as pd
 import numpy as np
 
+# Increase CSV field size limit to support huge postings lists in the 960k dataset
+csv.field_size_limit(100000000)
+
 from search_engine import (
     HybridSearchEngine,
     InvertedIndex,
