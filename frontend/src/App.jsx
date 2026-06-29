@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/navbar';
 
 // Editorial Brutalist Skeleton Loader
@@ -88,7 +88,29 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [hasSearched, setHasSearched] = useState(false);
+  const [suggestions, setSuggestions] = useState([
+    "i will always love you",
+    "hotel california",
+    "blinding lights",
+    "sad indie heartbreak"
+  ]);
   const resultsPerPage = 6;
+
+  const fetchPopularSearches = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/popular_searches');
+      const data = await response.json();
+      if (Array.isArray(data) && data.length > 0) {
+        setSuggestions(data);
+      }
+    } catch (err) {
+      console.error('Error fetching popular searches:', err);
+    }
+  };
+
+  useEffect(() => {
+    fetchPopularSearches();
+  }, []);
 
   const handleSearch = async (searchQuery = query) => {
     if (!searchQuery.trim()) return;
@@ -104,6 +126,7 @@ function App() {
       setIsLoading(false);
       if (response.ok) {
         setResults(data);
+        fetchPopularSearches();
       } else {
         setError(data.error || 'No results found.');
       }
@@ -138,13 +161,6 @@ function App() {
     : [];
 
   const totalPages = results ? Math.ceil(results.ranked_results.length / resultsPerPage) : 0;
-
-  const suggestions = [
-    "i will always love you",
-    "hotel california",
-    "blinding lights",
-    "sad indie heartbreak"
-  ];
 
   return (
     <div className="min-h-screen flex flex-col font-body-md text-primary antialiased bg-[#F7F6F3]">

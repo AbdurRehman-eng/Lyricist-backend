@@ -25,6 +25,24 @@ from speech import speech_to_text
 app = Flask(__name__)
 CORS(app)  # Enable Cross-Origin Resource Sharing
 
+SEARCH_HISTORY_FILE = "search_history.json"
+
+def load_search_history():
+    if os.path.exists(SEARCH_HISTORY_FILE):
+        try:
+            with open(SEARCH_HISTORY_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {}
+
+def save_search_history(history):
+    try:
+        with open(SEARCH_HISTORY_FILE, "w", encoding="utf-8") as f:
+            json.dump(history, f, ensure_ascii=False, indent=4)
+    except Exception as e:
+        print(f"Error saving search history: {e}")
+
 # 1. Load Lexicon
 lexicon = load_lexicon("lexicon.csv")
 
@@ -56,6 +74,13 @@ def search():
     if not query:
         return jsonify({"error": "No query provided"}), 400
 
+    # Track search query count
+    normalized_query = query.strip().lower()
+    if normalized_query:
+        history = load_search_history()
+        history[normalized_query] = history.get(normalized_query, 0) + 1
+        save_search_history(history)
+
     # Perform hybrid search
     final_results, ranked_results = hybrid_engine.search(query.lower())
 
@@ -68,6 +93,26 @@ def search():
         "final_results": final_results_details,
         "ranked_results": ranked_results_details
     })
+
+
+@app.route('/popular_searches')
+def popular_searches():
+    """
+    Get the top most searched queries.
+    """
+    history = load_search_history()
+    sorted_history = sorted(history.items(), key=lambda x: x[1], reverse=True)
+    top_queries = [item[0] for item in sorted_history[:4]]
+    
+    # Pad with defaults if less than 4
+    defaults = ["i will always love you", "hotel california", "blinding lights", "sad indie heartbreak"]
+    for default in defaults:
+        if len(top_queries) >= 4:
+            break
+        if default not in top_queries:
+            top_queries.append(default)
+            
+    return jsonify(top_queries)
 
 
 @app.route('/add_document', methods=['POST'])
@@ -227,6 +272,13 @@ def transcribe():
         transcript = speech_to_text(file_path)
         if os.path.exists(file_path):
             os.remove(file_path)
+
+        # Track search query count
+        normalized_query = transcript.strip().lower()
+        if normalized_query:
+            history = load_search_history()
+            history[normalized_query] = history.get(normalized_query, 0) + 1
+            save_search_history(history)
 
         # Perform hybrid search using transcription
         final_results, ranked_results = hybrid_engine.search(transcript.lower())
