@@ -1,29 +1,30 @@
-# 🎵 Lyricist Search Engine
+# Lyricist Search Engine
 
-Lyricist is a modern, high-performance, open-source song lyrics search engine featuring speech-to-text voice search, spelling auto-correction, and a premium fluid glassmorphism user interface. 
+Lyricist is a high-performance song lyrics search engine featuring speech-to-text search, spelling auto-correction, and a minimalistic, editorial-style user interface. 
 
-It is designed to run efficiently under constrained server environments (such as Render's 512MB RAM limit) using a custom dual-mode index backend: high-performance **SQLite index streaming** for production, and modular **inverted index barrels partitioning** for development.
+It is optimized for constrained server environments (such as Render's 512MB RAM tier) by utilizing a dual-mode index manager: high-performance SQLite index streaming for production deployments and modular inverted index barrels partitioning for development.
 
----
+## Demo Links
 
-## 🚀 Key Features
+- **Live Frontend**: [lyricist-frontend.vercel.app](https://lyricist-frontend.vercel.app)
+- **Live Backend API**: [lyricist-backend-i4iy.onrender.com](https://lyricist-backend-i4iy.onrender.com)
 
-- **Hybrid Ranking Engine**: Combines keyword matching, word weightings, and positional indexing to rank nearly 1 million songs instantly.
-- **Speech-to-Text Search**: Ingests microphone audio queries, transcribes them using AssemblyAI, and queries the index.
+## Key Features
+
+- **Hybrid Ranking Engine**: Integrates term frequency, field weighting, and positional index data to search and rank songs.
+- **Speech-to-Text Search**: Ingests microphone audio queries, transcribes them using AssemblyAI, and queries the search index.
 - **Spelling Auto-Correction**: Utilizes a character-bigram fuzzy matcher to suggest correct searches for misspelled queries.
 - **Dynamic Index Updates**: Supports real-time addition of new songs via atomic API writes without full-index rebuilds.
-- **Memory Optimized**: SQLite streaming mode loads only what is queried, reducing memory footprint from several gigabytes to under 40MB.
-- **Liquid Glass Interface**: High-fidelity, theme-responsive design featuring Apple-inspired backdrop blur and micro-animations.
+- **Memory Optimized**: SQLite streaming mode loads data on demand, reducing the active memory footprint to under 40MB.
+- **Minimalist Editorial UI**: Designed with a clean, high-contrast, brutalist style using thin lines and structural layout grids.
 
----
-
-## 🏛️ System Architecture
+## System Architecture
 
 Lyricist is structured as a decoupled web application with two core components:
-1. **Frontend (`/frontend`)**: A React SPA built with Vite, utilizing responsive Tailwind CSS, custom HSL styling, search history tracking, and WebRTC audio recorder APIs.
+1. **Frontend (`/frontend`)**: A React SPA built with Vite, utilizing responsive Tailwind CSS, custom layout borders, search history tracking, and WebRTC audio recorder APIs.
 2. **Backend (Root)**: A Flask REST API that interacts with the custom `search_engine` Python package.
 
-### Root Directory Structure
+### Directory Structure
 
 ```text
 ├── LICENSE                      # MIT License
@@ -54,9 +55,7 @@ Lyricist is structured as a decoupled web application with two core components:
 └── frontend/                    # React SPA project folder
 ```
 
----
-
-## 🛠️ Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 - Python 3.9+
@@ -78,7 +77,7 @@ Lyricist is structured as a decoupled web application with two core components:
    ```
 
 3. **Download NLTK Corpora**:
-   The preprocessor requires NLTK text processing datasets. Run the following command in your terminal:
+   The preprocessor requires NLTK text processing datasets. Run the following command:
    ```bash
    python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('wordnet'); nltk.download('punkt_tab')"
    ```
@@ -95,9 +94,7 @@ Lyricist is structured as a decoupled web application with two core components:
    ```
    The backend server will run on `http://127.0.0.1:5000`.
 
----
-
-## 📡 API Endpoints
+## API Endpoints
 
 ### 1. `GET /search`
 Searches for songs using lyrics, title, album, or artist.
@@ -164,9 +161,7 @@ Retrieves paginated lists of all songs.
 ### 5. `GET /popular_searches`
 Retrieves top-performing queries based on local query traffic history.
 
----
-
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! To contribute:
 1. Fork the Project.
@@ -175,8 +170,6 @@ Contributions are welcome! To contribute:
 4. Push to the Branch (`git push origin feature/NewFeature`).
 5. Open a Pull Request.
 
----
+## License
 
-## 📄 License
-
-Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
