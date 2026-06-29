@@ -273,19 +273,20 @@ export default function AudioSearch() {
                           </div>
 
                           {cleanSpotifyId ? (
-                            <div className="w-full aspect-square bg-[#E2E1DC] relative overflow-hidden rounded-[2px] border border-[#E2E1DC]">
+                            <div className="w-full h-[356px] bg-[#E2E1DC] relative overflow-hidden rounded-[2px] border border-[#E2E1DC]">
                               <iframe
                                 src={`https://open.spotify.com/embed/track/${cleanSpotifyId}`}
                                 width="100%"
-                                height="100%"
+                                height="352"
+                                scrolling="no"
                                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                                className="border-0 w-full h-full object-cover"
+                                className="border-0 w-full"
                                 style={{ border: 'none', overflow: 'hidden' }}
                                 loading="lazy"
                               ></iframe>
                             </div>
                           ) : (
-                            <div className="w-full aspect-square bg-[#E2E1DC] relative overflow-hidden rounded-[2px] border border-[#E2E1DC] flex items-center justify-center">
+                            <div className="w-full h-[356px] bg-[#E2E1DC] relative overflow-hidden rounded-[2px] border border-[#E2E1DC] flex items-center justify-center">
                               <span className="material-symbols-outlined text-[48px] text-secondary">music_note</span>
                             </div>
                           )}
@@ -335,23 +336,46 @@ export default function AudioSearch() {
                         <span className="material-symbols-outlined text-[16px]">chevron_left</span>
                       </button>
                       
-                      {[...Array(totalPages)].map((_, i) => {
-                        const pageNum = i + 1;
-                        const isCurrent = currentPage === pageNum;
-                        return (
-                          <button
-                            key={pageNum}
-                            onClick={() => setCurrentPage(pageNum)}
-                            className={`w-[28px] h-[28px] flex items-center justify-center font-metadata text-metadata transition-colors ${
-                              isCurrent
-                                ? 'border-ink bg-primary text-surface font-semibold'
-                                : 'hairline-all text-secondary hover:text-primary hover:border-primary'
-                            }`}
-                          >
-                            {pageNum}
-                          </button>
-                        );
-                      })}
+                      {(() => {
+                        const buttons = [];
+                        const maxVisiblePages = 5;
+                        if (totalPages <= maxVisiblePages) {
+                          for (let i = 1; i <= totalPages; i++) buttons.push(i);
+                        } else {
+                          buttons.push(1);
+                          let start = Math.max(2, currentPage - 1);
+                          let end = Math.min(totalPages - 1, currentPage + 1);
+                          if (currentPage <= 3) {
+                            end = 4;
+                          } else if (currentPage >= totalPages - 2) {
+                            start = totalPages - 3;
+                          }
+                          if (start > 2) buttons.push('ellipsis1');
+                          for (let i = start; i <= end; i++) buttons.push(i);
+                          if (end < totalPages - 1) buttons.push('ellipsis2');
+                          buttons.push(totalPages);
+                        }
+
+                        return buttons.map((btn, i) => {
+                          if (btn === 'ellipsis1' || btn === 'ellipsis2') {
+                            return <span key={`ellipsis-${i}`} className="text-secondary px-1">...</span>;
+                          }
+                          const isCurrent = currentPage === btn;
+                          return (
+                            <button
+                              key={btn}
+                              onClick={() => setCurrentPage(btn)}
+                              className={`w-[28px] h-[28px] flex items-center justify-center font-metadata text-metadata transition-colors ${
+                                isCurrent
+                                  ? 'border-ink bg-primary text-surface font-semibold'
+                                  : 'hairline-all text-secondary hover:text-primary hover:border-primary'
+                              }`}
+                            >
+                              {btn}
+                            </button>
+                          );
+                        });
+                      })()}
 
                       <button
                         onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
