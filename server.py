@@ -115,6 +115,14 @@ def popular_searches():
     return jsonify(top_queries)
 
 
+@app.route('/songs')
+def get_songs():
+    """
+    Get all song metadata details available in the search engine.
+    """
+    return jsonify(list(doc_id_to_details.values()))
+
+
 @app.route('/add_document', methods=['POST'])
 def add_document():
     """
