@@ -58,7 +58,8 @@ def download_and_extract_index():
         # 5. Convert to SQLite
         print("Converting extracted index to SQLite details.db...")
         # Run conversion script
-        result = subprocess.run([sys.executable, "convert_to_sqlite.py"], capture_output=False)
+        convert_script = os.path.join(os.path.dirname(__file__), "convert_to_sqlite.py")
+        result = subprocess.run([sys.executable, convert_script], capture_output=False)
         if result.returncode != 0:
             raise RuntimeError("Database conversion script failed.")
             
