@@ -10,6 +10,7 @@ from flask_cors import CORS
 import os
 import json
 import csv
+import time
 import pandas as pd
 import numpy as np
 
@@ -99,7 +100,9 @@ def search():
         save_search_history(history)
 
     # Perform hybrid search
+    search_start = time.time()
     final_results, ranked_results = hybrid_engine.search(query.lower())
+    search_time_ms = round((time.time() - search_start) * 1000)
 
     # Map document IDs to metadata details (limit to top 100 for performance)
     final_results_details = hybrid_engine.map_doc_ids_to_details(final_results[:100])
@@ -107,6 +110,7 @@ def search():
 
     return jsonify({
         "query": query,
+        "search_time_ms": search_time_ms,
         "final_results": final_results_details,
         "ranked_results": ranked_results_details
     })
@@ -335,7 +339,9 @@ def transcribe():
             save_search_history(history)
 
         # Perform hybrid search using transcription
+        search_start = time.time()
         final_results, ranked_results = hybrid_engine.search(transcript.lower())
+        search_time_ms = round((time.time() - search_start) * 1000)
 
         # Map document IDs to details
         final_results_details = hybrid_engine.map_doc_ids_to_details(final_results)
@@ -344,6 +350,7 @@ def transcribe():
         return jsonify({
             "transcription": transcript,
             "query": transcript,
+            "search_time_ms": search_time_ms,
             "final_results": final_results_details,
             "ranked_results": ranked_results_details
         })
