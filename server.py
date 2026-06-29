@@ -57,7 +57,7 @@ doc_id_to_details = {item["doc_id"]: item for item in details}
 # 3. Load Inverted Index and Barrels
 inverted_index = InvertedIndex()
 try:
-    inverted_index.load_from_barrels(r".\barrels")
+    inverted_index.load_from_barrels("barrels")
 except Exception as e:
     print(f"Warning: Could not load index barrels: {e}")
 

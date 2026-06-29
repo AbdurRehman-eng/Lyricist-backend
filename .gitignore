@@ -1,4 +1,3 @@
-*.csv
 .*/*  # Ignore all hidden folders
 .venv/
 *.mp3
