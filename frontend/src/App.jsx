@@ -176,7 +176,7 @@ function App() {
             <span className="font-label-caps text-[11px] text-secondary tracking-[0.1em] uppercase mb-stack-md">
               LYRIC SEARCH ENGINE
             </span>
-            <h1 className="font-display-lg-mobile md:font-display-lg text-primary mb-stack-lg max-w-[600px] mx-auto">
+            <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-stack-lg max-w-[600px] mx-auto tracking-tight leading-tight">
               Find the song you <br />
               <span className="italic text-surface-tint">can't get out of your head</span>
             </h1>

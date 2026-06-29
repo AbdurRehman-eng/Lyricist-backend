@@ -197,7 +197,7 @@ export default function AudioSearch() {
                     <p className="font-label-caps text-label-caps text-secondary tracking-widest uppercase mb-unit">
                       AUDIO QUERY
                     </p>
-                    <h1 className="font-display-lg-mobile md:font-display-lg text-primary tracking-tight">
+                    <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary tracking-tight leading-tight">
                       Hum it. <span className="italic font-light">We'll name it.</span>
                     </h1>
                     <p className="font-body-md text-[15px] text-secondary font-light max-w-[400px] mx-auto">
