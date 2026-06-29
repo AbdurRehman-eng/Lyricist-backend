@@ -5,18 +5,28 @@ import zipfile
 import requests
 
 def download_and_extract_index():
+    # Check if we already have the full production index locally
+    # The sample index details.json is < 1MB; the production details.json is ~190MB.
+    is_production_index_present = False
+    details_path = "details.json"
+    if os.path.exists(details_path) and os.path.getsize(details_path) > 10 * 1024 * 1024:
+        is_production_index_present = True
+
+    if is_production_index_present:
+        print("Production index is already present locally. Skipping download.")
+        sys.exit(0)
+
     url = os.environ.get("INDEX_ZIP_URL")
     if not url:
-        print("INDEX_ZIP_URL environment variable not set.")
-        print("Skipping remote index download; utilizing local repository index files.")
-        sys.exit(0)
+        url = "https://github.com/AbdurRehman-eng/Lyricist-backend/releases/download/v1.0.0/lyrica_index.zip"
+        print(f"INDEX_ZIP_URL env variable not set. Falling back to GitHub Release: {url}")
 
     zip_filename = "lyrica_index.zip"
     print(f"Downloading preprocessed index from: {url}")
     
     try:
         # Stream the download to avoid loading the entire file into memory
-        response = requests.get(url, stream=True, verify=False) # verify=False for SSL flexibility
+        response = requests.get(url, stream=True)
         response.raise_for_status()
         
         # Get total file size if available
