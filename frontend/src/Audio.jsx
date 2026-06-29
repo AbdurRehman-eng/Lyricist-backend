@@ -15,6 +15,71 @@ const SongCardSkeleton = () => (
   </div>
 );
 
+// Spotify Embed with Skeleton Loader
+const SpotifyEmbed = ({ trackId }) => {
+  const [isIframeLoading, setIsIframeLoading] = useState(true);
+
+  return (
+    <div className="w-full h-[354px] bg-[#E2E1DC] relative overflow-hidden rounded-[2px] border border-[#E2E1DC]">
+      {isIframeLoading && (
+        <div className="absolute inset-0 flex flex-col p-4 bg-[#F1EDEC] animate-pulse">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-12 bg-[#E2E1DC] rounded-[2px]"></div>
+            <div className="flex-1 flex flex-col gap-2">
+              <div className="w-2/3 h-4 bg-[#E2E1DC] rounded"></div>
+              <div className="w-1/3 h-3 bg-[#E2E1DC] rounded"></div>
+            </div>
+            <div className="w-6 h-6 bg-[#E2E1DC] rounded-full"></div>
+          </div>
+          <div className="flex-1 bg-[#E2E1DC] rounded-[2px] flex items-center justify-center">
+            <span className="material-symbols-outlined text-[48px] text-[#BBBBB7] opacity-40">music_note</span>
+          </div>
+          <div className="mt-4 w-full h-1 bg-[#E2E1DC] rounded-full"></div>
+        </div>
+      )}
+      <iframe
+        src={`https://open.spotify.com/embed/track/${trackId}`}
+        width="100%"
+        height="352"
+        scrolling="no"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        className={`border-0 w-full transition-opacity duration-300 ${isIframeLoading ? 'opacity-0' : 'opacity-100'}`}
+        style={{ border: 'none', overflow: 'hidden', minWidth: '100%', maxWidth: '100%' }}
+        loading="lazy"
+        onLoad={() => setIsIframeLoading(false)}
+      ></iframe>
+    </div>
+  );
+};
+
+// Artist Parser Helper
+const formatArtists = (artists) => {
+  if (!artists) return '';
+  if (Array.isArray(artists)) {
+    return artists.join(', ');
+  }
+  if (typeof artists === 'string') {
+    const trimmed = artists.trim();
+    if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
+      try {
+        const matches = [...trimmed.matchAll(/['"]([^'"]+)['"]/g)].map(m => m[1]);
+        if (matches.length > 0) {
+          return matches.join(', ');
+        }
+      } catch (e) {}
+      return trimmed
+        .replace(/^\[|\]$/g, '')
+        .replace(/['"]/g, '')
+        .split(',')
+        .map(s => s.trim())
+        .filter(Boolean)
+        .join(', ');
+    }
+    return artists;
+  }
+  return String(artists);
+};
+
 export default function AudioSearch() {
   const [isRecording, setIsRecording] = useState(false);
   const [transcription, setTranscription] = useState('');
@@ -265,7 +330,7 @@ export default function AudioSearch() {
                               {details.name}
                             </h3>
                             <p className="font-metadata text-metadata text-secondary truncate">
-                              Artists: {details.artists}
+                              Artists: {formatArtists(details.artists)}
                             </p>
                             <p className="font-metadata text-metadata text-secondary truncate">
                               Album: {details.album_name}
@@ -273,18 +338,7 @@ export default function AudioSearch() {
                           </div>
 
                           {cleanSpotifyId ? (
-                            <div className="w-full h-[354px] bg-[#E2E1DC] relative overflow-hidden rounded-[2px] border border-[#E2E1DC]">
-                              <iframe
-                                src={`https://open.spotify.com/embed/track/${cleanSpotifyId}`}
-                                width="100%"
-                                height="352"
-                                scrolling="no"
-                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                                className="border-0 w-full"
-                                style={{ border: 'none', overflow: 'hidden', minWidth: '100%', maxWidth: '100%' }}
-                                loading="lazy"
-                              ></iframe>
-                            </div>
+                            <SpotifyEmbed trackId={cleanSpotifyId} />
                           ) : (
                             <div className="w-full h-[354px] bg-[#E2E1DC] relative overflow-hidden rounded-[2px] border border-[#E2E1DC] flex items-center justify-center">
                               <span className="material-symbols-outlined text-[48px] text-secondary">music_note</span>
@@ -305,20 +359,6 @@ export default function AudioSearch() {
                             ) : (
                               <span className="font-metadata text-[14px] text-secondary">No Spotify Link</span>
                             )}
-                            <div className="flex items-center gap-3">
-                              {cleanSpotifyId && (
-                                <a
-                                  href={`https://open.spotify.com/track/${cleanSpotifyId}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="w-[36px] h-[36px] rounded-full border border-[#111110] flex items-center justify-center text-primary hover:bg-[#111110] hover:text-[#F7F6F3] transition-colors"
-                                >
-                                  <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>
-                                    play_arrow
-                                  </span>
-                                </a>
-                              )}
-                            </div>
                           </div>
                         </div>
                       );
