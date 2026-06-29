@@ -1,10 +1,24 @@
-.*/*  # Ignore all hidden folders
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+
+# Virtual environments
 .venv/
-*.mp3
-frontend/
-.env.local
+venv/
+
+# Environment configurations
 .env
+.env.local
+
+# Project specific datasets/databases
 details.db
 lyrica_index.zip
-sample_index_backup/
 songs.csv
+sample_index_backup/
+search_history.json
+*.mp3
+
+# Subprojects
+frontend/

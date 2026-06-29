@@ -1,109 +1,182 @@
-# Song Lyrics Search Engine
+# 🎵 Lyricist Search Engine
 
-This project is a search engine designed to search for songs using their lyrics. The search engine utilizes inverted indexing, forward indexing, and lexicon creation to efficiently search for songs based on keywords from the lyrics. The dataset consists of nearly 1 million songs, with details like lyrics, album names, artists, and song titles.
+Lyricist is a modern, high-performance, open-source song lyrics search engine featuring speech-to-text voice search, spelling auto-correction, and a premium fluid glassmorphism user interface. 
 
-## Features
+It is designed to run efficiently under constrained server environments (such as Render's 512MB RAM limit) using a custom dual-mode index backend: high-performance **SQLite index streaming** for production, and modular **inverted index barrels partitioning** for development.
 
-- **Lexicon Creation**: Builds a lexicon with unique IDs for each word in the dataset.
-- **Forward Indexing**: Maps document IDs (songs) to the list of terms (words) in the song's lyrics, album name, artist, and title.
-- **Inverted Indexing**: Creates an inverted index to efficiently search for songs based on terms.
-- **CSV Export**: Saves lexicon, forward index, and inverted index to CSV files for persistence.
-- **Efficient Search**: Performs efficient searching based on terms present in the song lyrics.
+---
 
-## Project Structure
+## 🚀 Key Features
 
-├── lexicon.py # Code for lexicon creation 
-├── forward_index.py # Code for forward index creation 
-├── inverted_index.py # Code for inverted index creation 
-├── main.py # Main entry point for the program 
-├── songs.csv # Dataset containing song details (lyrics, album name, artist, etc.) 
-├── lexicon.csv # Generated lexicon CSV file 
-├── forward_index.csv # Generated forward index CSV file 
-├── inverted_index.csv # Generated inverted index CSV file 
-├── requirements.txt # Python dependencies 
-└── README.md # Project documentation
+- **Hybrid Ranking Engine**: Combines keyword matching, word weightings, and positional indexing to rank nearly 1 million songs instantly.
+- **Speech-to-Text Search**: Ingests microphone audio queries, transcribes them using AssemblyAI, and queries the index.
+- **Spelling Auto-Correction**: Utilizes a character-bigram fuzzy matcher to suggest correct searches for misspelled queries.
+- **Dynamic Index Updates**: Supports real-time addition of new songs via atomic API writes without full-index rebuilds.
+- **Memory Optimized**: SQLite streaming mode loads only what is queried, reducing memory footprint from several gigabytes to under 40MB.
+- **Liquid Glass Interface**: High-fidelity, theme-responsive design featuring Apple-inspired backdrop blur and micro-animations.
 
+---
 
-## Requirements
+## 🏛️ System Architecture
 
-To run this project, you need to install the required Python packages:
+Lyricist is structured as a decoupled web application with two core components:
+1. **Frontend (`/frontend`)**: A React SPA built with Vite, utilizing responsive Tailwind CSS, custom HSL styling, search history tracking, and WebRTC audio recorder APIs.
+2. **Backend (Root)**: A Flask REST API that interacts with the custom `search_engine` Python package.
 
-1. Python 3.x
-2. `nltk` for natural language processing
-3. `pandas` for handling CSV and dataframes (optional, used for lexicon and forward index)
-4. `csv` for saving the inverted index
+### Root Directory Structure
 
-To install the necessary dependencies, run the following command:
-
-```bash
-pip install -r requirements.txt
+```text
+├── LICENSE                      # MIT License
+├── README.md                    # Core project documentation
+├── server.py                    # Flask REST API implementation
+├── speech.py                    # Audio transcription handler (AssemblyAI)
+├── main.py                      # Core index building entrypoint
+├── search.py                    # Compatibility/CLI search script
+├── requirements.txt             # Python backend dependencies
+├── .gitignore                   # Version control exclusions
+│
+├── search_engine/               # Core search engine modules
+│   ├── __init__.py              # Barrel file exposing engine components
+│   ├── preprocessor.py          # Tokenizer, stopword filter, and lemmatizer
+│   ├── lexicon.py               # Vocabulary & word-to-id dictionary
+│   ├── barrels.py               # Multi-barrel partitioning manager
+│   ├── index.py                 # Forward and inverted index structures
+│   ├── spelling.py              # Bigram fuzzy speller autocorrect
+│   ├── sqlite_index.py          # High-performance SQLite engine manager
+│   └── searcher.py              # Hybrid ranking and search evaluator
+│
+├── scripts/                     # Helper & migration scripts
+│   ├── convert_to_sqlite.py     # Generates SQLite index (details.db) from CSVs
+│   ├── kaggle_preprocess.py     # Cleans and formats raw Kaggle song datasets
+│   ├── download_index.py        # Helper to fetch pre-built datasets/indexes
+│   └── processjson.py           # Helper for metadata JSON structuring
+│
+└── frontend/                    # React SPA project folder
 ```
-If you don't have the requirements.txt file yet, you can manually install the dependencies by running:
 
-```bash
-pip install nltk pandas
-```
+---
 
-## NLTK Data Downloads
-The project requires several NLTK datasets for text processing. To download them, run the following in your Python environment:
+## 🛠️ Installation & Setup
 
-```bash
-import nltk
-nltk.download('punkt')
-nltk.download('stopwords')
-nltk.download('wordnet')
-nltk.download('punkt_tab')
-```
+### Prerequisites
+- Python 3.9+
+- Node.js 18+ (for frontend)
 
-## How It Works
-1. Lexicon Creation (lexicon.py)
-The create_lexicon function takes the dataset and extracts terms (words) from the lyrics, album_name, artists, and name fields.
-Each term is assigned a unique ID.
-2. Forward Indexing (forward_index.py)
-The forward index maps each document (song) to the list of terms (from the mentioned fields).
-The forward index is saved to a CSV file.
-3. Inverted Indexing (inverted_index.py)
-The inverted index maps each term to a list of document IDs (songs) that contain that term.
-The inverted index is saved to a CSV file.
-This allows for efficient searching of terms to find relevant songs.
-4. Main Program (main.py)
-The main entry point of the program, where the dataset is loaded from a CSV file.
-It generates the lexicon, forward index, and inverted index, saving them as CSV files.
-The script demonstrates how to search for a term (e.g., "love") in the inverted index.
-## How to Run
-Ensure you have the songs.csv dataset in the same directory.
-Run the main.py script:
-```bash
-python main.py
-```
-this will generate the lexicon.csv, forward_index.csv, and inverted_index.csv files. You can then modify the script to search for any term in the inverted index or customize the dataset.
+### Backend Setup
 
-## Searching
-After running the program, the inverted index is created. To search for a specific term in the dataset, you can use the search method in the InvertedIndex class. For example:
-```bash
-term = "love"
-print(inverted_index.search(term))
-```
-This will print the list of document IDs (songs) that contain the term "love".
-Contributing
-Feel free to fork the repository and submit pull requests. Contributions are welcome!
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/AbdurRehman-eng/Lyricist-backend.git
+   cd Lyricist-backend
+   ```
 
-## Bug Reports & Feature Requests
-If you encounter any issues or have feature requests, please open an issue on GitHub.
+2. **Create a virtual environment and install dependencies**:
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
 
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+3. **Download NLTK Corpora**:
+   The preprocessor requires NLTK text processing datasets. Run the following command in your terminal:
+   ```bash
+   python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('wordnet'); nltk.download('punkt_tab')"
+   ```
 
-## Acknowledgements
-NLTK (Natural Language Toolkit): Used for text processing and tokenization.
-Pandas: Used for managing lexicon and forward index data.
-CSV: Used for saving and reading the inverted index to disk.
+4. **Environment Variables**:
+   Create a `.env` file in the root folder with your AssemblyAI API key for speech search support:
+   ```env
+   ASSEMBLYAI_API_KEY=your_assemblyai_api_key_here
+   ```
 
+5. **Start the server**:
+   ```bash
+   python server.py
+   ```
+   The backend server will run on `http://127.0.0.1:5000`.
 
-### Updates:
+---
 
-- I have cleaned up some language and structured it better for clarity.
-- The installation and NLTK download instructions are clearer.
-- The `Project Structure` section is now formatted as a code block to make it more readable.
+## 📡 API Endpoints
 
-This `README.md` should give users a thorough overview of the project, installation steps, and how to run and search within the song lyrics dataset. Let me know if you'd like to adjust anything further!
+### 1. `GET /search`
+Searches for songs using lyrics, title, album, or artist.
+- **Parameters**:
+  - `query` (string, required): The search text.
+- **Response**:
+  ```json
+  {
+    "query": "hello darkness",
+    "final_results": [...],
+    "ranked_results": [
+      {
+        "doc_id": 482,
+        "spotify_id": "4j5t3...",
+        "name": "The Sound of Silence",
+        "artists": "Simon & Garfunkel",
+        "album_name": "Sounds of Silence"
+      }
+    ]
+  }
+  ```
+
+### 2. `POST /add_document`
+Dynamically indexes and appends a new song to the search database.
+- **Body**:
+  ```json
+  {
+    "id": "spotify_track_id",
+    "name": "Song Name",
+    "album_name": "Album Title",
+    "artists": "Artist Name",
+    "lyrics": "Full song lyrics go here..."
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "message": "Document added successfully",
+    "doc_id": 960841
+  }
+  ```
+
+### 3. `POST /transcribe`
+Transcribes uploaded audio recordings and queries the index.
+- **Multipart Form**:
+  - `audio` (MP3/WAV file): The recorded query.
+- **Response**:
+  ```json
+  {
+    "transcription": "stairway to heaven",
+    "query": "stairway to heaven",
+    "final_results": [...],
+    "ranked_results": [...]
+  }
+  ```
+
+### 4. `GET /songs`
+Retrieves paginated lists of all songs.
+- **Parameters**:
+  - `page` (int, optional): Default `1`.
+  - `limit` (int, optional): Default `15`.
+  - `search` (string, optional): Live query filter.
+
+### 5. `GET /popular_searches`
+Retrieves top-performing queries based on local query traffic history.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! To contribute:
+1. Fork the Project.
+2. Create a Feature Branch (`git checkout -b feature/NewFeature`).
+3. Commit your Changes (`git commit -m 'Add NewFeature'`).
+4. Push to the Branch (`git push origin feature/NewFeature`).
+5. Open a Pull Request.
+
+---
+
+## 📄 License
+
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
