@@ -21,4 +21,8 @@ search_history.json
 *.mp3
 
 # Subprojects
-frontend/
+frontend/
+
+# Google Site Verification (handled by frontend Vercel deploy)
+google*.html
+
