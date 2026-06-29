@@ -192,6 +192,15 @@ class HybridSearchEngine:
         """
         Map list of doc IDs to their corresponding metadata details.
         """
+        if hasattr(self.doc_id_to_details, "get_batch"):
+            batch_details = self.doc_id_to_details.get_batch(doc_ids)
+            return [
+                batch_details.get(
+                    doc_id, 
+                    {"id": "unknown", "name": "Unknown", "artists": "Unknown", "album_name": "Unknown"}
+                ) 
+                for doc_id in doc_ids
+            ]
         return [
             self.doc_id_to_details.get(
                 doc_id, 
@@ -204,6 +213,19 @@ class HybridSearchEngine:
         """
         Map list of ranked results tuples to (details, score) tuples.
         """
+        doc_ids = [doc_id for doc_id, _ in ranked_results]
+        if hasattr(self.doc_id_to_details, "get_batch"):
+            batch_details = self.doc_id_to_details.get_batch(doc_ids)
+            return [
+                (
+                    batch_details.get(
+                        doc_id, 
+                        {"id": "unknown", "name": "Unknown", "artists": "Unknown", "album_name": "Unknown"}
+                    ), 
+                    score
+                ) 
+                for doc_id, score in ranked_results
+            ]
         return [
             (
                 self.doc_id_to_details.get(

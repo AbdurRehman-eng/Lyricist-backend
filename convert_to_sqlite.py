@@ -4,6 +4,51 @@ import json
 import sqlite3
 import sys
 
+def stream_json_array(filepath):
+    """
+    Memory-efficient streaming parser for large JSON arrays of objects.
+    Yields parsed Python dictionaries one by one, using minimal RAM.
+    """
+    with open(filepath, "r", encoding="utf-8") as f:
+        # Move past any leading whitespace and the opening bracket '['
+        char = f.read(1)
+        while char and char != '[':
+            char = f.read(1)
+        
+        buffer = []
+        depth = 0
+        in_string = False
+        escape = False
+        
+        while True:
+            chunk = f.read(65536)
+            if not chunk:
+                break
+            for c in chunk:
+                buffer.append(c)
+                if escape:
+                    escape = False
+                    continue
+                if c == '\\':
+                    escape = True
+                    continue
+                if c == '"':
+                    in_string = not in_string
+                    continue
+                if not in_string:
+                    if c == '{':
+                        if depth == 0:
+                            # Start of a new object
+                            buffer = ['{']
+                        depth += 1
+                    elif c == '}':
+                        depth -= 1
+                        if depth == 0:
+                            # End of a complete object
+                            obj_str = "".join(buffer)
+                            yield json.loads(obj_str)
+                            buffer = []
+
 def convert():
     db_path = "details.db"
     
@@ -15,6 +60,8 @@ def convert():
     # Enable performance settings for fast bulk inserts
     cursor.execute("PRAGMA synchronous = OFF")
     cursor.execute("PRAGMA journal_mode = MEMORY")
+    cursor.execute("PRAGMA temp_store = MEMORY")
+    cursor.execute("PRAGMA cache_size = -500000") # 500MB cache size
     
     # Create tables
     cursor.execute("""
@@ -38,18 +85,23 @@ def convert():
             doc_ids TEXT
         )
     """)
+    # Temp postings table to join in SQLite
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS temp_postings (
+            word TEXT,
+            doc_ids TEXT
+        )
+    """)
     conn.commit()
 
-    # 2. Convert details.json
+    # 2. Convert details.json in a streaming fashion
     details_json = "details.json"
     if os.path.exists(details_json):
-        print(f"Converting {details_json} to details table...")
+        print(f"Converting {details_json} to details table (streaming)...")
         try:
-            with open(details_json, "r", encoding="utf-8") as f:
-                data = json.load(f)
-            
             insert_data = []
-            for item in data:
+            count = 0
+            for item in stream_json_array(details_json):
                 insert_data.append((
                     int(item["doc_id"]),
                     item.get("spotify_id"),
@@ -57,25 +109,37 @@ def convert():
                     item.get("artists"),
                     item.get("album_name")
                 ))
+                if len(insert_data) >= 50000:
+                    cursor.executemany(
+                        "INSERT OR REPLACE INTO details (doc_id, spotify_id, name, artists, album_name) VALUES (?, ?, ?, ?, ?)",
+                        insert_data
+                    )
+                    conn.commit()
+                    count += len(insert_data)
+                    print(f"  Inserted {count} details rows...", flush=True)
+                    insert_data = []
             
-            cursor.executemany(
-                "INSERT OR REPLACE INTO details (doc_id, spotify_id, name, artists, album_name) VALUES (?, ?, ?, ?, ?)",
-                insert_data
-            )
-            conn.commit()
-            print(f"Successfully inserted {len(insert_data)} details rows.")
+            if insert_data:
+                cursor.executemany(
+                    "INSERT OR REPLACE INTO details (doc_id, spotify_id, name, artists, album_name) VALUES (?, ?, ?, ?, ?)",
+                    insert_data
+                )
+                conn.commit()
+                count += len(insert_data)
+            print(f"Successfully populated details table with {count} rows.")
         except Exception as e:
             print(f"Error converting details.json: {e}")
             sys.exit(1)
     else:
-        print("details.json not found, skipping details table populate (may be running updates).")
+        print("details.json not found, skipping details table populate.")
 
-    # 3. Convert lexicon.csv
+    # 3. Convert lexicon.csv in a streaming fashion
     lexicon_csv = "lexicon.csv"
     if os.path.exists(lexicon_csv):
-        print(f"Converting {lexicon_csv} to lexicon table...")
+        print(f"Converting {lexicon_csv} to lexicon table (streaming)...")
         try:
             insert_data = []
+            count = 0
             csv.field_size_limit(100000000)
             with open(lexicon_csv, "r", encoding="utf-8") as f:
                 reader = csv.reader(f)
@@ -87,40 +151,37 @@ def convert():
                         if len(insert_data) >= 100000:
                             cursor.executemany("INSERT OR REPLACE INTO lexicon (word, word_id) VALUES (?, ?)", insert_data)
                             conn.commit()
+                            count += len(insert_data)
+                            print(f"  Inserted {count} lexicon words...", flush=True)
                             insert_data = []
                             
             if insert_data:
                 cursor.executemany("INSERT OR REPLACE INTO lexicon (word, word_id) VALUES (?, ?)", insert_data)
                 conn.commit()
-            print("Successfully populated lexicon table.")
+                count += len(insert_data)
+            print(f"Successfully populated lexicon table with {count} rows.")
         except Exception as e:
             print(f"Error converting lexicon.csv: {e}")
             sys.exit(1)
     else:
         print("lexicon.csv not found, skipping lexicon table populate.")
 
-    # 4. Convert inverted_index / barrels
-    # We can either convert from inverted_index.csv or from the barrels/ folder.
-    # Converting from barrels/ is very clean and reliable.
+    # 4. Create index on lexicon for join speed
+    print("Creating index on lexicon word column...")
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_lexicon_word ON lexicon(word)")
+    conn.commit()
+
+    # 5. Convert inverted index to temp_postings
     barrels_dir = "barrels"
+    has_postings = False
     if os.path.exists(barrels_dir) and os.path.isdir(barrels_dir):
-        print("Converting inverted index barrels to postings table...")
+        print("Converting inverted index barrels to temp_postings (streaming)...")
         try:
             barrel_files = [f for f in os.listdir(barrels_dir) if f.startswith("barrel_") and f.endswith(".csv")]
             print(f"Found {len(barrel_files)} barrel files.")
             
-            # We need to map term -> word_id to store in postings.
-            # So we load word_ids from lexicon in a lightweight query or dictionary if memory allows.
-            # But wait! We can just fetch word_ids directly from the lexicon table we just populated!
-            # Since querying SQLite for millions of words one-by-one is slow, we can just load the lexicon table
-            # into a temp dict. In Python, a dict of 2.45 million strings to integers takes about 80MB-100MB RAM,
-            # which is completely fine in the build step.
-            print("Loading word_id mapping from lexicon database...")
-            cursor.execute("SELECT word, word_id FROM lexicon")
-            word_to_id = {row[0]: row[1] for row in cursor.fetchall()}
-            print(f"Loaded {len(word_to_id)} words from lexicon table.")
-            
             insert_data = []
+            count = 0
             for file in barrel_files:
                 file_path = os.path.join(barrels_dir, file)
                 with open(file_path, "r", encoding="utf-8") as f:
@@ -129,71 +190,89 @@ def convert():
                     for row in reader:
                         if len(row) == 2:
                             term, doc_ids_str = row
-                            term_lower = term.lower().strip()
-                            word_id = word_to_id.get(term_lower)
-                            if word_id is not None:
-                                insert_data.append((word_id, doc_ids_str))
-                                if len(insert_data) >= 100000:
-                                    cursor.executemany("INSERT OR REPLACE INTO postings (word_id, doc_ids) VALUES (?, ?)", insert_data)
-                                    conn.commit()
-                                    insert_data = []
-                                    
+                            insert_data.append((term.lower().strip(), doc_ids_str))
+                            if len(insert_data) >= 100000:
+                                cursor.executemany("INSERT INTO temp_postings (word, doc_ids) VALUES (?, ?)", insert_data)
+                                conn.commit()
+                                count += len(insert_data)
+                                print(f"  Inserted {count} temp postings...", flush=True)
+                                insert_data = []
+                                
             if insert_data:
-                cursor.executemany("INSERT OR REPLACE INTO postings (word_id, doc_ids) VALUES (?, ?)", insert_data)
+                cursor.executemany("INSERT INTO temp_postings (word, doc_ids) VALUES (?, ?)", insert_data)
                 conn.commit()
-            print("Successfully populated postings table.")
+                count += len(insert_data)
+            print(f"Successfully loaded {count} raw postings into temp_postings.")
+            has_postings = True
         except Exception as e:
             print(f"Error converting barrels: {e}")
             sys.exit(1)
             
     elif os.path.exists("inverted_index.csv"):
-        print("Converting consolidated inverted_index.csv to postings table...")
+        print("Converting consolidated inverted_index.csv to temp_postings...")
         try:
-            print("Loading word_id mapping from lexicon database...")
-            cursor.execute("SELECT word, word_id FROM lexicon")
-            word_to_id = {row[0]: row[1] for row in cursor.fetchall()}
-            
             insert_data = []
+            count = 0
             with open("inverted_index.csv", "r", encoding="utf-8") as f:
                 reader = csv.reader(f)
                 next(reader, None) # Skip header
                 for row in reader:
                     if len(row) == 2:
                         term, doc_ids_str = row
-                        term_lower = term.lower().strip()
-                        word_id = word_to_id.get(term_lower)
-                        if word_id is not None:
-                            insert_data.append((word_id, doc_ids_str))
-                            if len(insert_data) >= 100000:
-                                cursor.executemany("INSERT OR REPLACE INTO postings (word_id, doc_ids) VALUES (?, ?)", insert_data)
-                                conn.commit()
-                                insert_data = []
-                                
+                        insert_data.append((term.lower().strip(), doc_ids_str))
+                        if len(insert_data) >= 100000:
+                            cursor.executemany("INSERT INTO temp_postings (word, doc_ids) VALUES (?, ?)", insert_data)
+                            conn.commit()
+                            count += len(insert_data)
+                            print(f"  Inserted {count} temp postings...", flush=True)
+                            insert_data = []
+                            
             if insert_data:
-                cursor.executemany("INSERT OR REPLACE INTO postings (word_id, doc_ids) VALUES (?, ?)", insert_data)
+                cursor.executemany("INSERT INTO temp_postings (word, doc_ids) VALUES (?, ?)", insert_data)
                 conn.commit()
-            print("Successfully populated postings table.")
+                count += len(insert_data)
+            print(f"Successfully loaded {count} raw postings into temp_postings.")
+            has_postings = True
         except Exception as e:
             print(f"Error converting inverted_index.csv: {e}")
             sys.exit(1)
-    else:
-        print("No barrels/ or inverted_index.csv found to populate postings.")
+
+    if has_postings:
+        # Create temp_postings index for fast join
+        print("Creating index on temp_postings word column...")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_tp_word ON temp_postings(word)")
+        conn.commit()
+        
+        # Join temp_postings with lexicon to populate postings table using zero Python memory!
+        print("Populating production postings table via database-level JOIN...")
+        cursor.execute("""
+            INSERT OR REPLACE INTO postings (word_id, doc_ids)
+            SELECT l.word_id, tp.doc_ids
+            FROM temp_postings tp
+            JOIN lexicon l ON l.word = tp.word
+        """)
+        conn.commit()
+        print("Successfully populated postings table.")
+        
+        # Drop temp table
+        print("Dropping temporary postings table...")
+        cursor.execute("DROP TABLE IF EXISTS temp_postings")
+        conn.commit()
 
     # Create indexes for optimal query speeds
-    print("Creating indexes on database columns...")
-    cursor.execute("CREATE INDEX IF NOT EXISTS idx_lexicon_word ON lexicon(word)")
+    print("Creating production database indexes...")
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_details_doc_id ON details(doc_id)")
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_postings_word_id ON postings(word_id)")
     conn.commit()
     
     # Run VACUUM to compress database size
-    print("Optimizing database storage...")
+    print("Optimizing database storage (VACUUM)...")
     cursor.execute("VACUUM")
     conn.commit()
     conn.close()
     print("Database conversion complete!")
 
-    # 5. Clean up source files to save disk space
+    # 6. Clean up source files to save disk space
     print("Cleaning up source files to free up disk space...")
     import shutil
     for path in ["details.json", "lexicon.csv", "forward_index.csv", "inverted_index.csv"]:

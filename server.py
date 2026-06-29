@@ -101,9 +101,9 @@ def search():
     # Perform hybrid search
     final_results, ranked_results = hybrid_engine.search(query.lower())
 
-    # Map document IDs to metadata details
-    final_results_details = hybrid_engine.map_doc_ids_to_details(final_results)
-    ranked_results_details = hybrid_engine.map_ranked_results_to_details(ranked_results)
+    # Map document IDs to metadata details (limit to top 100 for performance)
+    final_results_details = hybrid_engine.map_doc_ids_to_details(final_results[:100])
+    ranked_results_details = hybrid_engine.map_ranked_results_to_details(ranked_results[:100])
 
     return jsonify({
         "query": query,

@@ -104,6 +104,35 @@ class SQLiteDetails:
             for row in rows
         ]
 
+    def get_batch(self, doc_ids):
+        """
+        Fetch details for a list of doc_ids in batches to optimize SQLite queries.
+        """
+        if not doc_ids:
+            return {}
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        results = {}
+        chunk_size = 900
+        doc_ids_list = list(doc_ids)
+        for i in range(0, len(doc_ids_list), chunk_size):
+            chunk = doc_ids_list[i:i+chunk_size]
+            placeholders = ",".join(["?"] * len(chunk))
+            cursor.execute(
+                f"SELECT doc_id, spotify_id, name, artists, album_name FROM details WHERE doc_id IN ({placeholders})",
+                chunk
+            )
+            for row in cursor.fetchall():
+                results[row[0]] = {
+                    "doc_id": row[0],
+                    "spotify_id": row[1],
+                    "name": row[2],
+                    "artists": row[3],
+                    "album_name": row[4]
+                }
+        conn.close()
+        return results
+
 
 class SQLiteInvertedIndex:
     def __init__(self, db_path):
